@@ -32,9 +32,12 @@ create table item_genre  (
     constraint pk_item_genre primary key (item_genre_id)
 );
 
+/*==============================================================*/
+/* Association : entre item et item_genre                       */                                                
+/*==============================================================*/
 create table possede_genre (
     item_genre_id            int(11)         not null,
     item_id                     int(11)         not null,
-    constraint pk_possede_genre primary key (item_genre_id)
+    constraint pk_possede_genre primary key (item_genre_id,item_id)
 )
 
