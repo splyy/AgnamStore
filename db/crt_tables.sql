@@ -4,11 +4,11 @@
 create table item  (
     item_id                     int(11)         not null       auto_increment,
     sale_date                   date            not null,
-    annee                       int(4)          not null,
+    year                       int(4)          not null,
     author                      varchar(200)    not null,
     description                 LONGTEXT,
-    img_mini                    varchar(200),
-    img_detail                  varchar(200),
+    thumbnails                    varchar(200),
+    image                  varchar(200),
     item_type_id                int(11)         not null,
     constraint pk_item primary key (item_id)
 );
