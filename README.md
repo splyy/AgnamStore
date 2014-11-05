@@ -1,3 +1,3 @@
 AgnamStore
 ==========
-Pierre Alexandre 
+ Alexandre 
