@@ -5,7 +5,7 @@ namespace AgnamStore\DAO;
 use AgnamStore\Domain\Item;
 
 class ItemDAO {
-    
+    //TODO
     
     /**
      * Returns the list of all item, sorted by name and first name.
