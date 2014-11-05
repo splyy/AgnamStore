@@ -7,6 +7,10 @@ class Item {
      * @var integer **/
     private $id;
     
+    /** Item name.
+     * @var string **/
+    private $name;
+    
     /** Sale date.
      * @var date **/
     private $sale;
@@ -103,5 +107,19 @@ class Item {
         $this->type = $type;
     }
 
+    public function getName() {
+        return $this->name;
+    }
 
+    public function getGenres() {
+        return $this->genres;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function setGenres($genres) {
+        $this->genres = $genres;
+    }
 }
