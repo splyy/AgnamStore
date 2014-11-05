@@ -4,7 +4,7 @@
 create table item  (
     item_id                     int(11)         not null       auto_increment,
     sale_date                   date            not null,
-    annee                       int(4)          not null,
+    year                       int(4)          not null,
     author                      varchar(200)    not null,
     description                 LONGTEXT,
     img_mini                    varchar(200),
