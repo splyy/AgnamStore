@@ -4,6 +4,7 @@
 create table item  (
     item_id                     int(11)         not null       auto_increment,
     sale_date                   date            not null,
+    annee                       int(4)          not null,
     author                      varchar(200)    not null,
     description                 LONGTEXT,
     img_mini                    varchar(200),
@@ -23,11 +24,17 @@ create table item_type  (
 
 /*==============================================================*/
 /* Table : item_genre                                           */
-/* Exemple Fan                    tastique,Science fiction, horeur, aventure        */                                                 
+/* Exemple Fantastique,Science fiction, horeur, aventure        */                                                 
 /*==============================================================*/
 create table item_genre  (
     item_genre_id            int(11)         not null       auto_increment,
     item_genre_label         varchar(200)    not null,
     constraint pk_item_genre primary key (item_genre_id)
 );
+
+create table possede_genre (
+    item_genre_id            int(11)         not null,
+    item_id                     int(11)         not null,
+    constraint pk_possede_genre primary key (item_genre_id)
+)
 
