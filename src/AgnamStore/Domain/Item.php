@@ -13,7 +13,7 @@ class Item {
     
     /** Sale date.
      * @var date **/
-    private $sale;
+    private $saleDate;
     
     /** Item year.
      * @var integer **/
@@ -47,7 +47,7 @@ class Item {
         return $this->id;
     }
 
-    public function getSale() {
+    public function getSaleDate() {
         return $this->sale;
     }
 
@@ -79,7 +79,7 @@ class Item {
         $this->id = $id;
     }
 
-    public function setSale(date $sale) {
+    public function setSaleDate(date $sale) {
         $this->sale = $sale;
     }
 
