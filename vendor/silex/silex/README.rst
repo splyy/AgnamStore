@@ -17,7 +17,7 @@ components`_:
     });
 
     $app->run();
-?>
+
 Silex works with PHP 5.3.3 or later.
 
 Installation

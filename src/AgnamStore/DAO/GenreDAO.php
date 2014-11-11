@@ -4,7 +4,8 @@ namespace AgnamStore\DAO;
 
 use AgnamStore\Domain\Genre;
 
-class GenreDAO {
+class GenreDAO extends DAO {
+
     /**
      * Returns the list of all genre, sorted by name and first name.
      *
@@ -13,7 +14,20 @@ class GenreDAO {
     public function findAll() {
         $sql = "select * from item_genre order by item_genre_label";
         $result = $this->getDb()->fetchAll($sql);
-        
+
+        // Converts query result to an array of domain objects
+        $genres = array();
+        foreach ($result as $row) {
+            $genreId = $row['item_genre_id'];
+            $genres[$genreId] = $this->buildDomainObject($row);
+        }
+        return $genres;
+    }
+
+    public function findAllGenreForItem($itemId) {
+        $sql = "select * from item_genre ig join possede_genre pg where item_id=? order by item_genre_label";
+        $result = $this->getDb()->$this->getDb()->fetchAll($sql, array($itemId));
+
         // Converts query result to an array of domain objects
         $genres = array();
         foreach ($result as $row) {
@@ -28,7 +42,7 @@ class GenreDAO {
      *
      * @param integer $id The genre id.
      *
-     * @return \GSB\Domain\Genre|throws an exception if no genre is found.
+     * @return \AgnamStore\Domain\Genre|throws an exception if no genre is found.
      */
     public function find($id) {
         $sql = "select * from item_genre where item_genre_id=?";
@@ -45,7 +59,7 @@ class GenreDAO {
      *
      * @param array $row The DB query result row.
      *
-     * @return \GSB\Domain\Genre
+     * @return \AgnamStore\Domain\Genre
      */
     protected function buildDomainObject($row) {
         $genre = new Genre();
@@ -53,4 +67,5 @@ class GenreDAO {
         $genre->setLabel($row['item_genre_label']);
         return $genre;
     }
+
 }

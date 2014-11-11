@@ -79,7 +79,7 @@ class Item {
         $this->id = $id;
     }
 
-    public function setSaleDate(date $sale) {
+    public function setSaleDate($sale) {
         $this->sale = $sale;
     }
 

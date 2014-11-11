@@ -1,11 +1,11 @@
 <?php
 
-namespace GSB\DAO;
+namespace AgnamStore\DAO;
 
 use Doctrine\DBAL\Connection;
 
-abstract class DAO 
-{
+abstract class DAO {
+
     /**
      * Database connection
      *

@@ -4,7 +4,8 @@ namespace AgnamStore\DAO;
 
 use AgnamStore\Domain\Type;
 
-class TypeDAO {
+class TypeDAO extends DAO {
+
     /**
      * Returns the list of all type, sorted by name and first name.
      *
@@ -13,7 +14,7 @@ class TypeDAO {
     public function findAll() {
         $sql = "select * from item_type order by item_type_label";
         $result = $this->getDb()->fetchAll($sql);
-        
+
         // Converts query result to an array of domain objects
         $types = array();
         foreach ($result as $row) {
@@ -28,7 +29,7 @@ class TypeDAO {
      *
      * @param integer $id The type id.
      *
-     * @return \GSB\Domain\Type|throws an exception if no type is found.
+     * @return \AgnamStore\Domain\Type|throws an exception if no type is found.
      */
     public function find($id) {
         $sql = "select * from item_type where item_type_id=?";
@@ -45,12 +46,13 @@ class TypeDAO {
      *
      * @param array $row The DB query result row.
      *
-     * @return \GSB\Domain\Type
+     * @return \AgnamStore\Domain\Type
      */
     protected function buildDomainObject($row) {
         $type = new Type();
         $type->setId($row['item_type_id']);
-        $type->setLabel($row['item_type_label']);
+        $type->setLabel($row['type_label']);
         return $type;
     }
+
 }

@@ -4,9 +4,10 @@ namespace AgnamStore\DAO;
 
 use AgnamStore\Domain\Item;
 
-class ItemDAO {
+class ItemDAO extends DAO {
+
     /**
-     * @var \GSB\DAO\PractitionerTypeDAO
+     * @var \AgnamStore\DAO\PractitionerTypeDAO
      */
     private $genreDAO;
 
@@ -14,10 +15,9 @@ class ItemDAO {
         $this->genreDAO = $genreDAO;
     }
 
-/**
-     * @var \GSB\DAO\PractitionerTypeDAO
+    /**
+     * @var \AgnamStore\DAO\PractitionerTypeDAO
      */
-
     private $typeDAO;
 
     public function setTypeDAO($typeDAO) {
@@ -30,9 +30,9 @@ class ItemDAO {
      * @return array The list of all items.
      */
     public function findAll() {
-        $sql = "select * from item order by item_label";
+        $sql = "select * from item order by name";
         $result = $this->getDb()->fetchAll($sql);
-        
+
         // Converts query result to an array of domain objects
         $items = array();
         foreach ($result as $row) {
@@ -47,7 +47,7 @@ class ItemDAO {
      *
      * @param integer $id The item id.
      *
-     * @return \GSB\Domain\Item|throws an exception if no item is found.
+     * @return \AgnamStore\Domain\Item|throws an exception if no item is found.
      */
     public function find($id) {
         $sql = "select * from item where item_id=?";
@@ -64,20 +64,23 @@ class ItemDAO {
      *
      * @param array $row The DB query result row.
      *
-     * @return \GSB\Domain\Item
+     * @return \AgnamStore\Domain\Item
      */
     protected function buildDomainObject($row) {
-        
         $item = new Item();
+        $type = $this->typeDAO->find($row['item_type_id']);
+        //$genres = $this->genreDAO->findAllGenreForItem($row['item_id']);
         $item->setId($row['item_id']);
-        $item->setSaleDate($row['item_sale_date']);
+        $item->setSaleDate($row['sale_date']);
         $item->setYear($row['year']);
         $item->setAuthor($row['author']);
-        $item->setDescription($row['description ']);
-        $item->setThumbnails($row['thumbnails ']);
+        $item->setDescription($row['description']);
+        $item->setThumbnails($row['thumbnails']);
         $item->setImage($row['image']);
-        $item->setType();
-        $item->setGenres();
+        $item->setType($type);
+        //$item->setGenres($genres);
+        $item->setName($row['name']);
         return $item;
     }
+
 }
