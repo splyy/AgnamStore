@@ -5,8 +5,25 @@ namespace AgnamStore\DAO;
 use AgnamStore\Domain\Item;
 
 class ItemDAO {
-    //TODO
-    
+    /**
+     * @var \GSB\DAO\PractitionerTypeDAO
+     */
+    private $genreDAO;
+
+    public function setGenreDAO($genreDAO) {
+        $this->genreDAO = $genreDAO;
+    }
+
+/**
+     * @var \GSB\DAO\PractitionerTypeDAO
+     */
+
+    private $typeDAO;
+
+    public function setTypeDAO($typeDAO) {
+        $this->typeDAO = $typeDAO;
+    }
+
     /**
      * Returns the list of all item, sorted by name and first name.
      *

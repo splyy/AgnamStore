@@ -15,10 +15,19 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\FormServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider());
+
+
 // Register services.
 $app['dao.genre'] = $app->share(function ($app) {
     return new AgnamStore\Domain\GenreDAO($app['db']);
 });
 $app['dao.type'] = $app->share(function ($app) {
     return new AgnamStore\Domain\TypeDAO($app['db']);
+});
+
+$app['dao.type'] = $app->share(function ($app) {
+    $itemDao = new AgnamStore\Domain\ItemDAO($app['db']);
+    $itemDAO->setGenreDAO($app['dao.genre']);
+    $itemDAO->setTypeDAO(['dao.type']);
+    return $itemDao;
 });
