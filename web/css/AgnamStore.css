@@ -46,3 +46,7 @@ h1 small {
     margin-top: 5px;
 }
 
+.jumbotron {
+    padding-top: 1px !important;
+}
+
