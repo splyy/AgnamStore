@@ -49,4 +49,9 @@ h1 small {
 .jumbotron {
     padding-top: 1px !important;
 }
+.banner{
+    height: 250px;
+    background-image: url('http://media.nitroserv.com/GRTV/slider/mardi.jpg');
+}
+
 

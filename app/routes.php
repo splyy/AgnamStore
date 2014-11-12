@@ -20,4 +20,9 @@ $app->get('/type={typeId}', function($typeId) use ($app) {
     return $app['twig']->render('items.html.twig', array('types' => $types,'items' => $items));
 });
 
+$app->get('/item/{id}', function ($id) use ($app) {
+    $item = $app['dao.item']->find($id);
+    return $app['twig']->render('item.html.twig', array('item' => $item));
+});
+
 
