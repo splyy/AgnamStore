@@ -41,7 +41,19 @@ class ItemDAO extends DAO {
         }
         return $items;
     }
+    
+    public function findByType($typeId) {
+        $sql = "select * from item where item_type_id=? order by name";
+        $result = $this->getDb()->fetchAll($sql, array($typeId));
 
+        // Converts query result to an array of domain objects
+        $items = array();
+        foreach ($result as $row) {
+            $itemId = $row['item_id'];
+            $items[$itemId] = $this->buildDomainObject($row);
+        }
+        return $items;
+    }
     /**
      * Returns the item matching a given id.
      *

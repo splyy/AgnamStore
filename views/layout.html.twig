@@ -1,3 +1,4 @@
+{% set typeMenu = items[0].type.id %}
 <!doctype html>
 <html>
 <head>
@@ -22,9 +23,14 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
                     <ul class="nav navbar-nav">
-                        <li class="{% if animeMenu is defined %}active{% endif %}">
-                            <a href="/type=" >Anime</a>                            
-                        </li>    
+                        {% if types %}
+                            {% for type in types %}
+                                <li class="{% if typeMenu==type.id is defined %}active{% endif %}">
+                                    <a href="/type={{ type.id }}" >{{ type.label }}</a>                            
+                                </li> 
+                            {% endfor %}
+                        {% endif %}
+                           
                         
                     </ul>
                 </div>

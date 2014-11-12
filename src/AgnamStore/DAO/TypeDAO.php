@@ -12,7 +12,7 @@ class TypeDAO extends DAO {
      * @return array The list of all types.
      */
     public function findAll() {
-        $sql = "select * from item_type order by item_type_label";
+        $sql = "select * from item_type order by type_label";
         $result = $this->getDb()->fetchAll($sql);
 
         // Converts query result to an array of domain objects
