@@ -12,4 +12,9 @@ $app->get('/test', function () use ($app) {
     return $app['twig']->render('items.html.twig', array('items' => $items));
 });
 
+$app->get('/item/{id}', function ($id) use ($app) {
+    $item = $app['dao.item']->find($id);
+    return $app['twig']->render('item.html.twig', array('item' => $item));
+});
+
 

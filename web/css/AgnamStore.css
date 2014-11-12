@@ -46,3 +46,8 @@ h1 small {
     margin-top: 5px;
 }
 
+.banner{
+    height: 250px;
+    background-image: url('http://media.nitroserv.com/GRTV/slider/mardi.jpg');
+}
+
