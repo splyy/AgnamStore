@@ -5,13 +5,16 @@
 {% block content %}
 
 <div class="jumbotron">
-    <div class="row"><h2>Les produits </h2></div>
+    <div class="row item"><h2>Les produits </h2></div>
     <div class="container">
     {% if items %}
         {% for item in items %}
-        <div class="col-sm-4 col-md-3">
-            <div class="row text-center ">{{ item.name }}</div>
-            <div class="row text-center "><img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/livre.png" /></div>
+        <div class="col-sm-4 col-md-3 ">
+            <div class="container item-mini ">
+                <div class="row text-center title">{{ item.name }}</div>
+                <div class="row text-center "><div class="col-sm-8 col-sm-offset-2"><img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/livre.png" title="livre"/></div></div>
+                <div class="row text-center nav-item-mini"><a href="/items/{{ item.id }}" ><div class="col-sm-4 detail">Détail</div></a><div class="col-sm-3 price">Prix</div><a href="/panier/additem={{ item.id }}" ><div class="col-sm-5 panier">Panier <span class="glyphicon glyphicon-shopping-cart"></span></div></a></div>
+            </div>
         </div>
         {% endfor %}
     {% endif %}

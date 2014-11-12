@@ -12,3 +12,37 @@ h1 small {
 .margin-top {
     margin-top: 10px;
 }
+
+.item-mini {
+    background-color: white;
+    box-shadow: 5px 5px 10px 0px #656565;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.item-mini .title {
+    background-color: rgb(120, 120, 120);
+    padding-bottom: 5px;
+    padding-top: 5px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.item-mini .detail {
+   background-color: rgb(120, 120, 120); 
+}
+.item-mini .price {
+    
+}
+.item-mini .panier {
+    background-color: orange;
+}
+
+.item-mini .nav-item-mini a {
+    color: white;
+}
+
+.item-mini .nav-item-mini {
+    margin-top: 5px;
+}
+
