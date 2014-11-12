@@ -25,7 +25,24 @@ h1 small {
     padding-bottom: 5px;
     padding-top: 5px;
     color: white;
+    margin-bottom: 5px;
 }
 
+.item-mini .detail {
+   background-color: rgb(120, 120, 120); 
+}
+.item-mini .price {
+    
+}
+.item-mini .panier {
+    background-color: orange;
+}
 
+.item-mini .nav-item-mini a {
+    color: white;
+}
+
+.item-mini .nav-item-mini {
+    margin-top: 5px;
+}
 
