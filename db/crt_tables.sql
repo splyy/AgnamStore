@@ -3,12 +3,12 @@
 /*==============================================================*/
 create table item  (
     item_id                     int(11)         not null       auto_increment,
+    price                       decimal(21,2)   not null,
     name                        varchar(50)     not null,
     sale_date                   date            not null,
     year                        int(4)          not null,
     author                      varchar(200)    not null,
     description                 LONGTEXT,
-    thumbnails                  varchar(200),
     image                       varchar(200),
     item_type_id                int(11)         not null,
     constraint pk_item primary key (item_id)
