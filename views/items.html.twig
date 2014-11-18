@@ -2,23 +2,34 @@
 
 {% block title %}Produit{% endblock %}
 
-{% block content %}
-    <div class="jumbotron">
-        <div class="text-center page-header"><h2>Les produits</h2></div>
-
-        <div class="row container-fluid">
-            {% if items %}
+{% block content %}          
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <div class="text-center"><h2>Les produits</h2></div>
+        </div>
+        <div class="panel-body"> 
+            <div class="row"> 
+                {% if items %}
                 {% for item in items %}
-                    <div class="col-sm-4 col-md-3 ">
-                        <div class="container item-mini ">
-                            <div class="row text-center title">{{ item.name }}</div>
-                            <div class="row text-center "><div class="col-sm-8 col-sm-offset-2"><img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/livre.png" title="livre"/></div></div>
-                            <div class="row text-center nav-item-mini"><a href="/items/{{ item.id }}" ><div class="col-sm-4 detail">Détail</div></a><div class="col-sm-3 price">{{ item.price}}</div><a href="/panier/additem={{ item.id }}" ><div class="col-sm-5 panier">Panier <span class="glyphicon glyphicon-shopping-cart"></span></div></a></div>
-                        </div>
+                    <div class="col-sm-4 col-md-3">
+                        
+                            <div class="row text-center">
+                                <p>{{ item.name }}<p>
+                            </div>
+                            <div class="row col-xs-12"><img class="" src="{{ app.request.basepath }}/images/produit/livre.png" title="livre"/></div>
+                            <div class="row">
+                                <div class="text-center">
+                                    <div class="col-sm-4"><a class="btn btn-primary" href="/items/{{ item.id }}" >Détail</a></div>
+                                    <div class="col-sm-3">{{ item.price}}</div>
+                                    <div class="col-sm-5"><a  class="btn btn-primary"href="/panier/additem={{ item.id }}" >Panier <span class="glyphicon glyphicon-shopping-cart"></span></a></div>
+                                </div>
+                            </div>
+                        
                     </div>
                 {% endfor %}
-            {% endif %}
-        </div>
-
+            {% endif %}   
+            </div>
+        </div> 
     </div>
+    
 {% endblock %}

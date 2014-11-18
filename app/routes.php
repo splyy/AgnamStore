@@ -14,15 +14,16 @@ $app->get('/test', function () use ($app) {
     return $app['twig']->render('items.html.twig', array('types' => $types,'items' => $items));
 });
 
-$app->get('/type={typeId}', function($typeId) use ($app) {
+$app->get('/items/type={typeId}', function($typeId) use ($app) {
     $items = $app['dao.item']->findByType($typeId);
     $types = $app['dao.type']->findAll();
     return $app['twig']->render('items.html.twig', array('types' => $types,'items' => $items));
 });
 
-$app->get('/item/{id}', function ($id) use ($app) {
+$app->get('/items/{id}', function ($id) use ($app) {
     $item = $app['dao.item']->find($id);
-    return $app['twig']->render('item.html.twig', array('item' => $item));
+    $types = $app['dao.type']->findAll();
+    return $app['twig']->render('item.html.twig', array('item' => $item, 'types' => $types));
 });
 
 
