@@ -26,7 +26,7 @@
                         {% if types %}
                             {% for type in types %}
                                 <li class="{% if typeMenu==type.id is defined %}active{% endif %}">
-                                    <a href="/type={{ type.id }}" >{{ type.label }}</a>                            
+                                    <a href="/items/type={{ type.id }}" >{{ type.label }}</a>                            
                                 </li> 
                             {% endfor %}
                         {% endif %}

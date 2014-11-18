@@ -27,9 +27,9 @@ class Item {
      * @var string **/
     private $description;
     
-    /** Item thumbnails.
-     * @var string **/
-    private $thumbnails;
+    /** Item price.
+     * @var double **/
+    private $price;
     
     /** Item image.
      * @var integer **/
@@ -63,8 +63,8 @@ class Item {
         return $this->description;
     }
 
-    public function getThumbnails() {
-        return $this->thumbnails;
+    public function getPrice() {
+        return $this->price;
     }
 
     public function getImage() {
@@ -95,8 +95,8 @@ class Item {
         $this->description = $description;
     }
 
-    public function setThumbnails($thumbnails) {
-        $this->thumbnails = $thumbnails;
+    public function setPrice($price) {
+        $this->price = $price;
     }
 
     public function setImage($image) {

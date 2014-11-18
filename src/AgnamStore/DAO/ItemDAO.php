@@ -87,7 +87,7 @@ class ItemDAO extends DAO {
         $item->setYear($row['year']);
         $item->setAuthor($row['author']);
         $item->setDescription($row['description']);
-        $item->setThumbnails($row['thumbnails']);
+        $item->setPrice($row['price']);
         $item->setImage($row['image']);
         $item->setType($type);
         //$item->setGenres($genres);
