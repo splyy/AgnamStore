@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 // Home page
 $app->get('/', function () use ($app) {
     $types = $app['dao.type']->findAll();
-    return $app['twig']->render('index.html.twig',  array('type' => $types));
+    return $app['twig']->render('index.html.twig',  array('types' => $types));
 });
 
 $app->get('/test', function () use ($app) {
