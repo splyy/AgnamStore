@@ -34,9 +34,12 @@ h1 small {
   border-color: #ddd;
 }
 
-.img_mini {
-    width: 200px;
+.item-img {
+    width: 400px;
+    height: 600px;
 }
+
+
 
 
 

@@ -54,6 +54,20 @@ class ItemDAO extends DAO {
         }
         return $items;
     }
+    
+    // Attention ne pas oublier de remplacer par sale_date lorsque les date de vente seront mise en place
+    public function findByTypeThreeLast($typeId) {
+        $sql = "select * from item where item_type_id=? order by item_id limit 3";
+        $result = $this->getDb()->fetchAll($sql, array($typeId));
+
+        // Converts query result to an array of domain objects
+        $items = array();
+        foreach ($result as $row) {
+            $itemId = $row['item_id'];
+            $items[$itemId] = $this->buildDomainObject($row);
+        }
+        return $items;
+    }
     /**
      * Returns the item matching a given id.
      *

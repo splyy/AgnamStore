@@ -67,7 +67,7 @@ insert into item(name, sale_date, year, author, description, price, image, item_
 insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
 	values("Fairy Tail", "", 2011, "Hiro Mashima", "BLABLA", 19.99, "m_img_ft.png", 1);
 insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
-	values("Naruto", "", 2011, "blabla", "blabla", 19.99, m_img_naruto.png, 1);
+	values("Naruto", "", 2011, "blabla", "blabla", 19.99, "m_img_naruto.png", 1);
 insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
 	values("Elfen Lied", "", 2011, "Lynn Okamoto", "BLABLA", 19.99, "m_img_elfen.png", 1);
 insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
@@ -100,5 +100,24 @@ insert into item(name, sale_date, year, author, description, price, image, item_
 	values("Ixion Saga DT", "", 2012, "Shinji Takamatsu", "BLABLA", 19.99, "m_img_ixion.png", 1);
 
 /* LIGHT NOVEL */
-
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Sword art Online", "", 2012, "Reki Kawahara", "BLABLA", 19.99, "l_img_sao.png", 3);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Mahouka Koukou no Rettousei", "Autre nom connu : The Irregular at Magic High School", 2012, "Tsutomu Satou", "BLABLA", 19.99, "l_img_mkr.png", 3);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("All You Need Is Kill", "", 2012, "Hiroshi Sakurazaka", "BLABLA", 19.99, "l_img_aynik.png", 3);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Fate/Zero", "", 2012, "Gen Urobuchi", "BLABLA", 19.99, "l_img_fatezero.png", 3);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Log Horizon", "", 2012, "Mamare Touno", "BLABLA", 19.99, "l_img_loghorizon.png", 3);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Tokyo Ravens", "", 2012, "Kōhei Azano", "BLABLA", 19.99, "l_img_tokyoravens.png", 3);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("No Game No Life", "", 2012, "Kamiya Yuu", "BLABLA", 19.99, "l_img_ngnl.png", 3);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Chrome Shelled Regios", "", 2012, "Shūsuke Amagi", "BLABLA", 19.99, "l_img_csr.png", 3);
 /* FILM */
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Hunter X Hunter    The Last Mission", "", 2011, "Yoshihiro Togashi", "BLABLA", 19.99, "f_img_hxh_tlm.png", 4);
+insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
+	values("Hunter X Hunter    Phantom Rouge", "", 2011, "Yoshihiro Togashi", "BLABLA", 19.99, "f_img_hxh_pr.png", 4);
