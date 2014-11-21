@@ -9,10 +9,10 @@
                 <h2>{{ item.name }}</h2>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/{{ item.image }}" title="{{ item.name }}"/>
                 </div>
-                <div class="col-md-9 panel-body"> 
+                <div class="col-sm-9 panel-body"> 
                     <div class="container"> 
                         <div class="row">
                             <!-- <div class="col-md-3">
@@ -34,7 +34,8 @@
                         </div>
                         <div class="row">
                             <br />
-                            <a class="btn btn-primary" href="/items/type={{ item.type.id }}" >Retour </a>  
+                            <a class="btn btn-primary" href="/items/type={{ item.type.id }}" >Retour </a>
+                            <a  class="btn btn-warning"href="/panier/additem={{ item.id }}" >Panier <span class="glyphicon glyphicon-shopping-cart"></span></a>
                         </div>
                     </div>
                 </div> 
