@@ -34,7 +34,7 @@ create table item_genre  (
 );
 
 /*==============================================================*/
-/* Association : entre item et item_genre                       */                                                
+/* Table : user                          */                                                
 /*==============================================================*/
 create table possede_genre (
     item_genre_id               char(2)         not null,
@@ -42,3 +42,19 @@ create table possede_genre (
     constraint pk_possede_genre primary key (item_genre_id,item_id)
 )
 
+/*==============================================================*/
+/* Association : entre item et item_genre                       */                                                
+/*==============================================================*/
+create table user (
+    user_id                     int(11)         not null auto_increment,
+    user_email                   varchar(50)    not null,
+    user_password               varchar(88)     not null,
+    user_salt                   varchar(23)     not null,
+    user_role                   varchar(50)     not null,
+    user_firstname              varchar(50),
+    user_lastname               varchar(50),
+    user_address                varchar(50),
+    user_city                   varchar(50),
+    user_cp                     varchar(50),
+    constraint pk_user primary key (user_id)
+) 
