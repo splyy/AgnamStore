@@ -28,6 +28,7 @@ $app->match('/registration', function(Request $request) use ($app) {
     if ($userForm->isValid()) {
         $salt = substr(md5(time()), 0, 23);
         $user->setSalt($salt);
+        $user->setRole('ROLE_USER');
         $plainPassword = $user->getPassword();
         // find the default encoder
         $encoder = $app['security.encoder.digest'];
@@ -39,6 +40,30 @@ $app->match('/registration', function(Request $request) use ($app) {
     }
     return $app['twig']->render('user_form.html.twig', array(
                 'title' => 'New user',
+                'userForm' => $userForm->createView(),
+                'types' => $types
+    ));
+});
+
+// Edit an existing user
+$app->match('/settings', function(Request $request) use ($app) {
+    $types = $app['dao.type']->findAll();
+    $user = $app['security']->getToken()->getUser();
+    $user = $app['dao.user']->refreshUser($user);
+    $userForm = $app['form.factory']->create(new UserType(), $user);
+    $userForm->handleRequest($request);
+    if ($userForm->isValid()) {
+        $plainPassword = $user->getPassword();
+        // find the encoder for the user
+        $encoder = $app['security.encoder_factory']->getEncoder($user);
+        // compute the encoded password
+        $password = $encoder->encodePassword($plainPassword, $user->getSalt());
+        $user->setPassword($password);
+        $app['dao.user']->save($user);
+        $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
+    }
+    return $app['twig']->render('user_form.html.twig', array(
+                'title' => 'Edit user',
                 'userForm' => $userForm->createView(),
                 'types' => $types
             ));

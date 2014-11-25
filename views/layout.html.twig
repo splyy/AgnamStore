@@ -50,6 +50,7 @@
                                         <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.security.token.user.firstName }} {{ app.security.token.user.lastName }} <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ path('logout') }}">Log out</a></li>
+                                        <li><a href="/settings">Settings</a></li>
                                     </ul>
                                 </li>
                             {% else %}
