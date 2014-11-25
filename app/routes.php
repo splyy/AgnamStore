@@ -59,8 +59,15 @@ $app->match('/settings', function(Request $request) use ($app) {
         // compute the encoded password
         $password = $encoder->encodePassword($plainPassword, $user->getSalt());
         $user->setPassword($password);
-        $app['dao.user']->save($user);
-        $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
+        try {
+            $app['dao.user']->save($user);
+            $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
+        } catch (Exception $exc) {
+            $app['session']->getFlashBag()->add('error', $exc->getMessage());
+            echo $exc->getTraceAsString();
+        }
+
+        
     }
     return $app['twig']->render('user_form.html.twig', array(
                 'title' => 'Edit user',

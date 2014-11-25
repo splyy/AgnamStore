@@ -6,6 +6,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Acl\Exception\Exception;
 use AgnamStore\Domain\User;
 
 class UserDAO extends DAO implements UserProviderInterface {
@@ -48,7 +49,7 @@ class UserDAO extends DAO implements UserProviderInterface {
      *
      * @param \AgnamStore\Domain\User $user The user to save
      */
-    public function save(User $user) {
+    public function save(User $user) {   
         $userData = array(
             'user_email' => $user->getUsername(),
             'user_salt' => $user->getSalt(),
@@ -61,9 +62,17 @@ class UserDAO extends DAO implements UserProviderInterface {
             'user_cp' => $user->getCp()
         );
         if ($user->getId()) {
+            /*$sql = "select * from user where user_email=? and user_id !=?";
+            $row = $this->getDb()->fetchAssoc($sql, array($user->getEmail(),$user->getId()));
+            if ($row)
+                throw new Exception(sprintf('Email "%s" already exists.', $user->getEmail()));*/
 // The user has already been saved : update it
             $this->getDb()->update('user', $userData, array('user_id' => $user->getId()));
         } else {
+            /*$sql = "select * from user where user_email=?";
+            $row = $this->getDb()->fetchAssoc($sql, array($user->getEmail()));
+            if ($row)
+                throw new Exception(sprintf('Email "%s" already exists.', $user->getEmail()));*/
 // The user has never been saved : insert it
             $this->getDb()->insert('user', $userData);
 // Get the id of the newly created user and set it on the entity.
