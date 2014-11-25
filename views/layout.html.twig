@@ -47,7 +47,7 @@
                                 {% if app.security.token and is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.security.token.user.username }} <b class="caret"></b></a>
+                                        <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.security.token.user.firstName }} {{ app.security.token.user.lastName }} <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ path('logout') }}">Log out</a></li>
                                     </ul>
@@ -58,6 +58,7 @@
                                         <span class="glyphicon glyphicon-user"></span> Not connected <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ path('login') }}">Log in</a></li>
+                                        <li><a href="/registration">Registration</a></li>
                                     </ul>
                                 </li>
                             {% endif %}

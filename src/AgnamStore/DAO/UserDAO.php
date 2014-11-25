@@ -50,10 +50,10 @@ class UserDAO extends DAO implements UserProviderInterface {
      */
     public function save(User $user) {
         $userData = array(
-            'usr_mail' => $user->getUsername(),
-            'usr_salt' => $user->getSalt(),
-            'usr_password' => $user->getPassword(),
-            'usr_role' => $user->getRole(),
+            'user_email' => $user->getUsername(),
+            'user_salt' => $user->getSalt(),
+            'user_password' => $user->getPassword(),
+            'user_role' => $user->getRole(),
             'user_firstname' => $user->getFirstName(),
             'user_lastname' => $user->getLastName(),
             'user_address' => $user->getAddress(),
@@ -86,7 +86,7 @@ class UserDAO extends DAO implements UserProviderInterface {
      * {@inheritDoc}
      */
     public function loadUserByUsername($username) {
-        $sql = "select * from user where user_mail=?";
+        $sql = "select * from user where user_email=?";
         $row = $this->getDb()->fetchAssoc($sql, array($username));
         if ($row)
             return $this->buildDomainObject($row);

@@ -7,7 +7,7 @@ insert into item_type values(3, "Light Novel");
 insert into item_type values(4, "Film");
 
 /*==============================================================*/
-/* Insert Table : Genre                                          */
+/* Insert Table : Genre                                         */
 /*==============================================================*/
 insert into item_genre values("FT", "Fantasy");
 insert into item_genre values("HO", "Horreur");
@@ -121,3 +121,12 @@ insert into item(name, sale_date, year, author, description, price, image, item_
 	values("Hunter X Hunter    The Last Mission", "", 2011, "Yoshihiro Togashi", "BLABLA", 19.99, "f_img_hxh_tlm.png", 4);
 insert into item(name, sale_date, year, author, description, price, image, item_type_id) 
 	values("Hunter X Hunter    Phantom Rouge", "", 2011, "Yoshihiro Togashi", "BLABLA", 19.99, "f_img_hxh_pr.png", 4);
+
+
+
+
+/*==============================================================*/
+/* Insert Table : user                                          */
+/*==============================================================*/
+INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(1, 'gory.alexandre02@gmail.com', 'M/aJEwC35IiHsmcx7xLllzEgtDb6QnDs2R8/LDwD4dUrCjRm9s109AWOpLhHQzCEdcpk+R3OTofnnZ7iUm8B1A==', '02b1d0e053a16218e09a3db', 'ROLE_ADMIN', 'Gory', 'Alexandre', '10 rue des alpes', 'Genas', '69740');
+INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(2, 'crepu.alexandre@gmail.com', 'yGxSXwpWWEZvC0Y+3xMc2OU/XhAR5T2dhJcVS6KxsI/8S3EQTEXPA/PDUR2PATLtnx4RwXkEavgehy0rCGMowQ==', '2aa3cacc800e920cc446eba', 'ROLE_USER', 'Crepu', 'Alexandre', '7 rue des kikoo', 'Trevoux', '69XXX');

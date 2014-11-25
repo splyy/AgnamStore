@@ -41,43 +41,42 @@ class User implements UserInterface {
      * @var string
      */
     private $role;
-    
+
     /**
      * User firstName;.
      *
      * @var string
      */
     private $firstName;
-    
+
     /**
      * User lastName;.
      *
      * @var string
      */
     private $lastName;
-    
+
     /**
      * User address;.
      *
      * @var string
      */
     private $address;
-    
-     /**
+
+    /**
      * User city;.
      *
      * @var string
      */
     private $city;
-    
-     /**
+
+    /**
      * User cp;.
      *
      * @var string
      */
     private $cp;
 
-    
     public function getId() {
         return $this->id;
     }
@@ -90,18 +89,19 @@ class User implements UserInterface {
      * @inheritDoc
      */
     public function getEmail() {
-        return $this->mail;
+        return $this->email;
     }
 
-    public function setEmail($mail) {
-        $this->mail = $mail;
+    public function setEmail($email) {
+        $this->email = $email;
     }
+
     public function getUsername() {
-        return getEmail();
+        return $this->getEmail();
     }
 
     public function setUsername($username) {
-        setEmail($username);
+        $this->setEmail($username);
     }
 
     /**
@@ -147,8 +147,7 @@ class User implements UserInterface {
     public function eraseCredentials() {
         // Nothing to do here
     }
-    
-    
+
     public function getFirstName() {
         return $this->firstName;
     }
@@ -179,6 +178,14 @@ class User implements UserInterface {
 
     public function setCity($city) {
         $this->city = $city;
+    }
+    
+    public function getCp() {
+        return $this->cp;
+    }
+
+    public function setCp($cp) {
+        $this->cp = $cp;
     }
 
 }

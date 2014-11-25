@@ -34,7 +34,7 @@ create table item_genre  (
 );
 
 /*==============================================================*/
-/* Table : user                          */                                                
+/* Association : entre item et item_genre                        */                                                
 /*==============================================================*/
 create table possede_genre (
     item_genre_id               char(2)         not null,
@@ -43,7 +43,7 @@ create table possede_genre (
 )
 
 /*==============================================================*/
-/* Association : entre item et item_genre                       */                                                
+/* Table : user                                                 */                                                
 /*==============================================================*/
 create table user (
     user_id                     int(11)         not null auto_increment,

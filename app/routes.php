@@ -1,6 +1,8 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use AgnamStore\Domain\User;
+use AgnamStore\Form\Type\UserType;
 
 // Home page
 $app->get('/', function () use ($app) {
@@ -17,6 +19,30 @@ $app->get('/login', function(Request $request) use ($app) {
                 'types' => $types,
     ));
 })->bind('login'); // named route so that path('login') works in Twig templates
+
+$app->match('/registration', function(Request $request) use ($app) {
+    $user = new User();
+    $types = $app['dao.type']->findAll();
+    $userForm = $app['form.factory']->create(new UserType(), $user);
+    $userForm->handleRequest($request);
+    if ($userForm->isValid()) {
+        $salt = substr(md5(time()), 0, 23);
+        $user->setSalt($salt);
+        $plainPassword = $user->getPassword();
+        // find the default encoder
+        $encoder = $app['security.encoder.digest'];
+        // compute the encoded password
+        $password = $encoder->encodePassword($plainPassword, $user->getSalt());
+        $user->setPassword($password);
+        $app['dao.user']->save($user);
+        $app['session']->getFlashBag()->add('success', 'The user was successfully created.');
+    }
+    return $app['twig']->render('user_form.html.twig', array(
+                'title' => 'New user',
+                'userForm' => $userForm->createView(),
+                'types' => $types
+            ));
+});
 
 $app->get('/items/type={typeId}', function($typeId) use ($app) {
     $items = $app['dao.item']->findByType($typeId);
