@@ -6,7 +6,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Acl\Exception\Exception;
 use AgnamStore\Domain\User;
 
 class UserDAO extends DAO implements UserProviderInterface {
@@ -49,33 +48,37 @@ class UserDAO extends DAO implements UserProviderInterface {
      *
      * @param \AgnamStore\Domain\User $user The user to save
      */
-    public function save(User $user) {   
+    public function save(User $user, $option = null) {   
         $userData = array(
             'user_email' => $user->getUsername(),
             'user_salt' => $user->getSalt(),
-            'user_password' => $user->getPassword(),
             'user_role' => $user->getRole(),
             'user_firstname' => $user->getFirstName(),
             'user_lastname' => $user->getLastName(),
             'user_address' => $user->getAddress(),
             'user_city' => $user->getCity(),
-            'user_cp' => $user->getCp()
+            'user_cp' => $user->getCp(),
         );
+        if($option['mdpChanged'])
+            $userData['user_password'] = $user->getPassword();
         if ($user->getId()) {
-            /*$sql = "select * from user where user_email=? and user_id !=?";
+            if($option['mdpChanged'] == TRUE)
+                $userData['user_password'] = $user->getPassword();
+            $sql = "select * from user where user_email=? and user_id !=?";
             $row = $this->getDb()->fetchAssoc($sql, array($user->getEmail(),$user->getId()));
             if ($row)
-                throw new Exception(sprintf('Email "%s" already exists.', $user->getEmail()));*/
-// The user has already been saved : update it
+                throw new \Exception(sprintf('Email "%s" already exists.', $user->getEmail()));
+            // The user has already been saved : update it
             $this->getDb()->update('user', $userData, array('user_id' => $user->getId()));
         } else {
-            /*$sql = "select * from user where user_email=?";
+            $sql = "select * from user where user_email=?";
             $row = $this->getDb()->fetchAssoc($sql, array($user->getEmail()));
             if ($row)
-                throw new Exception(sprintf('Email "%s" already exists.', $user->getEmail()));*/
-// The user has never been saved : insert it
+                throw new \Exception(sprintf('Email "%s" already exists.', $user->getEmail()));
+            $userData['user_password'] = $user->getPassword();
+            // The user has never been saved : insert it
             $this->getDb()->insert('user', $userData);
-// Get the id of the newly created user and set it on the entity.
+            // Get the id of the newly created user and set it on the entity.
             $id = $this->getDb()->lastInsertId();
             $user->setId($id);
         }
