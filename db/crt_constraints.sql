@@ -1,3 +1,4 @@
+use agnamstore;
 alter table item
    add constraint fk_item_item_type foreign key (item_type_id)
       references item_type (item_type_id);
