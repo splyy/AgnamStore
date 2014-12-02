@@ -1,3 +1,8 @@
+/* 
+    AGNAM STORE
+    by Alexandre/Pierre
+*/
+
 img {
     max-width: 100%;
     height: auto;
@@ -39,8 +44,91 @@ h1 small {
     height: 600px;
 }
 
+/* NAVBAR AGNAM STORE */
+.navbar-agnam {
+  background-color: rgba(189,0,0,0.95);
+  border-color: #e7e7e7;
+}
+.navbar-agnam .navbar-brand {
+  color: #8b0000;
+}
+.navbar-agnam .navbar-brand:hover,
+.navbar-agnam .navbar-brand:focus {
+  color: #fff;
+  background-color: transparent;
+}
+.navbar-agnam .navbar-text {
+  color: #fff;
+}
+.navbar-agnam .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-agnam .navbar-nav > li > a:hover,
+.navbar-agnam .navbar-nav > li > a:focus {
+  color: #666666;
+  background-color: #f4f4f4;
+}
+.navbar-agnam .navbar-nav > .active > a,
+.navbar-agnam .navbar-nav > .active > a:hover,
+.navbar-agnam .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #f4f4f4;
+}
+.navbar-agnam .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-agnam .navbar-toggle:hover,
+.navbar-agnam .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-agnam .navbar-toggle .icon-bar {
+  background-color: #888;
+}
+.navbar-agnam .navbar-collapse,
+.navbar-agnam .navbar-form {
+  border-color: #f4f4f4;
+}
+.navbar-agnam .navbar-nav > .open > a,
+.navbar-agnam .navbar-nav > .open > a:hover,
+.navbar-agnam .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #f4f4f4;
+}
+@media (max-width: 767px) {
+  .navbar-agnam .navbar-nav .open .dropdown-menu > li > a {
+    color: #777;
+  }
+  .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #f4f4f4;
+  }
+}
+.navbar-agnam .navbar-link {
+  color: #777;
+}
+.navbar-agnam .navbar-link:hover {
+  color: #333;
+}
+.navbar-agnam .btn-link {
+  color: #777;
+}
+.navbar-agnam .btn-link:hover,
+.navbar-agnam .btn-link:focus {
+  color: #333;
+}
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    background-color: #bd0000 !important;
+}
 
-
-
-
-
+/* BOUTON */
+.btn-agnam{
+    background-color:#c12e2a; 
+    color:#fff;
+}
