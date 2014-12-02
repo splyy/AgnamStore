@@ -50,11 +50,12 @@ h1 small {
   border-color: #e7e7e7;
 }
 .navbar-agnam .navbar-brand {
-  color: #8b0000;
+  color: #fff;
 }
 .navbar-agnam .navbar-brand:hover,
 .navbar-agnam .navbar-brand:focus {
   color: #fff;
+  text-shadow: 0px -1px 17px #fff;
   background-color: transparent;
 }
 .navbar-agnam .navbar-text {

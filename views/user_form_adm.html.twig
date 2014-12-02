@@ -54,11 +54,6 @@
             </div>
         </div>
         <div class="form-group">
-            {%if mdpChanged is defined %}
-            <div class="col-sm-offset-6 col-sm-6">
-                <input class="" type="checkbox" id="labCkMdp" name="mdpChanged" /><label class="" for="labCkMdp">Changer le mode passe</label>
-            </div>
-            {%endif%}
             {{ form_label(userForm.password.first, NULL, { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}

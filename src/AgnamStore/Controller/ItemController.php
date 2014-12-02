@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ItemController {
     
-public function itemsType($typeId, Application $app) {
+public function itemsByType($typeId, Application $app) {
     $items = $app['dao.item']->findByType($typeId);
     $types = $app['dao.type']->findAll();
     $typeG = $app['dao.type']->find($typeId);
