@@ -54,7 +54,8 @@ class ItemDAO extends DAO {
         }
         return $items;
     }
-    
+
+
     // Attention ne pas oublier de remplacer par sale_date lorsque les date de vente seront mise en place
     public function findByTypeThreeLast($typeId) {
         $sql = "select * from item where item_type_id=? order by item_id limit 3";

@@ -6,10 +6,7 @@ use AgnamStore\Form\Type\UserType;
 use AgnamStore\Form\Type\UserTypeAdm;
 
 // Home page
-$app->get('/', function () use ($app) {
-    $types = $app['dao.type']->findAll();
-    return $app['twig']->render('index.html.twig', array('types' => $types));
-});
+$app->get('/', "AgnamStore\Controller\ItemController::index");
 
 // Login form
 $app->get('/login', "AgnamStore\Controller\UserController::loginAction")
