@@ -51,6 +51,7 @@ h1 small {
 }
 .navbar-agnam .navbar-brand {
   color: #fff;
+  padding: 0px;
 }
 .navbar-agnam .navbar-brand:hover,
 .navbar-agnam .navbar-brand:focus {
@@ -133,3 +134,4 @@ h1 small {
     background-color:#c12e2a; 
     color:#fff;
 }
+
