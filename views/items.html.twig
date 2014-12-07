@@ -15,7 +15,9 @@
                             <div class="thumbnail">
                                 <a href="/items/{{ item.id }}" ><img class="item-img" src="{{ app.request.basepath }}/images/produit/{{ item.image }}" title="{{ item.name }}" /></a>
                                 <div class="caption">
-                                    <h4>{{ item.name }}</h4>
+                                    <div class="item-tile" >
+                                        <h4>{{ item.name }}</h4>
+                                    </div>
                                     <div class="row">
                                         <div class="col-xs-3"><a class="btn btn-agnam" href="/items/{{ item.id }}" >Détail</a></div>
                                         <h4 class="col-xs-4 col-sm-3 col-md-4 text-center"> 19.99{{ item.price }}€</h4>
