@@ -98,7 +98,7 @@ class UserController {
         try {
             $app['dao.user']->save($user);
             $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
-        } catch (Exception $exc) {
+        } catch (\Exception $exc) {
             $app['session']->getFlashBag()->add('error', $exc->getMessage());
         }
     }

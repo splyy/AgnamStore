@@ -1,10 +1,5 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
-use AgnamStore\Domain\User;
-use AgnamStore\Form\Type\UserType;
-use AgnamStore\Form\Type\UserTypeAdm;
-
 // Home page
 $app->get('/', "AgnamStore\Controller\ItemController::index");
 
