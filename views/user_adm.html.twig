@@ -1,0 +1,59 @@
+{% extends 'layout.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <h2 class="text-center">{{ block('title') }}</h2>
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% if userMenu == 1 and form_errors(userForm.password.first) %}
+        <div class="alert alert-danger">
+            {{ form_errors(userForm.password.first) }}
+        </div>
+    {% endif %}
+
+    <div class="well">
+        <div role="tabpanel">
+            <div class="col-sm-6 col-sm-offset-3 userTab" >
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li role="presentation" class="{% if userMenu == 0 %}active{% endif %}">
+                        <a href="/admin/user/{{ user.id }}/">Profil compte</a>
+                    </li>
+                    <li role="presentation" class="{% if userMenu == 1 %}active{% endif %}">
+                        <a href="/admin/user/{{ user.id }}/password" >Mot de passe</a>
+                    </li>
+                    <li role="presentation" class="{% if userMenu == 2 %}active{% endif %}">
+                        <a href="/admin/user/{{ user.id }}/role" >Role</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content ">
+                <div role="tabpanel" class="tab-pane {% if userMenu == 0 %}active{% endif %} " >
+                    {% if userMenu == 0 %}
+                        {% include 'user_profil_form.html.twig' %}
+                    {% endif %}
+                </div>
+                <div role="tabpanel" class="tab-pane {% if userMenu == 1 %}active{% endif %} " >
+                    {% if userMenu == 1 %}
+                        {% include 'user_mdp_form.html.twig' %}
+                    {% endif %}
+                </div>  
+                <div role="tabpanel" class="tab-pane {% if userMenu == 2 %}active{% endif %} " >
+                    {% if userMenu == 2 %}
+                        {% include 'user_role_form.html.twig' %}
+                    {% endif %}
+                </div>  
+            </div>
+        </div>
+        {#
+    <div class="well">
+        
+    </div>
+        #}
+    {% endblock %}

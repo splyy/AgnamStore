@@ -6,6 +6,9 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use AgnamStore\Domain\User;
 use AgnamStore\Form\Type\UserTypeAdm;
+use AgnamStore\Form\Type\UserMdpType;
+use AgnamStore\Form\Type\UserProfilType;
+use AgnamStore\Form\Type\UserRoleType;
 
 class AdminController {
 
@@ -36,20 +39,56 @@ class AdminController {
         ));
     }
 
-    public function editUser($id, Request $request, Application $app) {
+    public function profil($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
         $types = $app['dao.type']->findAll();
-        $userForm = $app['form.factory']->create(new UserTypeAdm(), $user);
+        $userMenu = 0;
+        $userForm = $app['form.factory']->create(new UserProfilType(), $user);
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
-            $this->cryptPassword($user,$app);
             $this->saveUser($user,$app);
         }
-        return $app['twig']->render('user_form_adm.html.twig', array(
-                    'mdpChanged' => true,
+        return $app['twig']->render('user_adm.html.twig', array(
                     'title' => 'Edit user',
                     'userForm' => $userForm->createView(),
-                    'types' => $types
+                    'types' => $types,
+                    'userMenu' => $userMenu,
+                    'user' => $user,
+        ));
+    }
+    public function password($id, Request $request, Application $app) {
+        $user = $app['dao.user']->find($id);
+        $types = $app['dao.type']->findAll();
+        $userMenu = 1;
+        $userForm = $app['form.factory']->create(new UserMdpType(), $user);
+        $userForm->handleRequest($request);
+        if ($userForm->isValid()) {
+            $this->cryptPassword($user, $app);
+            $this->saveUser($user,$app);
+        }
+        return $app['twig']->render('user_adm.html.twig', array(
+                    'title' => 'Edit user',
+                    'userForm' => $userForm->createView(),
+                    'types' => $types,
+                    'userMenu' => $userMenu,
+                    'user' => $user,
+        ));
+    }
+    public function role($id, Request $request, Application $app) {
+        $user = $app['dao.user']->find($id);
+        $types = $app['dao.type']->findAll();
+        $userMenu = 2;
+        $userForm = $app['form.factory']->create(new UserRoleType(), $user);
+        $userForm->handleRequest($request);
+        if ($userForm->isValid()) {
+            $this->saveUser($user,$app);
+        }
+        return $app['twig']->render('user_adm.html.twig', array(
+                    'title' => 'Edit user',
+                    'userForm' => $userForm->createView(),
+                    'types' => $types,
+                    'userMenu' => $userMenu,
+                    'user' => $user,
         ));
     }
 

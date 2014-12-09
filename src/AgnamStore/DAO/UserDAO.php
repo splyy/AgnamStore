@@ -58,12 +58,10 @@ class UserDAO extends DAO implements UserProviderInterface {
             'user_address' => $user->getAddress(),
             'user_city' => $user->getCity(),
             'user_cp' => $user->getCp(),
+            'user_password' => $user->getPassword(),
         );
-        if($option['mdpChanged'])
-            $userData['user_password'] = $user->getPassword();
         if ($user->getId()) {
-            if($option['mdpChanged'] == TRUE)
-                $userData['user_password'] = $user->getPassword();
+
             $sql = "select * from user where user_email=? and user_id !=?";
             $row = $this->getDb()->fetchAssoc($sql, array($user->getEmail(),$user->getId()));
             if ($row)
@@ -75,7 +73,6 @@ class UserDAO extends DAO implements UserProviderInterface {
             $row = $this->getDb()->fetchAssoc($sql, array($user->getEmail()));
             if ($row)
                 throw new \Exception(sprintf('Email "%s" already exists.', $user->getEmail()));
-            $userData['user_password'] = $user->getPassword();
             // The user has never been saved : insert it
             $this->getDb()->insert('user', $userData);
             // Get the id of the newly created user and set it on the entity.
