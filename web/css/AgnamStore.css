@@ -129,13 +129,81 @@ h1 small {
     background-color: #bd0000 !important;
 }
 
-/* BOUTON */
-.btn-agnam{
-    background-color:#c12e2a; 
-    color:#fff;
+/* BOUTON (#d23632 / #c12e2a) */
+.btn-agnam, .btn-agnam:active {
+    background: #c12e2a !important;
+    background: linear-gradient(rgb(197, 55, 39), rgb(168, 43, 34)) !important;
+    background: -webkit-linear-gradient(rgb(197, 55, 39), rgb(168, 43, 34)) !important;
+    background: -moz-linear-gradient(rgb(197, 55, 39), rgb(168, 43, 34)) !important;
+    background: -ms-linear-gradient(rgb(197, 55, 39), rgb(168, 43, 34)) !important;
+    background: -o-linear-gradient(rgb(197, 55, 39), rgb(168, 43, 34)) !important;
+    background: linear-gradient(rgb(197, 55, 39), rgb(168, 43, 34)) !important;
+    color:#fff !important;
+}
+
+.btn-agnam {
+    box-shadow: 0 0 1px rgba( 0, 0, 0, 0.2), 0 -1px 0 rgba( 255, 255, 255, 0.1) !important;
+}
+
+.btn-agnam:hover, .btn-agnam:focus {
+    background: #c12e2a !important;
+    background: -webkit-linear-gradient(rgb(209, 58, 47), rgb(188, 46, 42)) !important;
+    background: -moz-linear-gradient(rgb(209, 58, 47), rgb(188, 46, 42)) !important;
+    background: -ms-linear-gradient(rgb(209, 58, 47), rgb(188, 46, 42)) !important;
+    background: -o-linear-gradient(rgb(209, 58, 47), rgb(188, 46, 42)) !important;
+    background: linear-gradient(rgb(209, 58, 47), rgb(188, 46, 42)) !important;
+    color:#fff !important;
+}
+
+.btn-agnam:active{
+    box-shadow: 1px 1px 10px #000 inset, 0 1px 0 rgba( 255, 255, 255, 0.4) !important;
 }
 
 .item-tile {
     height: 50px;
 }
 
+/* ANIMATION LOGO */
+.mask a:hover, .mask a:focus{
+    -webkit-animation: tada 1s;
+       -moz-animation: tada 1s;
+        -ms-animation: tada 1s;
+         -o-animation: tada 1s;
+            animation: tada 1s;
+    }
+    
+@-webkit-keyframes tada {
+        0% {-webkit-transform: scale(1);}	
+        10%, 20% {-webkit-transform: scale(0.8) rotate(-3deg);}
+        30%, 50%, 70%, 90% {-webkit-transform: scale(1) rotate(3deg);}
+        40%, 60%, 80% {-webkit-transform: scale(1) rotate(-3deg);}
+        100% {-webkit-transform: scale(1) rotate(0);}
+}
+@-moz-keyframes tada {
+        0% {-moz-transform: scale(1);}	
+        10%, 20% {-moz-transform: scale(0.8) rotate(-3deg);}
+        30%, 50%, 70%, 90% {-moz-transform: scale(1) rotate(3deg);}
+        40%, 60%, 80% {-moz-transform: scale(1) rotate(-3deg);}
+        100% {-moz-transform: scale(1) rotate(0);}
+}
+@-ms-keyframes tada {
+        0% {-ms-transform: scale(1);}	
+        10%, 20% {-ms-transform: scale(0.8) rotate(-3deg);}
+        30%, 50%, 70%, 90% {-ms-transform: scale(1) rotate(3deg);}
+        40%, 60%, 80% {-ms-transform: scale(1) rotate(-3deg);}
+        100% {-ms-transform: scale(1) rotate(0);}
+}
+@-o-keyframes tada {
+        0% {-o-transform: scale(1);}	
+        10%, 20% {-o-transform: scale(0.8) rotate(-3deg);}
+        30%, 50%, 70%, 90% {-o-transform: scale(1) rotate(3deg);}
+        40%, 60%, 80% {-o-transform: scale(1) rotate(-3deg);}
+        100% {-o-transform: scale(1) rotate(0);}
+}
+@keyframes tada {
+        0% {transform: scale(1);}	
+        10%, 20% {transform: scale(0.8) rotate(-3deg);}
+        30%, 50%, 70%, 90% {transform: scale(1) rotate(3deg);}
+        40%, 60%, 80% {transform: scale(1) rotate(-3deg);}
+        100% {transform: scale(1) rotate(0);}
+}
