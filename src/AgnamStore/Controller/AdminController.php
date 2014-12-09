@@ -5,10 +5,10 @@ namespace AgnamStore\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use AgnamStore\Domain\User;
-use AgnamStore\Form\Type\UserTypeAdm;
-use AgnamStore\Form\Type\UserMdpType;
-use AgnamStore\Form\Type\UserProfilType;
-use AgnamStore\Form\Type\UserRoleType;
+use AgnamStore\Form\Type\User\UserTypeAdm;
+use AgnamStore\Form\Type\User\UserMdpType;
+use AgnamStore\Form\Type\User\UserProfilType;
+use AgnamStore\Form\Type\User\UserRoleType;
 
 class AdminController {
 

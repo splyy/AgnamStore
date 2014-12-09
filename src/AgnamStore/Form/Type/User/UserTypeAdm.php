@@ -1,6 +1,6 @@
 <?php
 
-namespace AgnamStore\Form\Type;
+namespace AgnamStore\Form\Type\User;
 
 
 use Symfony\Component\Form\FormBuilderInterface;

@@ -1,0 +1,100 @@
+{% extends 'layout.html.twig' %}
+{% set tataMenu = true %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <h2 class="text-center">{{ block('title') }}</h2>
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <div class="well">
+        {{ form_start(itemForm, { 'attr': {'class': 'form-horizontal'} }) }}
+        <div class="form-group">
+            {{ form_label(itemForm.name, NULL, { 'label_attr': {
+        'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(itemForm.name) }}
+                {{ form_widget(itemForm.name, { 'attr': {
+            'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(itemForm.author, NULL, { 'label_attr': {
+        'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(itemForm.author) }}
+                {{ form_widget(itemForm.author, { 'attr': {
+            'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(itemForm.year, NULL, { 'label_attr': {
+        'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(itemForm.year) }}
+                {{ form_widget(itemForm.year, { 'attr': {
+            'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(itemForm.price, NULL, { 'label_attr': {
+        'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_widget(itemForm.price, { 'attr': {
+            'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(itemForm.image, NULL, { 'label_attr': {
+        'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_widget(itemForm.image, { 'attr': {
+            'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(itemForm.description, NULL, { 'label_attr': {
+        'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(itemForm.description) }}
+                {{ form_widget(itemForm.description, { 'attr': {
+            'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(itemForm.type, NULL, { 'label_attr': {
+        'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(itemForm.type) }}
+                {{ form_widget(itemForm.type, { 'attr': {
+            'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-3">
+                <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+        </div>
+        {{ form_end(itemForm) }}
+    </div>
+{% endblock %}

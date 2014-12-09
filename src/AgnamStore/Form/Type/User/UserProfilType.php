@@ -1,17 +1,20 @@
 <?php
 
-namespace AgnamStore\Form\Type;
+namespace AgnamStore\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class UserRoleType extends AbstractType {
+class UserProfilType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('role', 'choice', array(
-                    'choices' => array('ROLE_USER' => 'User', 'ROLE_ADMIN' => 'Admin')
-        ));
+                ->add('email')
+                ->add('firstName')
+                ->add('lastName')
+                ->add('address')
+                ->add('city')
+                ->add('cp');
     }
 
     public function getName() {

@@ -1,11 +1,11 @@
 <?php
 
-namespace AgnamStore\Form\Type;
+namespace AgnamStore\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class UserRegistrationType extends AbstractType {
+class UserType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
