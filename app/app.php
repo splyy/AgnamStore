@@ -45,7 +45,7 @@ $app->register(new Silex\Provider\FormServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__ . '/../var/logs/microcms.log',
+    'monolog.logfile' => __DIR__ . '/../var/logs/AgnamStore.log',
     'monolog.name' => 'AgnamStore',
     'monolog.level' => $app['monolog.level']
 ));
