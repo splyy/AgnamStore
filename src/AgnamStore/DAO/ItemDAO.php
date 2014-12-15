@@ -41,7 +41,7 @@ class ItemDAO extends DAO {
         }
         return $items;
     }
-    
+
     public function findByType($typeId) {
         $sql = "select * from item where item_type_id=? order by name";
         $result = $this->getDb()->fetchAll($sql, array($typeId));
@@ -54,7 +54,6 @@ class ItemDAO extends DAO {
         }
         return $items;
     }
-
 
     // Attention ne pas oublier de remplacer par sale_date lorsque les date de vente seront mise en place
     public function findByTypeThreeLast($typeId) {
@@ -69,6 +68,7 @@ class ItemDAO extends DAO {
         }
         return $items;
     }
+
     /**
      * Returns the item matching a given id.
      *
@@ -87,6 +87,44 @@ class ItemDAO extends DAO {
     }
 
     /**
+     * Saves a item into the database.
+     *
+     * @param \AgnamStore\Domain\Item $item The item to save
+     */
+    public function save(Item $item, $option = null) {
+        $itemData = array(
+            'price' => $item->getPrice(),
+            'name' => $item->getName(),
+            'sale_date' => $item->getSaleDate(),
+            'year' => $item->getYear(),
+            'author' => $item->getAuthor(),
+            'description' => $item->getDescription(),
+            'image' => $item->getImage(),
+            'item_type_id' => $item->getType()->getId(),
+        );
+        if ($item->getId()) {
+            // The item has already been saved : update it
+            $this->getDb()->update('item', $itemData, array('item_id' => $item->getId()));
+        } else {
+            // The item has never been saved : insert it
+            $this->getDb()->insert('item', $itemData);
+            // Get the id of the newly created item and set it on the entity.
+            $id = $this->getDb()->lastInsertId();
+            $item->setId($id);
+        }
+    }
+
+    /**
+     * Removes an item from the database.
+     *
+     * @param \AgnamStore\Domain\Item $item The item to remove
+     */
+    public function delete($id) {
+        // Delete the item
+        $this->getDb()->delete('item', array('item_id' => $id));
+    }
+
+    /**
      * Creates a Item instance from a DB query result row.
      *
      * @param array $row The DB query result row.
@@ -102,7 +140,7 @@ class ItemDAO extends DAO {
         $item->setYear($row['year']);
         $item->setAuthor($row['author']);
         $item->setDescription($row['description']);
-       // $item->setPrice($row['price']);
+        $item->setPrice($row['price']);
         $item->setImage($row['image']);
         $item->setType($type);
         //$item->setGenres($genres);

@@ -9,8 +9,8 @@ class ItemType extends AbstractType {
 
     private $types;
 
-    public function ItemType($type) {
-        $this->types;
+    public function setType($types) {
+        $this->types = $types;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -27,17 +27,17 @@ class ItemType extends AbstractType {
                     ),
                 ))
                 ->add('type', 'choice', array(
-                    'choices' => selectType()
+                    'choices' => $this->selectType()
         ));
     }
 
     public function getName() {
-        return 'user';
+        return 'item';
     }
 
     private function selectType() {
 
-        foreach ($types as $type) {
+        foreach ($this->types as $type) {
             $array[$type->getId()] = $type->getLabel();
         }
         return $array;

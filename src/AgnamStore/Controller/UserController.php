@@ -5,14 +5,23 @@ namespace AgnamStore\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use AgnamStore\Domain\User;
-use AgnamStore\Form\Type\User\UserType;
 use AgnamStore\Form\Type\User\UserRegistrationType;
 use AgnamStore\Form\Type\User\UserMdpType;
 use AgnamStore\Form\Type\User\UserProfilType;
+use AgnamStore\Form\Type\User\UserTypeAdm;
+use AgnamStore\Form\Type\User\UserRoleType;
 
 
 class UserController {
 
+    
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * 
+     *       Zone accés tout Utilisateur
+     * 
+     * * * * * */
+    
+    
     public function loginAction(Request $request, Application $app) {
         $types = $app['dao.type']->findAll();
         return $app['twig']->render('login.html.twig', array(
@@ -41,7 +50,12 @@ class UserController {
         ));
     }
 
-    // Edit an existing user
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * 
+     *       Zone accés Utilisateur Connecté
+     * 
+     * * * * * */
+    
     public function profil(Request $request, Application $app) {
         $userMenu = 0;
         $types = $app['dao.type']->findAll();
@@ -77,6 +91,91 @@ class UserController {
         ));
     }
     
+    public function addUserAdm(Request $request, Application $app) {
+        $user = new User();
+        $types = $app['dao.type']->findAll();
+        $userForm = $app['form.factory']->create(new UserTypeAdm(), $user);
+        $userForm->handleRequest($request);
+        if ($userForm->isValid()) {
+            $salt = substr(md5(time()), 0, 23);
+            $user->setSalt($salt);
+            $user->setRole('ROLE_USER');
+            $this->cryptPassword($user,$app);
+            $this->saveUser($user,$app);
+        }
+        return $app['twig']->render('user_form_adm.html.twig', array(
+                    'title' => 'New user',
+                    'userForm' => $userForm->createView(),
+                    'types' => $types
+        ));
+    }
+
+    public function profilAdm($id, Request $request, Application $app) {
+        $user = $app['dao.user']->find($id);
+        $types = $app['dao.type']->findAll();
+        $userMenu = 0;
+        $userForm = $app['form.factory']->create(new UserProfilType(), $user);
+        $userForm->handleRequest($request);
+        if ($userForm->isValid()) {
+            $this->saveUser($user,$app);
+        }
+        return $app['twig']->render('user_adm.html.twig', array(
+                    'title' => 'Edit user',
+                    'userForm' => $userForm->createView(),
+                    'types' => $types,
+                    'userMenu' => $userMenu,
+                    'user' => $user,
+        ));
+    }
+    public function passwordAdm($id, Request $request, Application $app) {
+        $user = $app['dao.user']->find($id);
+        $types = $app['dao.type']->findAll();
+        $userMenu = 1;
+        $userForm = $app['form.factory']->create(new UserMdpType(), $user);
+        $userForm->handleRequest($request);
+        if ($userForm->isValid()) {
+            $this->cryptPassword($user, $app);
+            $this->saveUser($user,$app);
+        }
+        return $app['twig']->render('user_adm.html.twig', array(
+                    'title' => 'Edit user',
+                    'userForm' => $userForm->createView(),
+                    'types' => $types,
+                    'userMenu' => $userMenu,
+                    'user' => $user,
+        ));
+    }
+    public function roleAdm($id, Request $request, Application $app) {
+        $user = $app['dao.user']->find($id);
+        $types = $app['dao.type']->findAll();
+        $userMenu = 2;
+        $userForm = $app['form.factory']->create(new UserRoleType(), $user);
+        $userForm->handleRequest($request);
+        if ($userForm->isValid()) {
+            $this->saveUser($user,$app);
+        }
+        return $app['twig']->render('user_adm.html.twig', array(
+                    'title' => 'Edit user',
+                    'userForm' => $userForm->createView(),
+                    'types' => $types,
+                    'userMenu' => $userMenu,
+                    'user' => $user,
+        ));
+    }
+
+    public function delUserAdm($id, Request $request, Application $app) {
+        // Delete the user
+        $app['dao.user']->delete($id);
+        $app['session']->getFlashBag()->add('success', 'The user was succesfully removed.');
+        return $app->redirect('/admin');
+    }
+    
+    
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * 
+     *       Methode
+     * 
+     * * * * * */
     
     
     private function getUserClient(Application $app) {

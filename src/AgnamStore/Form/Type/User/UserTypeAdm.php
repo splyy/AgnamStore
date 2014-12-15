@@ -5,7 +5,7 @@ namespace AgnamStore\Form\Type\User;
 
 use Symfony\Component\Form\FormBuilderInterface;
 
-class UserTypeAdm extends UserType {
+class UserTypeAdm extends UserRegistrationType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         

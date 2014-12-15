@@ -31,7 +31,7 @@ h1 small {
 }
 
 .cadre-header{
-    border-bottom: 2px black solid;
+    border-bottom: 1px #ddd solid;
 }
 .panel-default > .panel-heading {
   color: #333;
@@ -98,7 +98,7 @@ h1 small {
 }
 @media (max-width: 767px) {
   .navbar-agnam .navbar-nav .open .dropdown-menu > li > a {
-    color: #777;
+    color: #fff;
   }
   .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:focus {

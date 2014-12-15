@@ -7,16 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use AgnamStore\Form\Type\Item\ItemType;
 use AgnamStore\Domain\Item;
 
-class ItemController {
 
-    public function index(Application $app) {
-        $types = $app['dao.type']->findAll();
-        foreach($types as $type){
-            $lastItems[$type->getId()]['type']=$type;
-            $lastItems[$type->getId()]['item']= $app['dao.item']->findByTypeThreeLast($type->getId());
-        }
-        return $app['twig']->render('index.html.twig', array('types' => $types, 'lastItems'=> $lastItems));
-    }
+class ItemController {
 
     public function itemsByType($typeId, Application $app) {
         $items = $app['dao.item']->findByType($typeId);
@@ -31,20 +23,71 @@ class ItemController {
         return $app['twig']->render('item.html.twig', array('item' => $item, 'types' => $types));
     }
     
-    public function addItem(Application $app){
+    
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * 
+     *       Administration
+     * 
+     * * * * * */
+    
+    
+    
+    public function addItemAdm( Request $request, Application $app){
         $item = new Item();
         $types = $app['dao.type']->findAll();
-        $itemForm = $app['form.factory']->create(new ItemType($type), $user);
+        $form = new ItemType();
+        $form->setType($types);
+        $itemForm = $app['form.factory']->create($form, $item);        
         $itemForm->handleRequest($request);
-        if ($userForm->isValid()) {
-            $item->setType($app['dao.type']->find($item->getId()));
-            $this->saveUser($user,$app);
+        if ($itemForm->isValid()) {
+            $item->setType($app['dao.type']->find($item->getType()));
+            $this->saveItem($item,$app);
         }
-        return $app['twig']->render('user_registration_form.html.twig', array(
-                    'title' => 'New user',
-                    'userForm' => $userForm->createView(),
+        return $app['twig']->render('item_form.html.twig', array(
+                    'title' => 'New item',
+                    'itemForm' => $itemForm->createView(),
                     'types' => $types
         ));
+    }
+    
+    public function editItemAdm($id, Request $request, Application $app){
+        $item = $item = $app['dao.item']->find($id);
+        $item->setType($item->getType()->getId());
+        $types = $app['dao.type']->findAll();
+        $form = new ItemType();
+        $form->setType($types);
+        $itemForm = $app['form.factory']->create($form, $item);
+        $itemForm->handleRequest($request);
+        if ($itemForm->isValid()) {
+            $item->setType($app['dao.type']->find($item->getType()));
+            $this->saveItem($item,$app);
+        }
+        return $app['twig']->render('item_form.html.twig', array(
+                    'title' => 'Edit item',
+                    'itemForm' => $itemForm->createView(),
+                    'types' => $types
+        ));
+    }
+    public function delItemAdm($id, Request $request, Application $app) {
+        // Delete the item
+        $app['dao.item']->delete($id);
+        $app['session']->getFlashBag()->add('success', 'The item was succesfully removed.');
+        return $app->redirect('/admin');
+    }
+    
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * 
+     *       Methode
+     * 
+     * * * * * */
+
+    private function saveItem($item, Application $app) {
+        try {
+            $app['dao.item']->save($item);
+            $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
+        } catch (\Exception $exc) {
+            $app['session']->getFlashBag()->add('error', $exc->getMessage());
+        }
     }
 
 }
