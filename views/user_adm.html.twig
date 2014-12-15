@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ title }} {{ user.lastName }} {{ user.firstName }}{% endblock %}
 {% block content %}
     <h2 class="text-center">{{ block('title') }}</h2>
     {% for flashMessage in app.session.flashbag.get('success') %}

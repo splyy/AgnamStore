@@ -108,8 +108,8 @@ h1 small {
   .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #555;
-    background-color: #f4f4f4;
+    color: #333;
+    background-color: #fff !important;
   }
 }
 .navbar-agnam .navbar-link {

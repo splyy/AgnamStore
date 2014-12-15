@@ -62,7 +62,7 @@ $app->match('/admin/user/add', "AgnamStore\Controller\UserController::addUserAdm
 $app->match('/admin/user/{id}/', "AgnamStore\Controller\UserController::profilAdm");
 $app->match('/admin/user/{id}/password', "AgnamStore\Controller\UserController::passwordAdm");
 $app->match('/admin/user/{id}/role', "AgnamStore\Controller\UserController::roleAdm");
-// Remove a user
+// Remove a users
 $app->get('/admin/user/{id}/delete', "AgnamStore\Controller\UserController::delUserAdm");
 
 
