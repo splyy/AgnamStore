@@ -79,12 +79,12 @@ class ItemController {
      * 
      *       Methode
      * 
-     * * * * * */
+     * * * * * * * * * * */
 
     private function saveItem($item, Application $app) {
         try {
             $app['dao.item']->save($item);
-            $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
+            $app['session']->getFlashBag()->add('success', 'The item was succesfully updated.');
         } catch (\Exception $exc) {
             $app['session']->getFlashBag()->add('error', $exc->getMessage());
         }
