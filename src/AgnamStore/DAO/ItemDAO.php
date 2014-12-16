@@ -25,7 +25,7 @@ class ItemDAO extends DAO {
     }
 
     /**
-     * Returns the list of all item, sorted by name and first name.
+     * Returns the list of all item, sorted by name.
      *
      * @return array The list of all items.
      */
@@ -42,6 +42,13 @@ class ItemDAO extends DAO {
         return $items;
     }
 
+    /**
+     * Returns the list of all item matching by type id sorted by name.
+     *
+     * @param integer $typeId The type id. 
+     * 
+     * @return array The list of all items.
+     */
     public function findByType($typeId) {
         $sql = "select * from item where item_type_id=? order by name";
         $result = $this->getDb()->fetchAll($sql, array($typeId));
@@ -56,6 +63,13 @@ class ItemDAO extends DAO {
     }
 
     // Attention ne pas oublier de remplacer par sale_date lorsque les date de vente seront mise en place
+    /**
+     * Returns the list of three last item matching by type id .
+     *
+     * @param integer $typeId The type id. 
+     * 
+     * @return array The list of items.
+     */
     public function findByTypeThreeLast($typeId) {
         $sql = "select * from item where item_type_id=? order by item_id limit 3";
         $result = $this->getDb()->fetchAll($sql, array($typeId));
@@ -143,7 +157,6 @@ class ItemDAO extends DAO {
         $item->setPrice($row['price']);
         $item->setImage($row['image']);
         $item->setType($type);
-        //$item->setGenres($genres);
         $item->setName($row['name']);
         return $item;
     }

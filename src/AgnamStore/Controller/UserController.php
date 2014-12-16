@@ -20,8 +20,8 @@ class UserController {
      *       Zone accés tout Utilisateur
      * 
      * * * * * */
-    
-    
+        
+    // Connexion
     public function loginAction(Request $request, Application $app) {
         $types = $app['dao.type']->findAll();
         return $app['twig']->render('login.html.twig', array(
@@ -31,6 +31,7 @@ class UserController {
         ));
     }
 
+    // Registration
     public function registration(Request $request, Application $app) {
         $user = new User();
         $types = $app['dao.type']->findAll();
@@ -55,7 +56,7 @@ class UserController {
      *       Zone accés Utilisateur Connecté
      * 
      * * * * * */
-    
+    // Edit Profil
     public function profil(Request $request, Application $app) {
         $userMenu = 0;
         $types = $app['dao.type']->findAll();
@@ -72,7 +73,8 @@ class UserController {
                     'userMenu' => $userMenu,
         ));
     }
-
+    
+    // Edit Password
     public function password(Request $request, Application $app) {
         $types = $app['dao.type']->findAll();
         $userMenu = 1;
@@ -91,6 +93,13 @@ class UserController {
         ));
     }
     
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * 
+     *       Administration
+     * 
+     * * * * * */
+    
+    // Add User on admin
     public function addUserAdm(Request $request, Application $app) {
         $user = new User();
         $types = $app['dao.type']->findAll();
@@ -109,7 +118,8 @@ class UserController {
                     'types' => $types
         ));
     }
-
+    
+    // Edit User Profil on admin
     public function profilAdm($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
         $types = $app['dao.type']->findAll();
@@ -127,6 +137,8 @@ class UserController {
                     'user' => $user,
         ));
     }
+    
+    // Edit password on admin
     public function passwordAdm($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
         $types = $app['dao.type']->findAll();
@@ -145,6 +157,8 @@ class UserController {
                     'user' => $user,
         ));
     }
+    
+    // Edit role on admin
     public function roleAdm($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
         $types = $app['dao.type']->findAll();
@@ -163,6 +177,7 @@ class UserController {
         ));
     }
 
+    // Delete user on admin
     public function delUserAdm($id, Request $request, Application $app) {
         // Delete the user
         $app['dao.user']->delete($id);
@@ -177,13 +192,14 @@ class UserController {
      * 
      * * * * * */
     
-    
+    // Get user connected
     private function getUserClient(Application $app) {
         $user = $app['security']->getToken()->getUser();
         $user = $app['dao.user']->refreshUser($user);
         return $user;
     }
 
+    // Encrypted password on md5
     private function cryptPassword($user, Application $app) {
         $plainPassword = $user->getPassword();
         // find the encoder for the user
@@ -193,6 +209,7 @@ class UserController {
         $user->setPassword($password);
     }
 
+    // Save an user
     private function saveUser($user, Application $app) {
         try {
             $app['dao.user']->save($user);

@@ -35,6 +35,11 @@ class ItemType extends AbstractType {
         return 'item';
     }
 
+    /* * * *
+     * Convert list of type on list using for select
+     * 
+     * Return array of label type with the key of typeId   
+     * * * * * * * * * * */
     private function selectType() {
 
         foreach ($this->types as $type) {

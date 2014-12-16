@@ -24,6 +24,13 @@ class GenreDAO extends DAO {
         return $genres;
     }
 
+    /**
+     * Returns all genre of one item.
+     *
+     * @param integer $id The item id.
+     *
+     * @return List of \AgnamStore\Domain\Genre.
+     */
     public function findAllGenreForItem($itemId) {
         $sql = "select * from item_genre ig join possede_genre pg where item_id=? order by item_genre_label";
         $result = $this->getDb()->$this->getDb()->fetchAll($sql, array($itemId));
