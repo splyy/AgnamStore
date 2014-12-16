@@ -90,6 +90,23 @@
                 }}) }}
             </div>
         </div>
+            {#
+        <div class="form-group">
+            <select size='5' id="list-genre" class="test">
+		<option value="11" >Genre1</option>
+		<option value="12" selected >Genre2</option>
+		<option value="13" >Genre3</option>
+		<option value="14" >Genre4</option>
+		<option value="15" >Genre5</option>
+		<option value="16" >Genre6</option>
+	</select> 
+	<button id='add-genre'> > </button>
+	<button id='remove-genre'> < </button>
+	<select size='5' id='list-genre-add' class="test">
+	</select>
+	<br />
+	<input id='item-genre-id' type=hidden' />
+    </div>#}
         <div class="form-group">
             <div class="col-sm-offset-5 col-sm-3">
                 <input type="submit" class="btn btn-primary" value="Save" />
@@ -97,4 +114,5 @@
         </div>
         {{ form_end(itemForm) }}
     </div>
+    <script src="script.js"></script>
 {% endblock %}
