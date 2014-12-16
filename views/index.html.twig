@@ -13,7 +13,7 @@
                     <div class="container-fluid">
                         {% for item in items['item'] %}
                         <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
+                            <div class="thumbnail-agnam">
                                 <a href="/items/{{ item.id }}" ><img src="{{ app.request.basepath }}/images/produit/{{ item.image }}" title="{{ item.name }}"/></a>
                                 <div class="caption">
                                     <h3 class="item-tile">{{ item.name }}</h3>

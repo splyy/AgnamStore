@@ -214,3 +214,40 @@ h1 small {
         100% {transform: scale(1) rotate(0);}
 }
 
+.thumbnail-agnam {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  box-shadow: 1px 1px 3px #555;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+       -o-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.thumbnail-agnam > img,
+.thumbnail-agnam a > img {
+  margin-right: auto;
+  margin-left: auto;
+}
+a.thumbnail-agnam:hover,
+a.thumbnail-agnam:focus,
+a.thumbnail-agnam.active {
+  border-color: #428bca;
+}
+.thumbnail-agnam .caption {
+  padding: 9px;
+  color: #333;
+}
+
+.thumbnail-agnam > img,
+.thumbnail-agnam a > img
+{
+  display: block;
+  width: 100% \9;
+  max-width: 100%;
+  height: auto;
+}
+
