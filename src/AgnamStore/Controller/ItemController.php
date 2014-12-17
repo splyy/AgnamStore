@@ -40,6 +40,9 @@ class ItemController {
         $itemForm = $app['form.factory']->create($form, $item);        
         $itemForm->handleRequest($request);
         if ($itemForm->isValid()) {
+            // TODO Mettre date actuel
+            $item->setSaleDate('0000-00-00');
+            //TODO GESTION des genre
             $item->setType($app['dao.type']->find($item->getType()));
             $this->saveItem($item,$app);
         }
