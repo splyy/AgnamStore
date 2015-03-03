@@ -30,7 +30,7 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown {% if typeMenu is defined %}active{% endif %}">
 
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Produit<b class="caret"></b></a>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Produits<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     {% if types %}
                                         {% for type in types %}
@@ -49,19 +49,19 @@
                                 {% if app.security.token and is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.security.token.user.firstName }} {{ app.security.token.user.lastName }} <b class="caret"></b></a>
+                                        <span class="glyphicon glyphicon-user"></span> Bienvenue, {{ app.security.token.user.firstName }} {{ app.security.token.user.lastName }} <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ path('logout') }}">Log out</a></li>
-                                        <li><a href="/user">Settings</a></li>
+                                        <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                                        <li><a href="/user">Profil</a></li>
                                     </ul>
                                 </li>
                             {% else %}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-user"></span> Not connected <b class="caret"></b></a>
+                                        <span class="glyphicon glyphicon-user"></span> Non connecté <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ path('login') }}">Log in</a></li>
-                                        <li><a href="/registration">Registration</a></li>
+                                        <li><a href="{{ path('login') }}">Connexion</a></li>
+                                        <li><a href="/registration">S'enregistrer</a></li>
                                     </ul>
                                 </li>
                             {% endif %}
