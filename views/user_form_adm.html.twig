@@ -21,7 +21,7 @@
     <div class="well">
         {{ form_start(userForm, { 'attr': {'class': 'form-horizontal'} }) }}
         <div class="form-group">
-            {{ form_label(userForm.firstName, NULL, { 'label_attr': {
+            {{ form_label(userForm.firstName, 'Prénom', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.lastName, NULL, { 'label_attr': {
+            {{ form_label(userForm.lastName, 'Nom', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.email, NULL, { 'label_attr': {
+            {{ form_label(userForm.email, 'Email', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.password.first, NULL, { 'label_attr': {
+            {{ form_label(userForm.password.first, 'Mot de passe', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.password.second, NULL, { 'label_attr': {
+            {{ form_label(userForm.password.second, 'Confirmer mot de passe', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.address, NULL, { 'label_attr': {
+            {{ form_label(userForm.address, 'Adresse', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.city, NULL, { 'label_attr': {
+            {{ form_label(userForm.city, 'Ville', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.cp, NULL, { 'label_attr': {
+            {{ form_label(userForm.cp, 'Code postal', { 'label_attr': {
         'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
@@ -107,7 +107,7 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.role, NULL, { 'label_attr': {
+            {{ form_label(userForm.role, 'Rôle', { 'label_attr': {
                 'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-2">

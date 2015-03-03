@@ -9,12 +9,12 @@ class UserProfilType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('email')
-                ->add('firstName')
-                ->add('lastName')
-                ->add('address')
-                ->add('city')
-                ->add('cp');
+                ->add('email'       , 'email'   , array('required' => TRUE))
+                ->add('firstName'   , 'text'    , array('required' => TRUE))
+                ->add('lastName'    , 'text'    , array('required' => TRUE))
+                ->add('address'     , 'text'    , array('required' => TRUE))
+                ->add('city'        , 'text'    , array('required' => TRUE))
+                ->add('cp'          , 'number'  , array('required' => TRUE));
     }
 
     public function getName() {
