@@ -45,7 +45,7 @@ class UserController {
             $this->saveUser($user,$app);
         }
         return $app['twig']->render('user_registration_form.html.twig', array(
-                    'title' => 'New user',
+                    'title' => 'Nouvel utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types
         ));
@@ -67,7 +67,7 @@ class UserController {
             $this->saveUser($user,$app);
         }
         return $app['twig']->render('user.html.twig', array(
-                    'title' => 'Edit user',
+                    'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types,
                     'userMenu' => $userMenu,
@@ -86,7 +86,7 @@ class UserController {
             $this->saveUser($user,$app);
         }
         return $app['twig']->render('user.html.twig', array(
-                    'title' => 'Edit user',
+                    'title' => 'Edtier un utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types,
                     'userMenu' => $userMenu,
@@ -113,7 +113,7 @@ class UserController {
             $this->saveUser($user,$app);
         }
         return $app['twig']->render('user_form_adm.html.twig', array(
-                    'title' => 'New user',
+                    'title' => 'Nouvel utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types
         ));
@@ -130,7 +130,7 @@ class UserController {
             $this->saveUser($user,$app);
         }
         return $app['twig']->render('user_adm.html.twig', array(
-                    'title' => 'Edit user',
+                    'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types,
                     'userMenu' => $userMenu,
@@ -150,7 +150,7 @@ class UserController {
             $this->saveUser($user,$app);
         }
         return $app['twig']->render('user_adm.html.twig', array(
-                    'title' => 'Edit user',
+                    'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types,
                     'userMenu' => $userMenu,
@@ -169,7 +169,7 @@ class UserController {
             $this->saveUser($user,$app);
         }
         return $app['twig']->render('user_adm.html.twig', array(
-                    'title' => 'Edit user',
+                    'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types,
                     'userMenu' => $userMenu,
@@ -181,7 +181,7 @@ class UserController {
     public function delUserAdm($id, Request $request, Application $app) {
         // Delete the user
         $app['dao.user']->delete($id);
-        $app['session']->getFlashBag()->add('success', 'The user was succesfully removed.');
+        $app['session']->getFlashBag()->add('success', 'L\'utilisateur a été supprimé.');
         return $app->redirect('/admin');
     }
     
@@ -213,7 +213,7 @@ class UserController {
     private function saveUser($user, Application $app) {
         try {
             $app['dao.user']->save($user);
-            $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
+            $app['session']->getFlashBag()->add('success', 'L\'utilisateur a été mis à jour');
         } catch (\Exception $exc) {
             $app['session']->getFlashBag()->add('error', $exc->getMessage());
         }

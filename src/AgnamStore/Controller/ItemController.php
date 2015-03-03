@@ -47,7 +47,7 @@ class ItemController {
             $this->saveItem($item,$app);
         }
         return $app['twig']->render('item_form.html.twig', array(
-                    'title' => 'New item',
+                    'title' => 'Nouveau produit',
                     'itemForm' => $itemForm->createView(),
                     'types' => $types
         ));
@@ -66,7 +66,7 @@ class ItemController {
             $this->saveItem($item,$app);
         }
         return $app['twig']->render('item_form.html.twig', array(
-                    'title' => 'Edit item',
+                    'title' => 'Editer un produit',
                     'itemForm' => $itemForm->createView(),
                     'types' => $types
         ));
@@ -74,7 +74,7 @@ class ItemController {
     public function delItemAdm($id, Request $request, Application $app) {
         // Delete the item
         $app['dao.item']->delete($id);
-        $app['session']->getFlashBag()->add('success', 'The item was succesfully removed.');
+        $app['session']->getFlashBag()->add('success', 'Le produit a été supprimé.');
         return $app->redirect('/admin');
     }
     
@@ -87,7 +87,7 @@ class ItemController {
     private function saveItem($item, Application $app) {
         try {
             $app['dao.item']->save($item);
-            $app['session']->getFlashBag()->add('success', 'The item was succesfully updated.');
+            $app['session']->getFlashBag()->add('success', 'Le produit a été mis à jour.');
         } catch (\Exception $exc) {
             $app['session']->getFlashBag()->add('error', $exc->getMessage());
         }

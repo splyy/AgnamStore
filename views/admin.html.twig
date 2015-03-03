@@ -11,8 +11,8 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#items" data-toggle="tab">Item</a></li>
-                <li><a href="#users" data-toggle="tab">Users</a></li>
+                <li class="active"><a href="#items" data-toggle="tab">Produits</a></li>
+                <li><a href="#users" data-toggle="tab">Utilisateurs</a></li>
             </ul>
         </div>
     </div>
@@ -31,8 +31,8 @@
                                 <table class="table table-hover table-condensed">
                                     <thead>
                                         <tr>
-                                            <th class="col-xs-9">Name</th>
-                                            <th class="col-xs-2">Price</th>
+                                            <th class="col-xs-9">Nom</th>
+                                            <th class="col-xs-2">Prix</th>
                                             <th class="col-xs-1"></th> <!-- Actions column -->
                                         </tr>
                                     </thead>
@@ -49,14 +49,14 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="myModalLabel">Confirmation needed</h4>
+                                                                <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                Do you really want to delete this item ?
+                                                                Souhaitez-vous réellement supprimer ce produit ?
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                                <a href="/admin/item/{{ item.id }}/delete" class="btn btn-danger">Confirm</a>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                                <a href="/admin/item/{{ item.id }}/delete" class="btn btn-danger">Confirmer</a>
                                                             </div>
                                                         </div><!-- /.modal-content -->
                                                     </div><!-- /.modal-dialog -->
@@ -70,9 +70,9 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <div class="alert alert-warning">No items found.</div>
+                <div class="alert alert-warning">Aucun produit trouvé.</div>
             {% endif %}
-            <a href="/admin/item/add"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add item</button></a>
+            <a href="/admin/item/add"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un produit</button></a>
 
         </div>
         <div class="tab-pane fade adminTable" id="users">
@@ -82,8 +82,8 @@
                         <table class="table table-hover table-condensed">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Role</th>
+                                    <th>Utilisateur</th>
+                                    <th>Rôle</th>
                                     <th></th> <!-- Actions column -->
                                 </tr>
                             </thead>
@@ -92,9 +92,9 @@
                                     <td>{{ user.username }}</td>
                                     <td>
                                         {% if user.role == 'ROLE_ADMIN' %}
-                                            Admin
+                                            Administrateur
                                         {% else %}
-                                            User
+                                            Utilisateur
                                         {% endif %}
                                     </td>
                                     <td>
@@ -106,14 +106,14 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        <h4 class="modal-title" id="myModalLabel">Confirmation needed</h4>
+                                                        <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Do you really want to delete this user ?
+                                                        Souhaitez-vous réellement supprimé cet utilisateur ?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                        <a href="/admin/user/{{ user.id }}/delete" class="btn btn-danger">Confirm</a>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                        <a href="/admin/user/{{ user.id }}/delete" class="btn btn-danger">Confirmer</a>
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
@@ -125,9 +125,9 @@
                     </div>
                 </div>
             {% else %}
-                <div class="alert alert-warning">No users found.</div>
+                <div class="alert alert-warning">Aucun utilisateur trouvé.</div>
             {% endif %}
-            <a href="/admin/user/add"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add user</button></a>
+            <a href="/admin/user/add"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un utilisateur</button></a>
         </div>
     </div>
 {% endblock %}
