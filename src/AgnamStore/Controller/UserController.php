@@ -4,6 +4,7 @@ namespace AgnamStore\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use AgnamStore\Domain\User;
 use AgnamStore\Form\Type\User\UserRegistrationType;
 use AgnamStore\Form\Type\User\UserMdpType;
@@ -42,7 +43,8 @@ class UserController {
             $user->setSalt($salt);
             $user->setRole('ROLE_USER');
             $this->cryptPassword($user,$app);
-            $this->saveUser($user,$app);
+            $this->saveUser($user,$app, 'Votre inscription est terminé. Vous pouvez désormais vous connecter.');
+            return new RedirectResponse($request->getBaseUrl().'/login');
         }
         return $app['twig']->render('user_registration_form.html.twig', array(
                     'title' => 'Nouvel utilisateur',
@@ -210,10 +212,10 @@ class UserController {
     }
 
     // Save an user
-    private function saveUser($user, Application $app) {
+    private function saveUser($user, Application $app, $msg = 'L\'utilisateur a été mis à jour') {
         try {
             $app['dao.user']->save($user);
-            $app['session']->getFlashBag()->add('success', 'L\'utilisateur a été mis à jour');
+            $app['session']->getFlashBag()->add('success', $msg);
         } catch (\Exception $exc) {
             $app['session']->getFlashBag()->add('error', $exc->getMessage());
         }
