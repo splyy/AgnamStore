@@ -59,3 +59,27 @@ create table user (
     user_cp                     varchar(50),
     constraint pk_user primary key (user_id)
 ) ;
+
+
+/*==============================================================*/
+/* Table : cart                                                 */
+/*==============================================================*/
+create table cart  (
+    cart_id                     int(11)         not null        auto_increment,
+    user_id                     int(11)         not null,
+    date_creation               DATETIME        not null,
+    date_modif                  DATETIME        not null,
+    constraint pk_cart primary key (cart_id)
+);
+
+
+/*==============================================================*/
+/* Table :   item_cart                                              */
+/*==============================================================*/
+create table item_cart  (
+    cart_id                     int(11)         not null,
+    item_id                     int(11)         not null,
+    qte                         int(5)        not null,
+    constraint pk_item_cart primary key (cart_id,item_id)
+);
+
