@@ -8,27 +8,23 @@ class Cart {
      * * */
     private $id;
 
-    /** ShoppingCart id.
-     * @var integer 
-     * * */
-    private $userId;
-
-    /** ShoppingCart id.
+    /** ShoppingCart $dateCreate.
      * @var DateTime 
      * * */
     private $dateCreate;
+    
+    /** ShoppingCart $dateUpdate.
+     * @var DateTime 
+     * * */
+    private $dateUpdate;
 
-    /** ShoppingCart id.
+    /** ShoppingCart $items.
      * @var array 
      * * */
     private $items;
     
     public function getId() {
         return $this->id;
-    }
-
-    public function getUserId() {
-        return $this->userId;
     }
 
     public function getDateCreate() {
@@ -41,23 +37,14 @@ class Cart {
 
     public function setId($id) {
         $this->id = $id;
-        return $this;
-    }
-
-    public function setUserId($userId) {
-        $this->userId = $userId;
-        return $this;
     }
 
     public function setDateCreate($dateCreate) {
         $this->dateCreate = $dateCreate;
-        return $this;
     }
 
     public function setItems($items) {
         $this->items = $items;
-        return $this;
     }
-
 
 }

@@ -66,9 +66,9 @@ create table user (
 /*==============================================================*/
 create table cart  (
     cart_id                     int(11)         not null        auto_increment,
-    user_id                     int(11)         not null,
-    date_creation               DATETIME        not null,
-    date_modif                  DATETIME        not null,
+    user_id                     int(11),
+    date_creation               DATETIME,
+    date_update                 DATETIME,
     constraint pk_cart primary key (cart_id)
 );
 
@@ -77,6 +77,7 @@ create table cart  (
 /* Table :   item_cart                                              */
 /*==============================================================*/
 create table item_cart  (
+    item_cart_id                int(11)         not null        auto_increment,
     cart_id                     int(11)         not null,
     item_id                     int(11)         not null,
     qte                         int(5)        not null,

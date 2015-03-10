@@ -7,7 +7,7 @@ use AgnamStore\Domain\Item;
 class ItemDAO extends DAO {
 
     /**
-     * @var \AgnamStore\DAO\PractitionerTypeDAO
+     * @var \AgnamStore\DAO\GenreDAO
      */
     private $genreDAO;
 
@@ -16,7 +16,7 @@ class ItemDAO extends DAO {
     }
 
     /**
-     * @var \AgnamStore\DAO\PractitionerTypeDAO
+     * @var \AgnamStore\DAO\TypeDAO
      */
     private $typeDAO;
 
@@ -145,7 +145,7 @@ class ItemDAO extends DAO {
      *
      * @return \AgnamStore\Domain\Item
      */
-    protected function buildDomainObject($row) {
+    public function buildDomainObject($row) {
         $item = new Item();
         $type = $this->typeDAO->find($row['item_type_id']);
         //$genres = $this->genreDAO->findAllGenreForItem($row['item_id']);
