@@ -60,12 +60,12 @@ class Cart {
         return $this->dateUpdate;
     }
 
-    public function setUser(AgnamStore\Domain\User $user) {
+    public function setUser($user) {
         $this->user = $user;
         return $this;
     }
 
-    public function setDateUpdate(DateTime $dateUpdate) {
+    public function setDateUpdate($dateUpdate) {
         $this->dateUpdate = $dateUpdate;
         return $this;
     }

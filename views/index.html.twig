@@ -20,7 +20,7 @@
                                     <p>{{ item.description | truncate(60) }}</p>
                                     <div class="row">
                                         <div class="col-sm-5"><a class="btn btn-agnam" href="/items/{{ item.id }}" >Détail</a></div>
-                                        <div class="col-sm-5"><a  class="btn btn-warning"href="/panier/additem={{ item.id }}" >{{ item.price }} € <span class="glyphicon glyphicon-shopping-cart"></span></a></div>
+                                        <div class="col-sm-5"><a  class="btn btn-warning"href="/cart/item/{{ item.id }}" >{{ item.price }} € <span class="glyphicon glyphicon-shopping-cart"></span></a></div>
                                     </div>
                                 </div>
                             </div>

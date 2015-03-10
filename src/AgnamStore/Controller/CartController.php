@@ -4,6 +4,7 @@ namespace AgnamStore\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use AgnamStore\Domain\Cart;
 
 class CartController extends MainController {
@@ -11,6 +12,7 @@ class CartController extends MainController {
     public function index(Application $app) {
         $types = $app['dao.type']->findAll();
         $cart = $this->getCart($app);
+        var_dump($cart);
         return $app['twig']->render('cart.html.twig', array('types' => $types,'cart' => $cart));
     }
 
@@ -79,12 +81,12 @@ class CartController extends MainController {
         $user = $this->getUserClient($app);
         try {
             $cart = $app['dao.cart']->findByUser($user);
-        } catch (Exception $exc) {
+        } catch (\Exception $exc) {
+            var_dump($exc);
             $cart = new Cart();
             $cart->setUser($user);
             $app['dao.cart']->save($cart);
-        }
-
+        }        
         return $cart;
     }
 

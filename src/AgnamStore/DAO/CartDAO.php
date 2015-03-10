@@ -35,7 +35,7 @@ class CartDAO extends DAO {
      */
 
     public function find($id) {
-        $sql = "select * from item_cart where cart_id=?";
+        $sql = "select * from cart where cart_id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if ($row)
@@ -54,7 +54,7 @@ class CartDAO extends DAO {
 
     public function findByUser(User $user) {
         $sql = "select * "
-                . " from item_cart"
+                . " from cart"
                 . " where user_id=?"
                 . " order by cart_id desc"
                 . " limit 0,1";
@@ -63,7 +63,7 @@ class CartDAO extends DAO {
         if ($row)
             return $this->buildDomainObject($row, $user);
         else
-            throw new \Exception("No cart found for user id " . $userId);
+            throw new \Exception("No cart found for user id " . $user->getId());
     }
 
     /*     *
@@ -78,7 +78,6 @@ class CartDAO extends DAO {
         $datetimeNow = $datetimeNow->format('Y-m-d H:i:s');
         $cartData = array(
             'user_id' => $cart->getUser()->getId(),
-            'item_type_id' => $item->getType()->getId(),
             'date_update' => $datetimeNow
         );
         if ($cart->getId()) {
@@ -90,7 +89,7 @@ class CartDAO extends DAO {
             $this->getDb()->insert('cart', $cartData);
             // Get the id of the newly created item and set it on the entity.
             $id = $this->getDb()->lastInsertId();
-            $item->setId($id);
+            $cart->setId($id);
         }
     }
     
@@ -130,7 +129,7 @@ class CartDAO extends DAO {
      *
      * @return array The list of all items.
      */
-    public function findAllItem($cartId) {
+    public function findAllItemCart($cartId) {
         $sql = "select * "
                 . " from item_cart ic join item i"
                 . " on i.item_id = ic.item_id"
@@ -142,7 +141,7 @@ class CartDAO extends DAO {
         foreach ($result as $row) {
             $itemCarts[] = $this->buildItemCart($row);
         }
-        return $items;
+        return $itemCarts;
     }
 
     /**
