@@ -2,17 +2,6 @@
 {% set tataMenu = true %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-    <h2 class="text-center">{{ block('title') }}</h2>
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
-    {% for flashMessage in app.session.flashbag.get('error') %}
-        <div class="alert alert-danger">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
     <div class="well">
         {{ form_start(itemForm, { 'attr': {'class': 'form-horizontal'} }) }}
         <div class="form-group">

@@ -13,7 +13,7 @@ use AgnamStore\Form\Type\User\UserTypeAdm;
 use AgnamStore\Form\Type\User\UserRoleType;
 
 
-class UserController {
+class UserController extends MainController{
 
     
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -66,7 +66,7 @@ class UserController {
         $userForm = $app['form.factory']->create(new UserProfilType(), $user);
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
-            $this->saveUser($user,$app);
+            $this->saveUser($user,$app, 'Le profil de l\'utilisateur a été mis à jour');
         }
         return $app['twig']->render('user.html.twig', array(
                     'title' => 'Editer un utilisateur',
@@ -85,7 +85,7 @@ class UserController {
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
             $this->cryptPassword($user,$app);
-            $this->saveUser($user,$app);
+            $this->saveUser($user,$app,'Le mot de passe de l\'utilisateur a été mis à jour');
         }
         return $app['twig']->render('user.html.twig', array(
                     'title' => 'Edtier un utilisateur',
@@ -193,13 +193,6 @@ class UserController {
      *       Methode
      * 
      * * * * * */
-    
-    // Get user connected
-    private function getUserClient(Application $app) {
-        $user = $app['security']->getToken()->getUser();
-        $user = $app['dao.user']->refreshUser($user);
-        return $user;
-    }
 
     // Encrypted password on md5
     private function cryptPassword($user, Application $app) {

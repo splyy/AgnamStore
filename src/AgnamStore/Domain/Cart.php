@@ -13,6 +13,11 @@ class Cart {
      * * */
     private $dateCreate;
     
+    /** ShoppingCart $user.
+     * @var AgnamStore\Domain\User 
+     * * */
+    private $user;
+
     /** ShoppingCart $dateUpdate.
      * @var DateTime 
      * * */
@@ -47,4 +52,21 @@ class Cart {
         $this->items = $items;
     }
 
+    public function getUser() {
+        return $this->user;
+    }
+
+    public function getDateUpdate() {
+        return $this->dateUpdate;
+    }
+
+    public function setUser(AgnamStore\Domain\User $user) {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function setDateUpdate(DateTime $dateUpdate) {
+        $this->dateUpdate = $dateUpdate;
+        return $this;
+    }
 }

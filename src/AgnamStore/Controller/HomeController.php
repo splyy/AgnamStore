@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AgnamStore\Form\Type\Item\ItemType;
 use AgnamStore\Domain\Item;
 
-class HomeController {
+class HomeController extends MainController{
     /*     * * * * * * * * * * * * * * * * * * * * * * * * * * *
      * 
      *       All User

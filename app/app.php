@@ -70,6 +70,13 @@ $app['dao.item'] = $app->share(function ($app) {
     return $itemDAO;
 });
 
+$app['dao.cart'] = $app->share(function ($app) {
+    $cartDAO = new AgnamStore\DAO\CartDAO($app['db']);
+    $cartDAO->setItemDAO($app['dao.item']);
+    $cartDAO->setUserDAO($app['dao.user']);
+    return $cartDAO;
+});
+
 $app['dao.user'] = $app->share(function ($app) {
     return new AgnamStore\DAO\UserDAO($app['db']);
 });

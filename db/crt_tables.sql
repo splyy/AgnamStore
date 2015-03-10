@@ -76,8 +76,7 @@ create table cart  (
 /*==============================================================*/
 /* Table :   item_cart                                              */
 /*==============================================================*/
-create table item_cart  (
-    item_cart_id                int(11)         not null        auto_increment,
+create table item_cart  (    
     cart_id                     int(11)         not null,
     item_id                     int(11)         not null,
     qte                         int(5)        not null,

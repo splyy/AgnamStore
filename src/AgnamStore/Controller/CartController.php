@@ -6,58 +6,86 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use AgnamStore\Domain\Cart;
 
+class CartController extends MainController {
 
-class CartController {
-
-    public function itemsByType($typeId, Application $app) {
-        $items = $app['dao.item']->findByType($typeId);
+    public function index(Application $app) {
         $types = $app['dao.type']->findAll();
-        $typeG = $app['dao.type']->find($typeId);
-        return $app['twig']->render('items.html.twig', array('types' => $types, 'items' => $items, "typeG" => $typeG));
+        $cart = $this->getCart($app);
+        return $app['twig']->render('cart.html.twig', array('types' => $types,'cart' => $cart));
     }
 
-    public function itemById($id, Application $app) {
-        $item = $app['dao.item']->find($id);
-        $types = $app['dao.type']->findAll();
-        return $app['twig']->render('item.html.twig', array('item' => $item, 'types' => $types));
-    }
-    
-    public function cart(Application $app){
-        $types = $app['dao.type']->findAll();
-        return $app['twig']->render('cart.html.twig',array('types'=> $types));
-    }
-    
-    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     * 
-     *       Administration
-     * 
-     * * * * * */
- 
-    public function addItemAdm( Request $request, Application $app){
-        $item = new Item();
-        $types = $app['dao.type']->findAll();
-        $form = new ItemType();
-        $form->setType($types);
-        $itemForm = $app['form.factory']->create($form, $item);        
-        $itemForm->handleRequest($request);
-        if ($itemForm->isValid()) {
-            // TODO Mettre date actuel
-            $item->setSaleDate('0000-00-00');
-            //TODO GESTION des genre
-            $item->setType($app['dao.type']->find($item->getType()));
-            $this->saveItem($item,$app);
+    public function add($id, Request $request, Application $app) {
+        try {
+            $cart = $this->getCart($app);
+            $itemCarts = $cart->getItems();
+            $notFound = TRUE;
+            foreach ($itemCarts as $itemCart) {
+                if ($itemCart->getItem()->getid() === $id)
+                    $notFound = FALSE;
+            }
+            if ($notFound) {
+                $app['dao.cart']->addItemCart($cart->getId(), $id);
+            }
+            $app['session']->getFlashBag()->add('success', "Produit ajouter au panier");
+        } catch (\Exception $exc) {
+            $app['session']->getFlashBag()->add('error', 'Une erreur c\'est produit lors de l\'ajout du produit au panier');
         }
-        return $app['twig']->render('item_form.html.twig', array(
-                    'title' => 'Nouveau produit',
-                    'itemForm' => $itemForm->createView(),
-                    'types' => $types
-        ));
+        return new RedirectResponse($request->getBaseUrl() . '/cart');
     }
 
-    public function delItemAdm($id, Request $request, Application $app) {
-        // Delete the item
-        $app['dao.item']->delete($id);
-        $app['session']->getFlashBag()->add('success', 'Le produit a été supprimé.');
-        return $app->redirect('/admin');
+    public function edit($id, Request $request, Application $app) {
+        try {
+            $cart = $this->getCart($app);
+            $qte = $request->get('qte');
+            $itemCarts = $cart->getItems();
+            $itemCartFound = null;
+            foreach ($itemCarts as $itemCart) {
+                if ($itemCart->getItem()->getid() == $id) {
+                    $itemCartFound = $itemCart;
+                    $itemCartFound->setQte($qte);
+                }
+            }
+            if ($notFound) {
+                $app['dao.cart']->addItemCart($cart->getId(), $id);
+            }
+            $app['session']->getFlashBag()->add('success', "Quantité modifier");
+        } catch (\Exception $exc) {
+            $app['session']->getFlashBag()->add('error', 'Une erreur c\'est produit lors de la modification de la quantité du produit');
+        }
+        return new RedirectResponse($request->getBaseUrl() . '/cart');
     }
+
+    public function del($id, Request $request, Application $app) {
+        try {
+            $cart = $this->getCart($app);
+            $itemCarts = $cart->getItems();
+            $found = FALSE;
+            foreach ($itemCarts as $itemCart) {
+                if ($itemCart->getItem()->getid() === $id)
+                    $found = TRUE;
+            }
+            if ($found) {
+                $app['dao.cart']->deleteItemCart($cart->getId(), $id);
+            }
+            $app['session']->getFlashBag()->add('success', "Produit supprimer");
+        } catch (\Exception $exc) {
+            $app['session']->getFlashBag()->add('error', 'Une erreur c\'est produit lors de la suppresion du produit');
+        }
+
+        return new RedirectResponse($request->getBaseUrl() . '/cart');
+    }
+
+    private function getCart($app) {
+        $user = $this->getUserClient($app);
+        try {
+            $cart = $app['dao.cart']->findByUser($user);
+        } catch (Exception $exc) {
+            $cart = new Cart();
+            $cart->setUser($user);
+            $app['dao.cart']->save($cart);
+        }
+
+        return $cart;
+    }
+
 }

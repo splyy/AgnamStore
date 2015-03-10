@@ -8,7 +8,7 @@ use AgnamStore\Form\Type\Item\ItemType;
 use AgnamStore\Domain\Item;
 
 
-class ItemController {
+class ItemController extends MainController{
 
     public function itemsByType($typeId, Application $app) {
         $items = $app['dao.item']->findByType($typeId);
