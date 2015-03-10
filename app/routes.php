@@ -66,6 +66,11 @@ $app->match('/admin/user/{id}/role', "AgnamStore\Controller\UserController::role
 $app->get('/admin/user/{id}/delete', "AgnamStore\Controller\UserController::delUserAdm");
 
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 
+ * Panier
+ * 
+ * * * * */
 
-
-
+// Index page 
+$app->get('/cart', "AgnamStore\Controller\CartController::cart");

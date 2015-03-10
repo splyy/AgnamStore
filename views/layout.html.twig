@@ -55,6 +55,7 @@
                                         <li><a href="/user">Profil</a></li>
                                     </ul>
                                 </li>
+                                <li class="{% if cartMenu is defined %}active{% endif %}"><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Panier <span class="badge">42</span></a></li>
                             {% else %}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -73,10 +74,13 @@
                 <div id="content">{% block content %}{% endblock %}</div>
             {% endautoescape %}
         </div>
+        <!-- JavaScript -->
+        <script src="{{ app.request.basepath }}/js/cat.js"></script>
+        <script src="{{ app.request.basepath }}/js/genre.js"></script>
         <!-- jQuery -->
         <script src="{{ app.request.basepath }}/lib/jquery/jquery-1.11.1.min.js"></script>
         <!-- JavaScript Boostrap plugin -->
         <script src="{{ app.request.basepath }}/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="{{ app.request.basepath }}/js/genre.js"></script>
+        <script src="{{ app.request.basepath }}/lib/bootstrap/js/bootstrap.js"></script>
     </body>
 </html>

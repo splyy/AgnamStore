@@ -1,76 +1,94 @@
 {% extends "layout.html.twig" %}
-{% set adminMenu = true %}
+{% set cartMenu = true %}
 
 {% block title %}Votre panier{% endblock %}
-{% block content %}
-    <h2 class="text-center">{{ block('title') }}</h2>
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
+{% block content %}          
     <div class="row">
-        {% if metiers %}
-            {% for metier in metiers %}
-                {% if categories %}
-                    {# TODO : Test si met_no de catégorie == metier || Si traitement trop long. Modif requete#}
-                    <div class="row">
-                        <h1 style="margin-left: -80px;">{{metier.nom}}</h1>
-                        {% for categorie in categories %} 
-                            {% if categorie.metNo == metier.id %}
-                                <div class="cadre-header">
-                                    <div class="page-header">
-                                        <h3>{{categorie.nom}}</h3>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-condensed">
-                                            <thead>
-                                                <tr>
-                                                    <th class="col-xs-9">Nom</th>
-                                                    <th class="col-xs-1"></th> <!-- Actions column -->
-                                                </tr>
-                                            </thead>
-                                            {% for article in articles %}
-                                                {% if article.catNo == categorie.id %}
-                                                    <tr>
-                                                        <td>{{ article.nom }}</td>
-                                                        <td>
-                                                            <a href="/articles/{{ article.id }}/edit" class="btn btn-info btn-xs" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-                                                            <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#articleDialog{{ article.id }}"><span class="glyphicon glyphicon-remove"></span></button>
-                                                            <div class="modal fade" id="articleDialog{{ article.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                            <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Voulez vraiment supprimer cet article ?
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                                            <a href="/articles/{{ article.id }}/delete" class="btn btn-danger">Confirmer</a>
-                                                                        </div>
-                                                                    </div><!-- /.modal-content -->
-                                                                </div><!-- /.modal-dialog -->
-                                                            </div><!-- /.modal -->
-                                                        </td>
-                                                    </tr>
-                                                {% endif %}
-                                            {% endfor %} 
-                                        </table>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <div class="alert alert-warning">Aucune catégorie trouvée</div>
-                {% endif %}
-            {% endfor %}
-            <a href="/articles/add"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un article</button></a>
-        {% else %}
-            <div class="alert alert-warning">Aucune métier trouvé</div>
-        {% endif %}
+        <div class="cadre-header">
+            <div class="page-header">
+                <h3>//</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-1"></th> <!-- Actions column -->
+                            <th class="col-xs-1"></th> <!-- Images column -->
+                            <th class="col-xs-3">Produit(s)</th>
+                            <th class="col-xs-4">Description</th>
+                            <th class="col-xs-2">Quantité(s)</th>
+                            <th class="col-xs-1">Prix</th>
+                        </tr>
+                    </thead>
+                    {#{% for cart in carts %}#}
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#articleDialog{#{{ cart.id }}#}"><span class="glyphicon glyphicon-remove"></span></button>
+                                {#<div class="modal fade" id="articleDialog{{ cart.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez-vous vraiment supprimer cet article ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <a href="/cart/{{ cart.id }}/delete" class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->#}
+                        </td>
+                        <td>
+                            <a href="#">
+                                <img class="img-responsive" src="{{ app.request.basepath }}/images/produit/a_img_darker.jpg" alt="blabla" width="64px" height="64px">
+                            </a>
+                        </td>
+                        <td><h4>Darker Than Black</h4></td>
+                        <td><em>"Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at..."</em></td>
+                        <td></td>
+                        <td>20.00 €</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#articleDialog{#{{ cart.id }}#}"><span class="glyphicon glyphicon-remove"></span></button>
+                                {#<div class="modal fade" id="articleDialog{{ cart.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez-vous vraiment supprimer cet article ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <a href="/cart/{{ cart.id }}/delete" class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->#}
+                        </td>
+                        <td>
+                            <a href="#">
+                                <img class="img-responsive" src="{{ app.request.basepath }}/images/produit/a_img_darker.jpg" alt="blabla" width="48px" height="48px">
+                            </a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="" title="">Popover on top</button>
+                        </td>
+                        <td><em>"Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at..."</em></td>
+                        <td></td>
+                        <td>20.00 €</td>
+                    </tr>
+
+                    {#{% endfor %} #}
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}
