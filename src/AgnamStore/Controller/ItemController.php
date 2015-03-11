@@ -19,8 +19,7 @@ class ItemController extends MainController{
 
     public function itemById($id, Application $app) {
         $item = $app['dao.item']->find($id);
-        
-        return $this->renderView($app,'item.html.twig', array('item' => $item, 'types' => $types));
+        return $this->renderView($app,'item.html.twig', array('item' => $item));
     }
     
     

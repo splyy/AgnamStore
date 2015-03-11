@@ -30,7 +30,7 @@ class HomeController extends MainController{
      * * * * * */
 
     public function indexAdm(Application $app) {
-        
+        $types = $app['dao.type']->findAll();
         $users = $app['dao.user']->findAll();
 
         foreach ($types as $type) {
