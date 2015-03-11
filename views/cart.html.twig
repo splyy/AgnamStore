@@ -48,11 +48,11 @@
                                 <img class="img-responsive" src="{{ app.request.basepath }}/images/produit/a_img_darker.jpg" alt="blabla" width="48px" height="48px">
                             </a>
                         </td>
-                        <td>
-                            <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="" title="">Popover on top</button>
-                        </td>
+                        <td>Titre 1</td>
                         <td><em>"Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at..."</em></td>
-                        <td></td>
+                        <td>
+                            <input type="number" id="stepper1" name="stepper1" min="1" max="10" value="1" />
+                        </td>
                         <td>20.00 €</td>
                     </tr>
 
@@ -62,3 +62,5 @@
         </div>
     </div>
 {% endblock %}
+
+{# http://www.developphp.com/video/HTML/Numeric-Stepper-Form-Input-Tutorial #}
