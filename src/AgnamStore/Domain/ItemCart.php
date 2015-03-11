@@ -1,53 +1,50 @@
+
 <?php
 
 namespace AgnamStore\Domain;
 
+class ItemCart {
 
-class ItemCart{
-       
     /** ItemCart $item
-     * @var AgnamStore\Domain\Item 
-     * **/
+     * @var AgnamStore\Domain\Item
+     * * */
     private $item;
-    
-    /** ItemCart $cartId
-     * @var integer **/
-    private $cartId;
-    
+
+    /** ItemCart $user
+     * @var AgnamStore\Domain\User * */
+    private $user;
+
     /** ItemCart $qte
-     * @var integer **/
+     * @var integer * */
     private $qte;
-    
-    public function getItemCartId() {
-        return $this->itemCartId;
-    }
 
     public function getItem() {
         return $this->item;
     }
 
-    public function getCartId() {
-        return $this->cartId;
+    public function getUser() {
+        return $this->user;
     }
 
     public function getQte() {
         return $this->qte;
     }
 
-    public function setItemCartId($itemCartId) {
-        $this->itemCartId = $itemCartId;
-    }
-
-    public function setItem(AgnamStore\Domain\Item $item) {
+    public function setItem( $item) {
         $this->item = $item;
+        return $this;
     }
 
-    public function setCartId($cartId) {
-        $this->cartId = $cartId;
+    public function setUser($user) {
+        $this->user = $user;
+        return $this;
     }
 
     public function setQte($qte) {
         $this->qte = $qte;
+        return $this;
     }
+
+
 
 }

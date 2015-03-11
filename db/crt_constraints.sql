@@ -11,16 +11,12 @@ alter table possede_genre
    add constraint fk_possede_genre_item_genre foreign key (item_genre_id)
       references item_genre (item_genre_id);
 
-alter table cart
-   add constraint fk_cart_user foreign key (user_id)
+alter table line_cart
+   add constraint fk_line_cart_user foreign key (user_id)
       references user (user_id);
 
-alter table item_cart
-   add constraint fk_item_cart_cart foreign key (cart_id)
-      references cart (cart_id);
-
-alter table item_cart
-   add constraint fk_item_cart_item foreign key (item_id)
+alter table line_cart
+   add constraint fk_line_cart_item foreign key (item_id)
       references item (item_id);
 
 

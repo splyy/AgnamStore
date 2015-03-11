@@ -60,24 +60,11 @@ create table user (
     constraint pk_user primary key (user_id)
 ) ;
 
-
 /*==============================================================*/
-/* Table : cart                                                 */
+/* Table :   line_cart                                              */
 /*==============================================================*/
-create table cart  (
-    cart_id                     int(11)         not null        auto_increment,
-    user_id                     int(11),
-    date_creation               DATETIME,
-    date_update                 DATETIME,
-    constraint pk_cart primary key (cart_id)
-);
-
-
-/*==============================================================*/
-/* Table :   item_cart                                              */
-/*==============================================================*/
-create table item_cart  (    
-    cart_id                     int(11)         not null,
+create table line_cart  (    
+    user_id                     int(11)         not null,
     item_id                     int(11)         not null,
     qte                         int(5)        not null,
     constraint pk_item_cart primary key (cart_id,item_id)
