@@ -12,15 +12,15 @@ class ItemController extends MainController{
 
     public function itemsByType($typeId, Application $app) {
         $items = $app['dao.item']->findByType($typeId);
-        $types = $app['dao.type']->findAll();
+        
         $typeG = $app['dao.type']->find($typeId);
-        return $app['twig']->render('items.html.twig', array('types' => $types, 'items' => $items, "typeG" => $typeG));
+        return $this->renderView($app,'items.html.twig', array( 'items' => $items, "typeG" => $typeG));
     }
 
     public function itemById($id, Application $app) {
         $item = $app['dao.item']->find($id);
-        $types = $app['dao.type']->findAll();
-        return $app['twig']->render('item.html.twig', array('item' => $item, 'types' => $types));
+        
+        return $this->renderView($app,'item.html.twig', array('item' => $item, 'types' => $types));
     }
     
     
@@ -34,7 +34,7 @@ class ItemController extends MainController{
     
     public function addItemAdm( Request $request, Application $app){
         $item = new Item();
-        $types = $app['dao.type']->findAll();
+        
         $form = new ItemType();
         $form->setType($types);
         $itemForm = $app['form.factory']->create($form, $item);        
@@ -46,7 +46,7 @@ class ItemController extends MainController{
             $item->setType($app['dao.type']->find($item->getType()));
             $this->saveItem($item,$app);
         }
-        return $app['twig']->render('item_form.html.twig', array(
+        return $this->renderView($app,'item_form.html.twig', array(
                     'title' => 'Nouveau produit',
                     'itemForm' => $itemForm->createView(),
                     'types' => $types
@@ -56,7 +56,7 @@ class ItemController extends MainController{
     public function editItemAdm($id, Request $request, Application $app){
         $item = $item = $app['dao.item']->find($id);
         $item->setType($item->getType()->getId());
-        $types = $app['dao.type']->findAll();
+        
         $form = new ItemType();
         $form->setType($types);
         $itemForm = $app['form.factory']->create($form, $item);
@@ -65,7 +65,7 @@ class ItemController extends MainController{
             $item->setType($app['dao.type']->find($item->getType()));
             $this->saveItem($item,$app);
         }
-        return $app['twig']->render('item_form.html.twig', array(
+        return $this->renderView($app,'item_form.html.twig', array(
                     'title' => 'Editer un produit',
                     'itemForm' => $itemForm->createView(),
                     'types' => $types

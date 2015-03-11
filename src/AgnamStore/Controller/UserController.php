@@ -24,18 +24,18 @@ class UserController extends MainController{
         
     // Connexion
     public function loginAction(Request $request, Application $app) {
-        $types = $app['dao.type']->findAll();
-        return $app['twig']->render('login.html.twig', array(
+        
+        return $this->renderView($app,'login.html.twig', array(
                     'error' => $app['security.last_error']($request),
                     'last_username' => $app['session']->get('_security.last_username'),
-                    'types' => $types,
+                    
         ));
     }
 
     // Registration
     public function registration(Request $request, Application $app) {
         $user = new User();
-        $types = $app['dao.type']->findAll();
+        
         $userForm = $app['form.factory']->create(new UserRegistrationType(), $user);
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
@@ -46,7 +46,7 @@ class UserController extends MainController{
             $this->saveUser($user,$app, 'Votre inscription est terminé. Vous pouvez désormais vous connecter.');
             return new RedirectResponse($request->getBaseUrl().'/login');
         }
-        return $app['twig']->render('user_registration_form.html.twig', array(
+        return $this->renderView($app,'user_registration_form.html.twig', array(
                     'title' => 'Nouvel utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types
@@ -61,24 +61,24 @@ class UserController extends MainController{
     // Edit Profil
     public function profil(Request $request, Application $app) {
         $userMenu = 0;
-        $types = $app['dao.type']->findAll();
+        
         $user = $this->getUserClient($app);
         $userForm = $app['form.factory']->create(new UserProfilType(), $user);
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
             $this->saveUser($user,$app, 'Le profil de l\'utilisateur a été mis à jour');
         }
-        return $app['twig']->render('user.html.twig', array(
+        return $this->renderView($app,'user.html.twig', array(
                     'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
-                    'types' => $types,
+                    
                     'userMenu' => $userMenu,
         ));
     }
     
     // Edit Password
     public function password(Request $request, Application $app) {
-        $types = $app['dao.type']->findAll();
+        
         $userMenu = 1;
         $user = $this->getUserClient($app);
         $userForm = $app['form.factory']->create(new UserMdpType(), $user);
@@ -87,10 +87,10 @@ class UserController extends MainController{
             $this->cryptPassword($user,$app);
             $this->saveUser($user,$app,'Le mot de passe de l\'utilisateur a été mis à jour');
         }
-        return $app['twig']->render('user.html.twig', array(
+        return $this->renderView($app,'user.html.twig', array(
                     'title' => 'Edtier un utilisateur',
                     'userForm' => $userForm->createView(),
-                    'types' => $types,
+                    
                     'userMenu' => $userMenu,
         ));
     }
@@ -104,7 +104,7 @@ class UserController extends MainController{
     // Add User on admin
     public function addUserAdm(Request $request, Application $app) {
         $user = new User();
-        $types = $app['dao.type']->findAll();
+        
         $userForm = $app['form.factory']->create(new UserTypeAdm(), $user);
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
@@ -114,7 +114,7 @@ class UserController extends MainController{
             $this->cryptPassword($user,$app);
             $this->saveUser($user,$app);
         }
-        return $app['twig']->render('user_form_adm.html.twig', array(
+        return $this->renderView($app,'user_form_adm.html.twig', array(
                     'title' => 'Nouvel utilisateur',
                     'userForm' => $userForm->createView(),
                     'types' => $types
@@ -124,17 +124,17 @@ class UserController extends MainController{
     // Edit User Profil on admin
     public function profilAdm($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
-        $types = $app['dao.type']->findAll();
+        
         $userMenu = 0;
         $userForm = $app['form.factory']->create(new UserProfilType(), $user);
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
             $this->saveUser($user,$app);
         }
-        return $app['twig']->render('user_adm.html.twig', array(
+        return $this->renderView($app,'user_adm.html.twig', array(
                     'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
-                    'types' => $types,
+                    
                     'userMenu' => $userMenu,
                     'user' => $user,
         ));
@@ -143,7 +143,7 @@ class UserController extends MainController{
     // Edit password on admin
     public function passwordAdm($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
-        $types = $app['dao.type']->findAll();
+        
         $userMenu = 1;
         $userForm = $app['form.factory']->create(new UserMdpType(), $user);
         $userForm->handleRequest($request);
@@ -151,10 +151,10 @@ class UserController extends MainController{
             $this->cryptPassword($user, $app);
             $this->saveUser($user,$app);
         }
-        return $app['twig']->render('user_adm.html.twig', array(
+        return $this->renderView($app,'user_adm.html.twig', array(
                     'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
-                    'types' => $types,
+                    
                     'userMenu' => $userMenu,
                     'user' => $user,
         ));
@@ -163,17 +163,17 @@ class UserController extends MainController{
     // Edit role on admin
     public function roleAdm($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
-        $types = $app['dao.type']->findAll();
+        
         $userMenu = 2;
         $userForm = $app['form.factory']->create(new UserRoleType(), $user);
         $userForm->handleRequest($request);
         if ($userForm->isValid()) {
             $this->saveUser($user,$app);
         }
-        return $app['twig']->render('user_adm.html.twig', array(
+        return $this->renderView($app,'user_adm.html.twig', array(
                     'title' => 'Editer un utilisateur',
                     'userForm' => $userForm->createView(),
-                    'types' => $types,
+                    
                     'userMenu' => $userMenu,
                     'user' => $user,
         ));

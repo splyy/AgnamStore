@@ -20,7 +20,7 @@ class HomeController extends MainController{
             $lastItems[$type->getId()]['type'] = $type;
             $lastItems[$type->getId()]['item'] = $app['dao.item']->findByTypeThreeLast($type->getId());
         }
-        return $app['twig']->render('index.html.twig', array('types' => $types, 'lastItems' => $lastItems));
+        return $this->renderView($app,'index.html.twig', array( 'lastItems' => $lastItems));
     }
 
     /*     * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -30,15 +30,15 @@ class HomeController extends MainController{
      * * * * * */
 
     public function indexAdm(Application $app) {
-        $types = $app['dao.type']->findAll();
+        
         $users = $app['dao.user']->findAll();
 
         foreach ($types as $type) {
             $items[$type->getId()]['type'] = $type;
             $items[$type->getId()]['item'] = $app['dao.item']->findByType($type->getId());
         }
-        return $app['twig']->render('admin.html.twig', array(
-                    'types' => $types,
+        return $this->renderView($app,'admin.html.twig', array(
+                    
                     'users' => $users,
                     'itemsByType' => $items
         ));

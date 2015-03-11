@@ -5,8 +5,13 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
 abstract class MainController {  
-     // Get user connected
-     protected function getUserClient(Application $app) {
+    protected function renderView(Application $app,$view,$param = array()){
+        
+        $param['types'] = $app['dao.type']->findAll();
+        return $app['twig']->render($view, $param);
+    }
+
+    protected function getUserClient(Application $app) {
         $user = $app['security']->getToken()->getUser();
         $user = $app['dao.user']->refreshUser($user);
         return $user;

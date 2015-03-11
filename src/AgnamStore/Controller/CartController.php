@@ -9,11 +9,10 @@ use AgnamStore\Domain\Cart;
 
 class CartController extends MainController {
 
-    public function index(Application $app) {
-        $types = $app['dao.type']->findAll();
-        $cart = $this->getCart($app);
-        var_dump($cart);
-        return $app['twig']->render('cart.html.twig', array('types' => $types,'cart' => $cart));
+    public function index(Application $app) { 
+        //$cart = $this->getCart($app);
+        //var_dump($cart);
+        return $this->renderView($app,'cart.html.twig', array('cart' => $cart));
     }
 
     public function add($id, Request $request, Application $app) {
