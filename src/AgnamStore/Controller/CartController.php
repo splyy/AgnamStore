@@ -12,7 +12,7 @@ class CartController extends MainController {
     public function index(Application $app) { 
         //$cart = $this->getCart($app);
         //var_dump($cart);
-        return $this->renderView($app,'cart.html.twig', array('cart' => $cart));
+        return $this->renderView($app,'cart.html.twig', array(/*'cart' => $cart*/));
     }
 
     public function add($id, Request $request, Application $app) {
