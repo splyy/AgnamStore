@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 abstract class MainController {  
     protected function renderView(Application $app,$view,$param = array()){
-        
+
         $param['types'] = $app['dao.type']->findAll();
         return $app['twig']->render($view, $param);
     }

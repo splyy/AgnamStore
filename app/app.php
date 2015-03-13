@@ -37,6 +37,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     'security.access_rules' => array(
         array('^/admin', 'ROLE_ADMIN'),
         array('^/user', 'ROLE_USER'),
+        array('^/cart', 'ROLE_USER'),
     ),
 ));
 $app->register(new Silex\Provider\FormServiceProvider());
@@ -70,11 +71,11 @@ $app['dao.item'] = $app->share(function ($app) {
     return $itemDAO;
 });
 
-$app['dao.cart'] = $app->share(function ($app) {
-    $cartDAO = new AgnamStore\DAO\CartDAO($app['db']);
-    $cartDAO->setItemDAO($app['dao.item']);
-    $cartDAO->setUserDAO($app['dao.user']);
-    return $cartDAO;
+$app['dao.itemCart'] = $app->share(function ($app) {
+    $ItemCartDAO = new AgnamStore\DAO\ItemCartDAO($app['db']);
+    $ItemCartDAO->setItemDAO($app['dao.item']);
+    $ItemCartDAO->setUserDAO($app['dao.user']);
+    return $ItemCartDAO;
 });
 
 $app['dao.user'] = $app->share(function ($app) {

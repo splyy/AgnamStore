@@ -2,11 +2,10 @@
 
 namespace AgnamStore\DAO;
 
-use AgnamStore\Domain\Cart;
 use AgnamStore\Domain\ItemCart;
 use AgnamStore\Domain\User;
 
-class CartDAO extends DAO {
+class ItemCartDAO extends DAO {
 
     /**
      * @var \AgnamStore\DAO\ItemDAO
@@ -59,13 +58,13 @@ class CartDAO extends DAO {
         $sql = "select * "
                 . " from line_cart ic join item i"
                 . " on i.item_id = ic.item_id"
-                . " where user_id=? and item_id=?";
+                . " where user_id=? and i.item_id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($userId, $itemId));
 
         if ($row)
-            return true;
+            return TRUE;
         else
-            return false;
+            return FALSE;
     }
     /* *
      * Returns the cart matching a given id.
@@ -80,14 +79,14 @@ class CartDAO extends DAO {
                 . " on i.item_id = ic.item_id"
                 . " where user_id=?";
         
-        $row = $this->getDb()->fetchAssoc($sql, array($user->getId()));
+        $result = $this->getDb()->fetchAll($sql, array($user->getId()));
 
         $itemCarts = array();
         foreach ($result as $row) {
             $itemId = $row['item_id'];
             $itemCarts[$itemId] = $this->buildDomainObject($row,$user);
         }
-        return $items;
+        return $itemCarts;
     }
 
     /**
@@ -115,12 +114,12 @@ class CartDAO extends DAO {
      *
      * @param \AgnamStore\Domain\ItemCart $itemCart The ItemCart to save
      */
-    public function saveItemCart(ItemCart $itemCart) {
+    public function save(ItemCart $itemCart) {
         $userId = $itemCart->getUser()->getId(); 
         $itemId = $itemCart->getItem()->getId();
         $exist = $this->existItemCart($userId, $itemId);
         $itemCartData = array(
-            'qte' => $item->getQte()
+            'qte' => $itemCart->getQte()
         );
         if($exist)
             $this->getDb()->update('line_cart', $itemCartData, array('item_id' => $itemId, 'user_id' => $userId));
@@ -137,7 +136,7 @@ class CartDAO extends DAO {
      *
      * @param \AgnamStore\Domain\ItemCart $itemCart The ItemCart to remove
      */
-    public function deleteItemCart(ItemCart $itemCart) {
+    public function delete(ItemCart $itemCart) {
         $userId = $itemCart->getUser()->getId(); 
         $itemId = $itemCart->getItem()->getId();
         // Delete the item

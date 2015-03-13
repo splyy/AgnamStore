@@ -67,6 +67,6 @@ create table line_cart  (
     user_id                     int(11)         not null,
     item_id                     int(11)         not null,
     qte                         int(5)        not null,
-    constraint pk_item_cart primary key (cart_id,item_id)
+    constraint pk_item_cart primary key (user_id,item_id)
 );
 
