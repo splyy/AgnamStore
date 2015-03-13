@@ -21,27 +21,49 @@
                         </tr>
                     </thead>
                     {#{% for cart in carts %}#}
-                    
+
                     <tr>
                         <td>
-                            <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#articleDialog{#{{ cart.id }}#}"><span class="glyphicon glyphicon-remove"></span></button>
-                                {#<div class="modal fade" id="articleDialog{{ cart.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
+                            <button type="button" class="btn btn-success btn-xs" title="About" data-toggle="modal" data-target="#articleDialog{#{{ item.id }}#}"><span class="glyphicon glyphicon-search"></span></button>
+                            {#<div class="modal fade" id="articleDialog{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">{{ item.name }}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-5"> 
+                                                        <img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/{{ item.image }}" title="{{ item.name }}"/>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <h4>Information Générale</h4>
+                                                        <ul class="list-unstyled">
+                                                            <li><u>Auteur</u> : {{ item.author }}</li>
+                                                            <li><u>Année</u> : {{ item.year }}</li>
+                                                            <li><u>Genre</u> : TEXTE</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 panel-body"> 
+                                                    <div class="container-fluid"> 
+                                                        <div class="page-item">
+                                                            <h4>Description</h4>
+                                                            {{ item.description }}
+                                                        </div>
+                                                    </div>
+                                                </div> 
                                             </div>
-                                            <div class="modal-body">
-                                                Voulez-vous vraiment supprimer cet article ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                <a href="/cart/{{ cart.id }}/delete" class="btn btn-danger">Confirmer</a>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->#}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                            <a href="/cart/{{ item.id }}/delete" class="btn btn-danger">Confirmer</a>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->#}
                         </td>
                         <td>
                             <a href="#">
@@ -51,15 +73,15 @@
                         <td>Titre 1</td>
                         <td><em>"Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at..."</em></td>
                         <td>
-                            <input type="number" id="stepper1" name="stepper1" min="1" max="10" value="1" />
+                            <input type="number" id="stepper1" name="stepper1" min="1" max="100" value="1" />
                         </td>
                         <td>20.00 €</td>
                     </tr>
-
                     {#{% endfor %} #}
                 </table>
             </div>
         </div>
+        <input type="button" onClick="saveValue('stepper1')" value="Submit" />
     </div>
 {% endblock %}
 
