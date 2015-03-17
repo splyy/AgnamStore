@@ -150,7 +150,6 @@ class ItemCartDAO extends DAO {
      */
     public function deleteUserItemCart(User $user) {
         $userId = $user->getId(); 
-
         // Delete the item
         $this->getDb()->delete('line_cart', array('user_id' => $userId));
     }

@@ -80,4 +80,4 @@ $app->get('/cart/item/{id}', "AgnamStore\Controller\CartController::add");
 
 $app->post('/cart/item/{id}', "AgnamStore\Controller\CartController::edit");
 
-$app->get('/cart/item/{id}/del/', "AgnamStore\Controller\CartController::del");
+$app->get('/cart/item/{id}/delete', "AgnamStore\Controller\CartController::del");

@@ -64,7 +64,7 @@ class CartController extends MainController {
             $cart = $this->getCart($app);
             foreach ($cart as $itemCart){
                 if ($itemCart->getItem()->getid() == $id) {
-                    $app['dao.itemCart']->deleteItemCart($itemCart);
+                    $app['dao.itemCart']->delete($itemCart);
                     $app['session']->getFlashBag()->add('success', "Produit supprimer");
                 }
             }            
