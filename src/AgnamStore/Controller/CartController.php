@@ -28,8 +28,8 @@ class CartController extends MainController {
                 $itemCart->setItem($app['dao.item']->find($id));
                 $itemCart->setQte(1);
                 $app['dao.itemCart']->save($itemCart);
-            }
-            $app['session']->getFlashBag()->add('success', "Produit ajouter au panier");
+                $app['session']->getFlashBag()->add('success', "Produit ajouter au panier");
+            }             
         } catch (\Exception $exc) {
             var_dump($exc);
             $app['session']->getFlashBag()->add('error', 'Une erreur c\'est produit lors de l\'ajout du produit au panier');
@@ -41,18 +41,15 @@ class CartController extends MainController {
         try {
             $cart = $this->getCart($app);
             $qte = $request->get('qte');
-            $itemCarts = $cart->getItems();
-            $itemCartFound = null;
-            foreach ($itemCarts as $itemCart) {
+            foreach ($cart as $itemCart) {
                 if ($itemCart->getItem()->getid() == $id) {
                     $itemCartFound = $itemCart;
                     $itemCartFound->setQte($qte);
+                    $app['dao.itemCart']->save($itemCart);  
+                    $app['session']->getFlashBag()->add('success', "Quantité modifier");
                 }
             }
-            if ($notFound) {
-                $app['dao.itemCart']->addItemCart($cart->getId(), $id);
-            }
-            $app['session']->getFlashBag()->add('success', "Quantité modifier");
+            
         } catch (\Exception $exc) {
             $app['session']->getFlashBag()->add('error', 'Une erreur c\'est produit lors de la modification de la quantité du produit');
         }

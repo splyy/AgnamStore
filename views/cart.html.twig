@@ -20,7 +20,9 @@
                         </tr>
                     </thead>
                     <tbody class="table-bordered">
+                        {% set total = 0 %}
                         {% for lineCart in cart %}
+                            {% set total = total + lineCart.item.price * lineCart.qte %}
                             <tr>
                                 <td>
                                     <div data-toggle="modal" data-target="#articleDialog{{ lineCart.item.id }}">
@@ -69,7 +71,16 @@
                                     </div><!-- /.modal -->
                                 </td>
                                 <td>
-                                    <input type="number" id="stepper1" name="stepper1" min="1" max="100" value="1" />
+                                    <form action="/cart/item/{{lineCart.item.id}}" method="POST">
+                                        <div class="input-group col-sm-3">
+                                            <input type="number" class="form-control" name="qte" min="1" max="100" value="{{lineCart.qte}}" />
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-success">ok</button>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </form>
                                 </td>
                                 <td>{{ lineCart.item.price }} €</td>
                                 <td>
@@ -99,7 +110,7 @@
                     <tfoot class="table-bordered">
                         <tr>
                             <td colspan="3">TOTAL </td>
-                            <td><b>100 €</b></td>
+                            <td><b>{{total}} €</b></td>
                             <td></td>
                         </tr>
                     </tfoot>
