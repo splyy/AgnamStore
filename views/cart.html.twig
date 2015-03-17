@@ -75,7 +75,7 @@
                                         <div class="input-group col-sm-3">
                                             <input type="number" class="form-control" name="qte" min="1" max="100" value="{{lineCart.qte}}" />
                                             <div class="input-group-btn">
-                                                <button class="btn btn-success">ok</button>
+                                                <button class="btn btn-success">OK</button>
                                             </div>
                                         </div>
                                         
@@ -117,7 +117,6 @@
                 </table>
             </div>
         </div>
-        {#<input type="button" onClick="saveValue('stepper1')" value="Submit" />#}
         <br />
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandDialog"><span class="glyphicon glyphicon-barcode"></span> Commandez</button>
         <div class="modal fade" id="commandDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -133,6 +132,13 @@
                             pour avoir de la compagnie, à la place d'un manga/anime/livre/film ! (cqfd.)</p>
                         <center><img class="img-thumbnail" src="{{ app.request.basepath }}/images/gif.gif" title="ERROR 404"/>
                         <h6>Page d'erreur <small>A prendre au second degré !</small></h6></center>
+                        <br />
+                        <p>Mais, si vous souhaitez nous faire le don de <b>{{ total }} €</b>, nous nous assurerons 
+                            qu'il serait utilisé <s>intelligement</s> ! 
+                        <em>(Paypal : tom@jerry.cartoon)</em></p>
+                        <br /><br />
+                        <p><em>Cordialement,</em></p>
+                        <p><em>Alexandre armé de son lance-Pierre</em></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
