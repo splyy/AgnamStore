@@ -15,34 +15,32 @@
                             <th class="col-xs-1"></th> <!-- Actions column -->
                             <th class="col-xs-1"></th> <!-- Images column -->
                             <th class="col-xs-3">Produit(s)</th>
-                            <th class="col-xs-4">Description</th>
                             <th class="col-xs-2">Quantité(s)</th>
                             <th class="col-xs-1">Prix</th>
                         </tr>
                     </thead>
-                    {#{% for cart in carts %}#}
-
+                    {% for lineCart in cart %}
                     <tr>
                         <td>
-                            <button type="button" class="btn btn-success btn-xs" title="About" data-toggle="modal" data-target="#articleDialog{#{{ item.id }}#}"><span class="glyphicon glyphicon-search"></span></button>
-                            {#<div class="modal fade" id="articleDialog{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <button type="button" class="btn btn-success btn-xs" title="About" data-toggle="modal" data-target="#articleDialog{{ lineCart.item.id }}"><span class="glyphicon glyphicon-search"></span></button>
+                            <div class="modal fade" id="articleDialog{{ lineCart.item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">{{ item.name }}</h4>
+                                            <h4 class="modal-title" id="myModalLabel">{{ lineCart.item.name }}</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="container-fluid">
                                                 <div class="col-sm-12">
                                                     <div class="col-sm-5"> 
-                                                        <img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/{{ item.image }}" title="{{ item.name }}"/>
+                                                        <img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/{{ lineCart.item.image }}" title="{{ lineCart.item.name }}"/>
                                                     </div>
                                                     <div class="col-sm-7">
                                                         <h4>Information Générale</h4>
                                                         <ul class="list-unstyled">
-                                                            <li><u>Auteur</u> : {{ item.author }}</li>
-                                                            <li><u>Année</u> : {{ item.year }}</li>
+                                                            <li><u>Auteur</u> : {{ lineCart.item.author }}</li>
+                                                            <li><u>Année</u> : {{ lineCart.item.year }}</li>
                                                             <li><u>Genre</u> : TEXTE</li>
                                                         </ul>
                                                     </div>
@@ -51,33 +49,31 @@
                                                     <div class="container-fluid"> 
                                                         <div class="page-item">
                                                             <h4>Description</h4>
-                                                            {{ item.description }}
+                                                            {{ lineCart.item.description }}
                                                         </div>
                                                     </div>
                                                 </div> 
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                            <a href="/cart/{{ item.id }}/delete" class="btn btn-danger">Confirmer</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->#}
+                            </div><!-- /.modal -->
                         </td>
                         <td>
                             <a href="#">
-                                <img class="img-responsive" src="{{ app.request.basepath }}/images/produit/a_img_darker.jpg" alt="blabla" width="48px" height="48px">
+                                <img class="img-responsive" src="{{ app.request.basepath }}/images/produit/{{ lineCart.item.image }}" alt="blabla" width="48px" height="48px">
                             </a>
                         </td>
-                        <td>Titre 1</td>
-                        <td><em>"Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at..."</em></td>
+                        <td>{{ lineCart.item.name }}</td>
                         <td>
                             <input type="number" id="stepper1" name="stepper1" min="1" max="100" value="1" />
                         </td>
-                        <td>20.00 €</td>
+                        <td>{{ lineCart.item.price }}</td>
                     </tr>
-                    {#{% endfor %} #}
+                    {% endfor %}
                 </table>
             </div>
         </div>
