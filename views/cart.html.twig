@@ -107,6 +107,28 @@
             </div>
         </div>
         {#<input type="button" onClick="saveValue('stepper1')" value="Submit" />#}
+        <br />
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandDialog"><span class="glyphicon glyphicon-barcode"></span> Commandez</button>
+        <div class="modal fade" id="commandDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">ERROR 404</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>MOUAHAHAHA !</h3>
+                        <p>Malheureusement, vous ne pouvez pas payer. Il est plus intéressant de s'acheter un chat
+                            pour avoir de la compagnie, à la place d'un manga/anime/livre/film ! (cqfd.)</p>
+                        <center><img class="img-thumbnail" src="{{ app.request.basepath }}/images/gif.gif" title="ERROR 404"/>
+                        <h6>Page d'erreur <small>A prendre au second degré !</small></h6></center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->   
     </div>
 {% endblock %}
 
