@@ -13,10 +13,12 @@ $app['db.options'] = array(
 
 $app['paypal'] = [
     'settings.paypal.mode' => 'sandbox',
-    'settings.paypal.api.id' => null,
-    'settings.paypal.api.secret' => null,
+    'settings.paypal.api.id' => 'AcyVqLtb0DYFubnvU7fnpPI9fR2NFoER6w1B8RN_QIhQQCjiLUSQ9FG_XIYUOep8mGMWFvr_j10i5gnx',
+    'settings.paypal.api.secret' => 'EPkOaODk9TWEije1U7BvEctH1mrzQ2Safo9dHEKG4dmLynNoXZ4GSPTgZSA2SB8RRZeMSmpuZTbKZ0rn',
     'settings.paypal.endpoint' => 'api.sandbox.paypal.com',
     'settings.paypal.sandboxaccount' => null,
 ];
 // define log parameters
 $app['monolog.level'] = 'WARNING';
+
+$app['base.url'] = 'http://agnamstore.dev/';

@@ -66,6 +66,10 @@ class Item {
     public function getPrice() {
         return $this->price;
     }
+    
+    public function getPriceHt() {
+        return round($this->price / ( 1+ 0.20),2);
+    }
 
     public function getImage() {
         return $this->image;

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "02a8972b6611fa0b79b55f0661d17e42",
+    "hash": "4f0fae15abaa4daad4af1ef83d92f8ec",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -557,16 +557,16 @@
         },
         {
             "name": "paypal/rest-api-sdk-php",
-            "version": "v1.1.1",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-                "reference": "ac69aa65edd19e9f59fb1c468e74095b5bd8fc1a"
+                "reference": "cfe4d728e845b94ad5dae86276ee0c5b2e9f6b48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/ac69aa65edd19e9f59fb1c468e74095b5bd8fc1a",
-                "reference": "ac69aa65edd19e9f59fb1c468e74095b5bd8fc1a",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/cfe4d728e845b94ad5dae86276ee0c5b2e9f6b48",
+                "reference": "cfe4d728e845b94ad5dae86276ee0c5b2e9f6b48",
                 "shasum": ""
             },
             "require": {
@@ -601,7 +601,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2015-01-29 22:18:50"
+            "time": "2015-02-24 03:32:13"
         },
         {
             "name": "pimple/pimple",

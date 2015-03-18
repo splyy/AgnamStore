@@ -47,7 +47,7 @@ class OrderPaypal {
         $this->transaction = new Transaction();
         $this->transaction->setAmount($this->amount);
         $this->transaction->setItemList($this->itemList);
-        $this->transaction->setInvoiceNumber(uniqid() . '-npacenter');
+        $this->transaction->setInvoiceNumber(uniqid() . '-agnamstore');
 
         $this->payment = new Payment();
         $this->payment->setIntent('sale');

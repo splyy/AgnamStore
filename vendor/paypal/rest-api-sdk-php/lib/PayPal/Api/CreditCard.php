@@ -365,7 +365,7 @@ class CreditCard extends PayPalResourceModel
     {
         $payLoad = $this->toJSON();
         $json = self::executeCall(
-            "/v1/vault/credit-card",
+            "/v1/vault/credit-cards",
             "POST",
             $payLoad,
             null,
@@ -389,7 +389,7 @@ class CreditCard extends PayPalResourceModel
         ArgumentValidator::validate($creditCardId, 'creditCardId');
         $payLoad = "";
         $json = self::executeCall(
-            "/v1/vault/credit-card/$creditCardId",
+            "/v1/vault/credit-cards/$creditCardId",
             "GET",
             $payLoad,
             null,
@@ -413,7 +413,7 @@ class CreditCard extends PayPalResourceModel
         ArgumentValidator::validate($this->getId(), "Id");
         $payLoad = "";
         self::executeCall(
-            "/v1/vault/credit-card/{$this->getId()}",
+            "/v1/vault/credit-cards/{$this->getId()}",
             "DELETE",
             $payLoad,
             null,
@@ -426,18 +426,20 @@ class CreditCard extends PayPalResourceModel
     /**
      * Update information in a previously saved card. Only the modified fields need to be passed in the request.
      *
+     * @param PatchRequest $patchRequest
      * @param ApiContext $apiContext is the APIContext for this call. It can be used to pass dynamic configuration and credentials.
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return CreditCard
      */
-    public function update($apiContext = null, $restCall = null)
+    public function update($patchRequest, $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($this->getId(), "Id");
-        $payLoad = $this->toJSON();
+        ArgumentValidator::validate($patchRequest, 'patch');
+        $payload = $patchRequest->toJSON();
         $json = self::executeCall(
-            "/v1/vault/credit-card/{$this->getId()}",
+            "/v1/vault/credit-cards/{$this->getId()}",
             "PATCH",
-            $payLoad,
+            $payload,
             null,
             $apiContext,
             $restCall

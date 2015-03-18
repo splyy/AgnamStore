@@ -53,22 +53,19 @@ class Paypal {
      */
     public function buildPaypalShoppingCart(Array $cart) {
         $ttc = 0;
-        $txTaxe = 0.20;
+        $ht = 0;
         $items = [];
         foreach ($cart as $itemCart){
             $items[] = $itemCart->getPaypalArray();
-            $ttc += $itemCart->getItem()->getPrice();
+            $ht += $itemCart->getItem()->getPriceHt() * $itemCart->getQte();
+            $ttc += $itemCart->getItem()->getPrice() * $itemCart->getQte();
         }
-        
-        $ht = $ttc / $txTaxe;
         $tax = $ttc - $ht;
-        
         $order = new OrderPaypal();
         $order->setItems($items)
-                ->setTax($tax)
-                ->setSubtotal($ht)
-                ->setTotal($ttc);
-
+                ->setTax(round($tax,2))
+                ->setSubtotal(round ($ht,2))
+                ->setTotal(round ($ttc,2));
         return $order;
     }
 
@@ -79,16 +76,13 @@ class Paypal {
      * @throws \Run\Exception\Exception
      */
     public function create($order) {
-        //try {
+        try {
             $apiContext  = $this->getApiContext();
-            $paymant     = $order->getPayment();
-            var_dump($paymant);
-            var_dump($apiContext);
-            die();
+            $paymant     = $order->getPayment();            
             $paymant->create($apiContext);
             $approvalUrl = $paymant->getApprovalLink();
             return $approvalUrl;
-        /*} catch (\Exception $exc) {
+        } catch (\Exception $exc) {
             var_dump($exc);die();
             $dataException = null;
             if ($exc->getData()) {
@@ -96,7 +90,7 @@ class Paypal {
             }
             log_message('error', __METHOD__ . '->apiContext : ' . $exc->getMessage());
             throw new \Run\Exception\Exception('Impossible de crée un payement pour la commande', $dataException, 1);
-        }*/
+        }
     }
 
     /**
@@ -113,6 +107,7 @@ class Paypal {
             $execution->setPayerId($payerId);
             $payment->execute($execution, $apiContext);
         } catch (\Exception $exc) {
+            var_dump($exc);die();
             $dataException = null;
             if ($exc->getData()) {
                 $dataException = json_decode($exc->getData());
@@ -134,12 +129,12 @@ class Paypal {
             $payment    = Payment::get($paymentId, $apiContext);
             return $payment->getPayer();
         } catch (\Exception $exc) {
+            var_dump($exc);die();
             $dataException = null;
             if ($exc->getData()) {
                 $dataException = json_decode($exc->getData());
             }
             log_message('error', __METHOD__ . '->apiContext : ' . $exc->getMessage());
-            throw new \Run\Exception\Exception(__METHOD__, 'Impossible d\'obtenir le payeur', $dataException, $this->getCode() . '03');
         }
     }
 
@@ -154,11 +149,11 @@ class Paypal {
             $apiContext = $this->getApiContext();
             return $payment    = Payment::get($paymentId, $apiContext);
         } catch (\Exception $exc) {
+            var_dump($exc);die();
             $dataException = null;
             if (method_exists($exc, 'getData')) {
                 $dataException = json_decode($exc->getData());
             }
-            throw new \Run\Exception\Exception(__METHOD__, 'Impossible d\'obtenir le payement de la commande', $dataException, $this->getCode() . '03');
         }
     }
 

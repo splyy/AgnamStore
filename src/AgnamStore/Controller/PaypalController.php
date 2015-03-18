@@ -1,4 +1,5 @@
 <?php
+
 namespace AgnamStore\Controller;
 
 use Silex\Application;
@@ -8,46 +9,41 @@ use AgnamStore\Domain\ItemCart;
 use AgnamStore\Payment\Paypal\Paypal;
 
 class PaypalController extends MainController {
-    public function index(Request $request,Application $app) {
+
+    public function index(Request $request, Application $app) {
         $cart = $this->getCart($app);
         //try {
-            $paypal = new Paypal($app['paypal']);
-            $order  = $paypal->buildPaypalShoppingCart($cart);
-            $order->setUrlFail('http://localhost1/paypal/fail')
-                    ->setUrlOK('http://localhost1/paypal/success')
-                    ->setPaymentDescription('L\'équipe du AgnamStore vous remercie.');
-            var_dump($cart);
-            var_dump($order);
-            $url = $paypal->create($order);
-            die();
-            return new RedirectResponse();
-        /*} catch (\Exception $exc) {
-            echo $exc->getMessage();
-        }*/
+        $paypal = new Paypal($app['paypal']);
+        $order = $paypal->buildPaypalShoppingCart($cart);
+        $order->setUrlFail($app['base.url'].'paypal/fail')
+                ->setUrlOK($app['base.url'].'paypal/success')
+                ->setPaymentDescription('L\'équipe du AgnamStore vous remercie.');
+        $url = $paypal->create($order);
+        return new RedirectResponse($url);
+        /* } catch (\Exception $exc) {
+          echo $exc->getMessage();
+          } */
     }
 
     public function success(Request $request, Application $app) {
-        $this->_settings['metaTitle'] = 'Commande réussite';
         $paymentId = $request->get('paymentId');
-        $paypal    = new Run\Payment\Paypal\Paypal($this->config->item('provider')['paypal']);
+        $payerID = $request->get('PayerID');
+        $paypal = new Paypal($app['paypal']);
+        
         try {
+            var_dump($paypal->getPayement($paymentId));
             $paypal->payementExecute($paymentId, $payerID);
-            $payerPaypal          = $paypal->getPayer($paymentId);
-            $payer                = $this->DAO_Model->get('Payer')->convertPaypalPayer($payerPaypal);
-            $this->DAO_Model->get('Payer')->save($payer);
-            $shoppingCart         = $this->_getShoppingCart();
-            $this->_data['order'] = $this->DAO_Model->get('Order')->createOrder($shoppingCart, $paymentId, $payer);
-            $this->DAO_Model->get('ShoppingCart')->delete($shoppingCart->getId());
-            $this->DAO_Model->get('Payer')->save($payer);
-            $this->dataOrder();
+            var_dump($paypal->getPayement($paymentId));
+            $payerPaypal = $paypal->getPayer($paymentId);
+            var_dump($payerPaypal);
+            die();
         } catch (\Exception $exc) {
-            $this->testPayment($paypal, $paymentId);
+            var_dump($exc);
         }
     }
 
     public function fail(Application $app) {
-       
+        
     }
-
 
 }
