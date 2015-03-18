@@ -11,6 +11,12 @@ $app['db.options'] = array(
     'password' => 'secret',
 );
 
-
+$app['paypal'] = [
+    'settings.paypal.mode' => 'sandbox',
+    'settings.paypal.api.id' => null,
+    'settings.paypal.api.secret' => null,
+    'settings.paypal.endpoint' => 'api.sandbox.paypal.com',
+    'settings.paypal.sandboxaccount' => null,
+];
 // define log parameters
 $app['monolog.level'] = 'WARNING';

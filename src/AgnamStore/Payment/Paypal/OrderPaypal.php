@@ -1,7 +1,7 @@
 <?php
-namespace Run\Payment\Paypal;
+namespace AgnamStore\Payment\Paypal;
 
-use Run\Tools\ArrayRule;
+use AgnamStore\Tools\ArrayRule;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;

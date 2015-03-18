@@ -1,11 +1,10 @@
 <?php
 
-namespace Run\Payment\Paypal;
+namespace AgnamStore\Payment\Paypal;
 
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
-use Run\Payment\Paypal\OrderPaypal;
-use Run\Domain\ShoppingCart;
+use AgnamStore\Payment\Paypal\OrderPaypal;
 
 class Paypal {
 
@@ -43,10 +42,7 @@ class Paypal {
 
         $apiContext->setConfig([
             'mode'                   => $this->getPaypalValuesKeys()['settings.paypal.mode'],
-            'http.ConnectionTimeOut' => 30,
-            'log.LogEnabled'         => true,
-            'log.FileName'           => realpath(APPPATH . '/logs/paypal/PayPal.log'),
-            'log.LogLevel'           => 'FINE'
+            'http.ConnectionTimeOut' => 30           
         ]);
         return $apiContext;
     }
@@ -55,12 +51,19 @@ class Paypal {
      * Create a order with shoppingCart
      * @param type $shoppingCart
      */
-    public function buildPaypalShoppingCart(ShoppingCart $shoppingCart) {
+    public function buildPaypalShoppingCart(Array $cart) {
+        $ttc = 0;
+        $txTaxe = 0.20;
+        $items = [];
+        foreach ($cart as $itemCart){
+            $items[] = $itemCart->getPaypalArray();
+            $ttc += $itemCart->getItem()->getPrice();
+        }
+        
+        $ht = $ttc / $txTaxe;
+        $tax = $ttc - $ht;
+        
         $order = new OrderPaypal();
-        $tax   = $shoppingCart->getPriceTaxe();
-        $ttc   = $shoppingCart->getPriceTTC();
-        $ht    = $shoppingCart->getPriceHT();
-        $items = $shoppingCart->getPaypalArray();
         $order->setItems($items)
                 ->setTax($tax)
                 ->setSubtotal($ht)
@@ -76,20 +79,24 @@ class Paypal {
      * @throws \Run\Exception\Exception
      */
     public function create($order) {
-        try {
+        //try {
             $apiContext  = $this->getApiContext();
             $paymant     = $order->getPayment();
+            var_dump($paymant);
+            var_dump($apiContext);
+            die();
             $paymant->create($apiContext);
             $approvalUrl = $paymant->getApprovalLink();
             return $approvalUrl;
-        } catch (\Exception $exc) {
+        /*} catch (\Exception $exc) {
+            var_dump($exc);die();
             $dataException = null;
             if ($exc->getData()) {
                 $dataException = json_decode($exc->getData());
             }
             log_message('error', __METHOD__ . '->apiContext : ' . $exc->getMessage());
             throw new \Run\Exception\Exception('Impossible de crée un payement pour la commande', $dataException, 1);
-        }
+        }*/
     }
 
     /**

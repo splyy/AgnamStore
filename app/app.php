@@ -38,6 +38,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         array('^/admin', 'ROLE_ADMIN'),
         array('^/user', 'ROLE_USER'),
         array('^/cart', 'ROLE_USER'),
+        array('^/paypal', 'ROLE_USER'),
     ),
 ));
 $app->register(new Silex\Provider\FormServiceProvider());

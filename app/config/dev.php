@@ -8,3 +8,4 @@ $app['debug'] = true;
 
 // define log parameters
 $app['monolog.level'] = 'INFO';
+

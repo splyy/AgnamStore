@@ -44,6 +44,9 @@ class ItemCart {
         return $this;
     }
 
+     public function getPaypalArray(){
+        return ['name' => $this->item->getName(), 'quantity' => $this->qte, 'price' => $this->item->getPrice()];
+    }
 
 
 }

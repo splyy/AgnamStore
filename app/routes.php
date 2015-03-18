@@ -81,3 +81,16 @@ $app->get('/cart/item/{id}', "AgnamStore\Controller\CartController::add");
 $app->post('/cart/item/{id}', "AgnamStore\Controller\CartController::edit");
 
 $app->get('/cart/item/{id}/delete', "AgnamStore\Controller\CartController::del");
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 
+ *     Paypal
+ * 
+ * * * * */
+
+$app->get('/paypal', "AgnamStore\Controller\paypalController::index");
+
+$app->get('/paypal/success', "AgnamStore\Controller\paypalController::success");
+
+$app->get('/paypal/fail', "AgnamStore\Controller\paypalController::fail");

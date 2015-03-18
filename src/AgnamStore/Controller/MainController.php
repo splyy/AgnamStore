@@ -1,11 +1,13 @@
 <?php
+
 namespace AgnamStore\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class MainController {  
-    protected function renderView(Application $app,$view,$param = array()){
+abstract class MainController {
+
+    protected function renderView(Application $app, $view, $param = array()) {
 
         $param['types'] = $app['dao.type']->findAll();
         return $app['twig']->render($view, $param);
@@ -16,4 +18,11 @@ abstract class MainController {
         $user = $app['dao.user']->refreshUser($user);
         return $user;
     }
+
+    protected function getCart($app) {
+        $user = $this->getUserClient($app);
+        $cart = $app['dao.itemCart']->findAllItemCartByuser($user);
+        return $cart;
+    }
+
 }

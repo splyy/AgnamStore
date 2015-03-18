@@ -72,10 +72,4 @@ class CartController extends MainController {
         return new RedirectResponse($request->getBaseUrl() . '/cart');
     }
 
-    private function getCart($app) {
-        $user = $this->getUserClient($app);
-        $cart = $app['dao.itemCart']->findAllItemCartByuser($user);
-        return $cart;
-    }
-
 }
