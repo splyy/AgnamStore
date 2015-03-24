@@ -9,147 +9,152 @@
                 <h3>Panier</h3>
             </div>
             {% if(cart)%}
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th></th> <!-- Images column -->
-                            <th>Produit(s)</th>
-                            <th>Quantité(s)</th>
-                            <th>Prix Unitaire</th>
-                            <th>Prix total</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-bordered">
-                        {% set total = 0 %}
-                        {% for lineCart in cart %}
-                            {% set total = total + lineCart.item.price * lineCart.qte %}
-                            <tr>
-                                <td>
-                                    <div data-toggle="modal" data-target="#articleDialog{{ lineCart.item.id }}">
-                                        <img class="img-responsive" src="{{ app.request.basepath }}/images/produit/{{ lineCart.item.image }}" alt="blabla" width="48px" height="48px">
-                                    </div>
-                                </td>
-                                <td>
-                                    <h4 data-toggle="modal" data-target="#articleDialog{{ lineCart.item.id }}">{{ lineCart.item.name }}</h4>
-                                    <div class="modal fade" id="articleDialog{{ lineCart.item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title" id="myModalLabel">{{ lineCart.item.name }}</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="container-fluid">
-                                                        <div class="col-sm-12">
-                                                            <div class="col-sm-5"> 
-                                                                <img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/{{ lineCart.item.image }}" title="{{ lineCart.item.name }}"/>
-                                                            </div>
-                                                            <div class="col-sm-7">
-                                                                <h4>Information Générale</h4>
-                                                                <ul class="list-unstyled">
-                                                                    <li><u>Auteur</u> : {{ lineCart.item.author }}</li>
-                                                                    <li><u>Année</u> : {{ lineCart.item.year }}</li>
-                                                                    <li><u>Genre</u> : TEXTE</li>
-                                                                </ul>
+                <div class="table-responsive"> 
+                    <div id="no-more-tables">
+                        <table class="col-md-12 table table-hover table-condensed table-striped cf">
+                            <thead class="cf">
+                                <tr>
+                                    <th></th> <!-- Images column -->
+                                    <th>Produit(s)</th>
+                                    <th>Quantité(s)</th>
+                                    <th>Prix Unitaire</th>
+                                    <th>Prix total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-bordered">
+                                {% set total = 0 %}
+                                {% for lineCart in cart %}
+                                    {% set total = total + lineCart.item.price * lineCart.qte %}
+                                    <tr>
+                                        <td class="hidden-xs">
+                                            <div data-toggle="modal" data-target="#articleDialog{{ lineCart.item.id }}">
+                                                <img class="img-responsive" src="{{ app.request.basepath }}/images/produit/{{ lineCart.item.image }}" alt="blabla" width="48px" height="48px">
+                                            </div>
+                                        </td>
+                                        <td class="button-cart">
+                                            <button type="button" class="btn btn-danger btn-xs visible-xs-inline-block " title="Delete" data-toggle="modal" data-target="#itemDialog{{ lineCart.item.id }}">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                            <div class="title-cart" data-toggle="modal" data-target="#articleDialog{{ lineCart.item.id }}">{{ lineCart.item.name }} </div>
+                                            <div class="modal fade" id="articleDialog{{ lineCart.item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="myModalLabel">{{ lineCart.item.name }}</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container-fluid">
+                                                                <div class="col-sm-12">
+                                                                    <div class="col-sm-5"> 
+                                                                        <img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/{{ lineCart.item.image }}" title="{{ lineCart.item.name }}"/>
+                                                                    </div>
+                                                                    <div class="col-sm-7">
+                                                                        <h4>Information Générale</h4>
+                                                                        <ul class="list-unstyled">
+                                                                            <li><u>Auteur</u> : {{ lineCart.item.author }}</li>
+                                                                            <li><u>Année</u> : {{ lineCart.item.year }}</li>
+                                                                            <li><u>Genre</u> : TEXTE</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 panel-body"> 
+                                                                    <div class="container-fluid"> 
+                                                                        <div class="page-item">
+                                                                            <h4>Description</h4>
+                                                                            {{ lineCart.item.description }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-12 panel-body"> 
-                                                            <div class="container-fluid"> 
-                                                                <div class="page-item">
-                                                                    <h4>Description</h4>
-                                                                    {{ lineCart.item.description }}
-                                                                </div>
-                                                            </div>
-                                                        </div> 
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                        </td>
+                                        <td>
+                                            <form action="/cart/item/{{lineCart.item.id}}" method="POST">
+                                                <div class="input-group col-md-4">
+                                                    <input  class="form-control" name="qte" min="1" max="100" value="{{lineCart.qte}}" />
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-success">OK</button>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-                                </td>
-                                <td>
-                                    <form action="/cart/item/{{lineCart.item.id}}" method="POST">
-                                        <div class="input-group col-md-4">
-                                            <input  class="form-control" name="qte" min="1" max="100" value="{{lineCart.qte}}" />
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success">OK</button>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                    </form>
-                                </td>
-                                <td>{{ lineCart.item.price }} €</td>
-                                <td>{{ lineCart.item.price * lineCart.qte}} €</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#itemDialog{{ lineCart.item.id }}"><span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                    <div class="modal fade" id="itemDialog{{ lineCart.item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Souhaitez-vous réellement supprimer ce produit ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                    <a href="/cart/item/{{ lineCart.item.id }}/delete" class="btn btn-danger">Confirmer</a>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->   
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                    <tfoot class="table-bordered">
-                        <tr>
-                            <td colspan="3">TOTAL </td>
-                            <td><b>{{total}} €</b></td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
+
+
+                                            </form>
+                                        </td>
+                                        <td>{{ lineCart.item.price }} €</td>
+                                        <td>{{ lineCart.item.price * lineCart.qte}} €</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-xs hidden-xs" title="Delete" data-toggle="modal" data-target="#itemDialog{{ lineCart.item.id }}"><span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                            <div class="modal fade" id="itemDialog{{ lineCart.item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="myModalLabel">Confirmation nécessaire</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Souhaitez-vous réellement supprimer ce produit ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                            <a href="/cart/item/{{ lineCart.item.id }}/delete" class="btn btn-danger">Confirmer</a>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->   
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot class="table-bordered">
+                                <tr>
+                                    <td colspan="3">TOTAL </td>
+                                    <td><b>{{total}} €</b></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br />
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandDialog"><span class="glyphicon glyphicon-barcode"></span> Commandez</button>
-        <div class="modal fade" id="commandDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">ERROR 404</h4>
-                    </div>
-                    <div class="modal-body">
-                        <h3>MOUAHAHAHA !</h3>
-                        <p>Malheureusement, vous ne pouvez pas payer. Il est plus intéressant de s'acheter un chat
-                            pour avoir de la compagnie, à la place d'un manga/anime/livre/film ! (cqfd.)</p>
-                        <center><img class="img-thumbnail" src="{{ app.request.basepath }}/images/gif.gif" title="ERROR 404"/>
-                        <h6>Page d'erreur <small>A prendre au second degré !</small></h6></center>
-                        <br />
-                        <p>Mais, si vous souhaitez nous faire le don de <b>{{ total }} €</b>, nous nous assurerons 
-                            qu'il serait utilisé <s>intelligement</s> ! 
-                        <em>(Paypal : tom@jerry.cartoon)</em></p>
-                        <a class="btn btn-primary" href="/paypal"><span class="glyphicon glyphicon-barcode"></span> Commandez</a>
-                        <br /><br />
-                        <p><em>Cordialement,</em></p>
-                        <p><em>Alexandre armé de son lance-Pierre</em></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->   
+            <br />
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commandDialog"><span class="glyphicon glyphicon-barcode"></span> Commandez</button>
+            <div class="modal fade" id="commandDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">ERROR 404</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3>MOUAHAHAHA !</h3>
+                            <p>Malheureusement, vous ne pouvez pas payer. Il est plus intéressant de s'acheter un chat
+                                pour avoir de la compagnie, à la place d'un manga/anime/livre/film ! (cqfd.)</p>
+                            <center><img class="img-thumbnail" src="{{ app.request.basepath }}/images/gif.gif" title="ERROR 404"/>
+                                <h6>Page d'erreur <small>A prendre au second degré !</small></h6></center>
+                            <br />
+                            <p>Mais, si vous souhaitez nous faire le don de <b>{{ total }} €</b>, nous nous assurerons 
+                                qu'il serait utilisé <s>intelligement</s> ! 
+                            <em>(Paypal : tom@jerry.cartoon)</em></p>
+                            <a class="btn btn-primary" href="/paypal"><span class="glyphicon glyphicon-barcode"></span> Commandez</a>
+                            <br /><br />
+                            <p><em>Cordialement,</em></p>
+                            <p><em>Alexandre armé de son lance-Pierre</em></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->   
         {% else %}
             <p>Votre panier est vide.</p>
         {% endif %}

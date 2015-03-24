@@ -34,9 +34,9 @@ h1 small {
     border-bottom: 1px #ddd solid;
 }
 .panel-default > .panel-heading {
-  color: #333;
-  background-color: #f5f5f5;
-  border-color: #ddd;
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
 }
 
 .item-img {
@@ -46,84 +46,84 @@ h1 small {
 
 /* NAVBAR AGNAM STORE */
 .navbar-agnam {
-  background-color: rgba(189,0,0,0.95);
-  border-color: #e7e7e7;
+    background-color: rgba(189,0,0,0.95);
+    border-color: #e7e7e7;
 }
 .navbar-agnam .navbar-brand {
-  color: #fff;
-  padding: 0px;
+    color: #fff;
+    padding: 0px;
 }
 .navbar-agnam .navbar-brand:hover,
 .navbar-agnam .navbar-brand:focus {
-  color: #fff;
-  text-shadow: 0px -1px 17px #fff;
-  background-color: transparent;
+    color: #fff;
+    text-shadow: 0px -1px 17px #fff;
+    background-color: transparent;
 }
 .navbar-agnam .navbar-text {
-  color: #fff;
+    color: #fff;
 }
 .navbar-agnam .navbar-nav > li > a {
-  color: #fff;
+    color: #fff;
 }
 .navbar-agnam .navbar-nav > li > a:hover,
 .navbar-agnam .navbar-nav > li > a:focus {
-  color: #666666;
-  background-color: #f4f4f4;
+    color: #666666;
+    background-color: #f4f4f4;
 }
 .navbar-agnam .navbar-nav > .active > a,
 .navbar-agnam .navbar-nav > .active > a:hover,
 .navbar-agnam .navbar-nav > .active > a:focus {
-  color: #555;
-  background-color: #f4f4f4;
+    color: #555;
+    background-color: #f4f4f4;
 }
 .navbar-agnam .navbar-toggle {
-  border-color: #ddd;
+    border-color: #ddd;
 }
 .navbar-agnam .navbar-toggle:hover,
 .navbar-agnam .navbar-toggle:focus {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 .navbar-agnam .navbar-toggle .icon-bar {
-  background-color: #888;
+    background-color: #888;
 }
 .navbar-agnam .navbar-collapse,
 .navbar-agnam .navbar-form {
-  border-color: #f4f4f4;
+    border-color: #f4f4f4;
 }
 .navbar-agnam .navbar-nav > .open > a,
 .navbar-agnam .navbar-nav > .open > a:hover,
 .navbar-agnam .navbar-nav > .open > a:focus {
-  color: #555;
-  background-color: #f4f4f4;
+    color: #555;
+    background-color: #f4f4f4;
 }
 @media (max-width: 767px) {
-  .navbar-agnam .navbar-nav .open .dropdown-menu > li > a {
-    color: #fff;
-  }
-  .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #333;
-    background-color: transparent;
-  }
-  .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:hover,
-  .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #333;
-    background-color: #fff !important;
-  }
+    .navbar-agnam .navbar-nav .open .dropdown-menu > li > a {
+        color: #fff;
+    }
+    .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-agnam .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+        background-color: transparent;
+    }
+    .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-agnam .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #333;
+        background-color: #fff !important;
+    }
 }
 .navbar-agnam .navbar-link {
-  color: #777;
+    color: #777;
 }
 .navbar-agnam .navbar-link:hover {
-  color: #333;
+    color: #333;
 }
 .navbar-agnam .btn-link {
-  color: #777;
+    color: #777;
 }
 .navbar-agnam .btn-link:hover,
 .navbar-agnam .btn-link:focus {
-  color: #333;
+    color: #333;
 }
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
     background-color: #bd0000 !important;
@@ -172,86 +172,138 @@ h1 small {
 /* ANIMATION LOGO */
 .mask a:hover, .mask a:focus{
     -webkit-animation: tada 1s;
-       -moz-animation: tada 1s;
-        -ms-animation: tada 1s;
-         -o-animation: tada 1s;
-            animation: tada 1s;
-    }
-    
+    -moz-animation: tada 1s;
+    -ms-animation: tada 1s;
+    -o-animation: tada 1s;
+    animation: tada 1s;
+}
+
 @-webkit-keyframes tada {
-        0% {-webkit-transform: scale(1);}	
-        10%, 20% {-webkit-transform: scale(0.8) rotate(-3deg);}
-        30%, 50%, 70%, 90% {-webkit-transform: scale(1) rotate(3deg);}
-        40%, 60%, 80% {-webkit-transform: scale(1) rotate(-3deg);}
-        100% {-webkit-transform: scale(1) rotate(0);}
+    0% {-webkit-transform: scale(1);}	
+    10%, 20% {-webkit-transform: scale(0.8) rotate(-3deg);}
+    30%, 50%, 70%, 90% {-webkit-transform: scale(1) rotate(3deg);}
+    40%, 60%, 80% {-webkit-transform: scale(1) rotate(-3deg);}
+    100% {-webkit-transform: scale(1) rotate(0);}
 }
 @-moz-keyframes tada {
-        0% {-moz-transform: scale(1);}	
-        10%, 20% {-moz-transform: scale(0.8) rotate(-3deg);}
-        30%, 50%, 70%, 90% {-moz-transform: scale(1) rotate(3deg);}
-        40%, 60%, 80% {-moz-transform: scale(1) rotate(-3deg);}
-        100% {-moz-transform: scale(1) rotate(0);}
+    0% {-moz-transform: scale(1);}	
+    10%, 20% {-moz-transform: scale(0.8) rotate(-3deg);}
+    30%, 50%, 70%, 90% {-moz-transform: scale(1) rotate(3deg);}
+    40%, 60%, 80% {-moz-transform: scale(1) rotate(-3deg);}
+    100% {-moz-transform: scale(1) rotate(0);}
 }
 @-ms-keyframes tada {
-        0% {-ms-transform: scale(1);}	
-        10%, 20% {-ms-transform: scale(0.8) rotate(-3deg);}
-        30%, 50%, 70%, 90% {-ms-transform: scale(1) rotate(3deg);}
-        40%, 60%, 80% {-ms-transform: scale(1) rotate(-3deg);}
-        100% {-ms-transform: scale(1) rotate(0);}
+    0% {-ms-transform: scale(1);}	
+    10%, 20% {-ms-transform: scale(0.8) rotate(-3deg);}
+    30%, 50%, 70%, 90% {-ms-transform: scale(1) rotate(3deg);}
+    40%, 60%, 80% {-ms-transform: scale(1) rotate(-3deg);}
+    100% {-ms-transform: scale(1) rotate(0);}
 }
 @-o-keyframes tada {
-        0% {-o-transform: scale(1);}	
-        10%, 20% {-o-transform: scale(0.8) rotate(-3deg);}
-        30%, 50%, 70%, 90% {-o-transform: scale(1) rotate(3deg);}
-        40%, 60%, 80% {-o-transform: scale(1) rotate(-3deg);}
-        100% {-o-transform: scale(1) rotate(0);}
+    0% {-o-transform: scale(1);}	
+    10%, 20% {-o-transform: scale(0.8) rotate(-3deg);}
+    30%, 50%, 70%, 90% {-o-transform: scale(1) rotate(3deg);}
+    40%, 60%, 80% {-o-transform: scale(1) rotate(-3deg);}
+    100% {-o-transform: scale(1) rotate(0);}
 }
 @keyframes tada {
-        0% {transform: scale(1);}	
-        10%, 20% {transform: scale(0.8) rotate(-3deg);}
-        30%, 50%, 70%, 90% {transform: scale(1) rotate(3deg);}
-        40%, 60%, 80% {transform: scale(1) rotate(-3deg);}
-        100% {transform: scale(1) rotate(0);}
+    0% {transform: scale(1);}	
+    10%, 20% {transform: scale(0.8) rotate(-3deg);}
+    30%, 50%, 70%, 90% {transform: scale(1) rotate(3deg);}
+    40%, 60%, 80% {transform: scale(1) rotate(-3deg);}
+    100% {transform: scale(1) rotate(0);}
 }
 
 .thumbnail-agnam {
-  display: block;
-  padding: 4px;
-  margin-bottom: 20px;
-  line-height: 1.42857143;
-  background-color: #fdfdfd;
-  border: 1px solid #f2f2f2;
-  box-shadow: 1px 1px 3px #555;
-  border-radius: 4px;
-  -webkit-transition: all .2s ease-in-out;
-       -o-transition: all .2s ease-in-out;
-          transition: all .2s ease-in-out;
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fdfdfd;
+    border: 1px solid #f2f2f2;
+    box-shadow: 1px 1px 3px #555;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 .thumbnail-agnam > img,
 .thumbnail-agnam a > img {
-  margin-right: auto;
-  margin-left: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 a.thumbnail-agnam:hover,
 a.thumbnail-agnam:focus,
 a.thumbnail-agnam.active {
-  border-color: #428bca;
+    border-color: #428bca;
 }
 .thumbnail-agnam .caption {
-  padding: 9px;
-  color: #333;
+    padding: 9px;
+    color: #333;
 }
 
 .thumbnail-agnam > img,
 .thumbnail-agnam a > img
 {
-  display: block;
-  width: 100% \9;
-  max-width: 100%;
-  height: auto;
+    display: block;
+    width: 100% \9;
+    max-width: 100%;
+    height: auto;
 }
 
 .colorCP ul{
     color:red;
     list-style-type: none;
+}
+
+.title-cart{
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: 500;
+    color: inherit;
+    padding-top: 10px;
+}
+
+.button-cart button{
+    margin-top: -10px;
+}
+
+/* Tableau du panier */
+@media only screen and (max-width: 800px) {
+    /* Force table to not be like tables anymore */
+    #no-more-tables table, 
+    #no-more-tables thead, 
+    #no-more-tables tbody, 
+    #no-more-tables th, 
+    #no-more-tables td, 
+    #no-more-tables tr { 
+        display: block; 
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #no-more-tables tr { border: 1px solid #ccc; }
+
+    #no-more-tables td { 
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        white-space: normal;
+        text-align:left;
+    }
+
+    .title-cart{
+        font-size: 25px;
+        font-family: inherit;
+        font-weight: 500;
+        color: inherit;
+        padding-top: 10px;
+        display: inline-block;
+    }
 }
