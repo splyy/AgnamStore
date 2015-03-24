@@ -8,6 +8,7 @@
             <div class="page-header">
                 <h3>Panier</h3>
             </div>
+            {% if(cart)%}
             <div class="table-responsive">
                 <table class="table table-hover table-condensed">
                     <thead>
@@ -15,7 +16,8 @@
                             <th></th> <!-- Images column -->
                             <th>Produit(s)</th>
                             <th>Quantité(s)</th>
-                            <th>Prix</th>
+                            <th>Prix Unitaire</th>
+                            <th>Prix total</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -72,8 +74,8 @@
                                 </td>
                                 <td>
                                     <form action="/cart/item/{{lineCart.item.id}}" method="POST">
-                                        <div class="input-group col-sm-3">
-                                            <input type="number" class="form-control" name="qte" min="1" max="100" value="{{lineCart.qte}}" />
+                                        <div class="input-group col-md-4">
+                                            <input  class="form-control" name="qte" min="1" max="100" value="{{lineCart.qte}}" />
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success">OK</button>
                                             </div>
@@ -83,6 +85,7 @@
                                     </form>
                                 </td>
                                 <td>{{ lineCart.item.price }} €</td>
+                                <td>{{ lineCart.item.price * lineCart.qte}} €</td>
                                 <td>
                                     <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#itemDialog{{ lineCart.item.id }}"><span class="glyphicon glyphicon-remove"></span>
                                     </button>
@@ -136,6 +139,7 @@
                         <p>Mais, si vous souhaitez nous faire le don de <b>{{ total }} €</b>, nous nous assurerons 
                             qu'il serait utilisé <s>intelligement</s> ! 
                         <em>(Paypal : tom@jerry.cartoon)</em></p>
+                        <a class="btn btn-primary" href="/paypal"><span class="glyphicon glyphicon-barcode"></span> Commandez</a>
                         <br /><br />
                         <p><em>Cordialement,</em></p>
                         <p><em>Alexandre armé de son lance-Pierre</em></p>
@@ -146,6 +150,9 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->   
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endif %}
     </div>
 {% endblock %}
 

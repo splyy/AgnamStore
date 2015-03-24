@@ -17,19 +17,23 @@ class CartController extends MainController {
     public function add($id, Request $request, Application $app) {
         try {
             $cart = $this->getCart($app);
-            $notFound = TRUE;
+            $itemCartFound = false;
             foreach ($cart as $itemCart) {
-                if ($itemCart->getItem()->getid() === $id)
-                    $notFound = FALSE;
+                if ($itemCart->getItem()->getid() === $id){
+                    $itemCartFound = $itemCart;
+                }
             }
-            if ($notFound) {
+            if (!$itemCartFound) {
                 $itemCart = new ItemCart();
                 $itemCart->setUser($this->getUserClient($app));
                 $itemCart->setItem($app['dao.item']->find($id));
                 $itemCart->setQte(1);
                 $app['dao.itemCart']->save($itemCart);
                 $app['session']->getFlashBag()->add('success', "Produit ajouter au panier");
-            }             
+            } else {
+                $itemCartFound->setQte($itemCartFound->getQte()+1);
+                $app['dao.itemCart']->save($itemCartFound);  
+            }            
         } catch (\Exception $exc) {
             var_dump($exc);
             $app['session']->getFlashBag()->add('error', 'Une erreur c\'est produit lors de l\'ajout du produit au panier');
