@@ -28,11 +28,12 @@ class ItemCartDAO extends DAO {
 
 
     /**
-     * Returns the item matching a given id.
+     * Returns the itemCart matching a given id item and id user.
      *
-     * @param integer $id The item id.
+     * @param1 integer $userId  id of item
+     * @param2 integer $itemId  id of user
      *
-     * @return \AgnamStore\Domain\Item|throws an exception if no item is found.
+     * @return \AgnamStore\Domain\Item|throws an exception if no itemCart is found.
      */
     private function findItemCart($userId, $itemId) {
         $sql = "select * "
@@ -50,9 +51,10 @@ class ItemCartDAO extends DAO {
     /**
      * Returns the item matching a given id.
      *
-     * @param integer $id The item id.
+     * @param1 integer $userId  id of item
+     * @param2 integer $itemId  id of user
      *
-     * @return \AgnamStore\Domain\Item|throws an exception if no item is found.
+     * @return boolean
      */
     private function existItemCart($userId, $itemId) {
         $sql = "select * "
@@ -67,11 +69,11 @@ class ItemCartDAO extends DAO {
             return FALSE;
     }
     /* *
-     * Returns the cart matching a given id.
+     * Returns all itemcart for one user.
      *
-     * @param integer $id The cart id.
+     * @param User $user.
      *
-     * @return \AgnamStore\Domain\Cart|throws an exception if no cart is found.
+     * @return Array of \AgnamStore\Domain\ItemCart
      */
     public function findAllItemCartByuser(User $user) {
         $sql = $sql = "select * "
@@ -98,7 +100,8 @@ class ItemCartDAO extends DAO {
      */
     protected function buildDomainObject($row,User $user = null) {
         $itemCart = new ItemCart();
-        if ($user)
+        
+        if ($user) 
             $itemCart->setUser($user);
         else
             $itemCart->setUser($this->userDAO->find($row['user_id'])); 

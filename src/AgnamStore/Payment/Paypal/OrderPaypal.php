@@ -26,7 +26,11 @@ class OrderPaypal {
     public function getCode(){
         return self::CODE;
     }
-
+    
+    /*
+        Init all object and depance object on OrderPaypal
+     *      */
+    
     public function __construct($currency = 'EUR') {
 
         $this->setCurrency($currency);

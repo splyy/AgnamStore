@@ -15,8 +15,10 @@ class PaypalController extends MainController {
         //try {
         $paypal = new Paypal($app['paypal']);
         $order = $paypal->buildPaypalShoppingCart($cart);
-        $order->setUrlFail($app['base.url'].'paypal/fail')
-                ->setUrlOK($app['base.url'].'paypal/success')
+        
+        
+        $order->setUrlFail('http://'.$request->getHost().'/paypal/fail')
+                ->setUrlOK('http://'.$request->getHost().'/paypal/success')
                 ->setPaymentDescription('L\'équipe du AgnamStore vous remercie.');
         $url = $paypal->create($order);
         return new RedirectResponse($url);

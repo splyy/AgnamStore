@@ -62,7 +62,7 @@ class ItemDAO extends DAO {
         return $items;
     }
 
-    // Attention ne pas oublier de remplacer par sale_date lorsque les date de vente seront mise en place
+    
     /**
      * Returns the list of three last item matching by type id .
      *
@@ -71,7 +71,7 @@ class ItemDAO extends DAO {
      * @return array The list of items.
      */
     public function findByTypeThreeLast($typeId) {
-        $sql = "select * from item where item_type_id=? order by item_id limit 3";
+        $sql = "select * from item where item_type_id=? order by item_id desc limit 3";
         $result = $this->getDb()->fetchAll($sql, array($typeId));
 
         // Converts query result to an array of domain objects

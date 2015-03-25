@@ -21,4 +21,3 @@ $app['paypal'] = [
 // define log parameters
 $app['monolog.level'] = 'WARNING';
 
-$app['base.url'] = 'http://localhost2/';

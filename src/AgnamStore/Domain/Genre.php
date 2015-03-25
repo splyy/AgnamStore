@@ -4,11 +4,13 @@ namespace AgnamStore\Domain;
 
 class Genre {
     /** Type id.
-     * @var integer **/
+     * @var integer 
+     * **/
     private $id;
     
     /** Type name.
-     * @var string **/
+     * @var string 
+     * **/
     private $name;
     
     public function getId() {

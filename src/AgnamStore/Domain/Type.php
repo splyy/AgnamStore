@@ -5,11 +5,13 @@ namespace AgnamStore\Domain;
 class Type {
 
     /** Type id.
-     * @var integer * */
+     * @var integer 
+     * * */
     private $id;
 
     /** Type name.
-     * @var string * */
+     * @var string
+     * * */
     private $label;
 
     public function getId() {

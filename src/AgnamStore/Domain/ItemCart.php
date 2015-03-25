@@ -10,11 +10,13 @@ class ItemCart {
     private $item;
 
     /** ItemCart $user
-     * @var AgnamStore\Domain\User * */
+     * @var AgnamStore\Domain\User 
+     * * */
     private $user;
 
     /** ItemCart $qte
-     * @var integer * */
+     * @var integer 
+     * * */
     private $qte;
 
     public function getItem() {

@@ -20,7 +20,6 @@ class ItemType extends AbstractType {
                 ->add('year','number')
                 ->add('author','text')
                 ->add('image','text')
-                ->add('genres','hidden')
                 ->add('description', 'textarea', array(
                     'attr' => array(
                         'rows' => '4',

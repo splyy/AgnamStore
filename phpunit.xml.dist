@@ -2,7 +2,7 @@
 
 <phpunit>
   <testsuites>
-    <testsuite name="MicroCMS">
+    <testsuite name="AgnamStore">
       <directory>tests</directory>
     </testsuite>
   </testsuites>

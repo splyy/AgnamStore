@@ -4,43 +4,53 @@ namespace AgnamStore\Domain;
 
 class Item {
     /** Item id.
-     * @var integer **/
+     * @var integer 
+     * **/
     private $id;
     
     /** Item name.
-     * @var string **/
+     * @var string 
+     * **/
     private $name;
     
     /** Sale date.
-     * @var date **/
+     * @var date 
+     * **/
     private $saleDate;
     
     /** Item year.
-     * @var integer **/
+     * @var integer 
+     * **/
     private $year;
     
     /** Item author.
-     * @var string **/
+     * @var string 
+     * **/
     private $author;
     
     /** Item description.
-     * @var string **/
+     * @var string 
+     * **/
     private $description;
     
     /** Item price.
-     * @var double **/
+     * @var double 
+     * **/
     private $price;
     
     /** Item image.
-     * @var integer **/
+     * @var integer 
+     * **/
     private $image;
     
     /** Iteam Type.
-     * @var \AgnamStore\Domaine\Type **/
+     * @var \AgnamStore\Domaine\Type 
+     * **/
     private $type;
     
     /** Iteam Type.
-     * @var array \AgnamStore\Domaine\Genre **/
+     * @var array \AgnamStore\Domaine\Genre 
+     * **/
     private $genres;
     
     public function getId() {

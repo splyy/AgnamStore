@@ -1,6 +1,6 @@
 <?php
 
-namespace MicroCMS\Tests;
+namespace AgnamStore\Tests;
 
 require_once __DIR__.'/../../../vendor/autoload.php';
 
@@ -58,8 +58,8 @@ class AppTest extends WebTestCase
             array('/items/type=1'),
             array('/login'),
             array('/admin'),
-            array('/admin/item/add'),
-            array('/admin/item/1/'),
+            array('/admin/item/add/'),
+            array('/admin/item/1'),
             array('/admin/user/add'),
             array('/admin/user/1/'),
             array('/registration'), 

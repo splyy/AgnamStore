@@ -48,8 +48,7 @@ class UserController extends MainController{
         }
         return $this->renderView($app,'user_registration_form.html.twig', array(
                     'title' => 'Nouvel utilisateur',
-                    'userForm' => $userForm->createView(),
-                    'types' => $types
+                    'userForm' => $userForm->createView()
         ));
     }
 
@@ -70,8 +69,7 @@ class UserController extends MainController{
         }
         return $this->renderView($app,'user.html.twig', array(
                     'title' => 'Editer un utilisateur',
-                    'userForm' => $userForm->createView(),
-                    
+                    'userForm' => $userForm->createView(),                    
                     'userMenu' => $userMenu,
         ));
     }
@@ -89,8 +87,7 @@ class UserController extends MainController{
         }
         return $this->renderView($app,'user.html.twig', array(
                     'title' => 'Edtier un utilisateur',
-                    'userForm' => $userForm->createView(),
-                    
+                    'userForm' => $userForm->createView(),                    
                     'userMenu' => $userMenu,
         ));
     }
@@ -116,8 +113,7 @@ class UserController extends MainController{
         }
         return $this->renderView($app,'user_form_adm.html.twig', array(
                     'title' => 'Nouvel utilisateur',
-                    'userForm' => $userForm->createView(),
-                    'types' => $types
+                    'userForm' => $userForm->createView()
         ));
     }
     
@@ -133,8 +129,7 @@ class UserController extends MainController{
         }
         return $this->renderView($app,'user_adm.html.twig', array(
                     'title' => 'Editer un utilisateur',
-                    'userForm' => $userForm->createView(),
-                    
+                    'userForm' => $userForm->createView(),                    
                     'userMenu' => $userMenu,
                     'user' => $user,
         ));
@@ -153,8 +148,7 @@ class UserController extends MainController{
         }
         return $this->renderView($app,'user_adm.html.twig', array(
                     'title' => 'Editer un utilisateur',
-                    'userForm' => $userForm->createView(),
-                    
+                    'userForm' => $userForm->createView(),                    
                     'userMenu' => $userMenu,
                     'user' => $user,
         ));
@@ -172,8 +166,7 @@ class UserController extends MainController{
         }
         return $this->renderView($app,'user_adm.html.twig', array(
                     'title' => 'Editer un utilisateur',
-                    'userForm' => $userForm->createView(),
-                    
+                    'userForm' => $userForm->createView(),                    
                     'userMenu' => $userMenu,
                     'user' => $user,
         ));

@@ -11,8 +11,7 @@ use AgnamStore\Domain\Item;
 class ItemController extends MainController{
 
     public function itemsByType($typeId, Application $app) {
-        $items = $app['dao.item']->findByType($typeId);
-        
+        $items = $app['dao.item']->findByType($typeId);        
         $typeG = $app['dao.type']->find($typeId);
         return $this->renderView($app,'items.html.twig', array( 'items' => $items, "typeG" => $typeG));
     }
@@ -33,7 +32,7 @@ class ItemController extends MainController{
     
     public function addItemAdm( Request $request, Application $app){
         $item = new Item();
-        
+        $types = $app['dao.type']->findAll();
         $form = new ItemType();
         $form->setType($types);
         $itemForm = $app['form.factory']->create($form, $item);        
@@ -43,7 +42,7 @@ class ItemController extends MainController{
             $item->setSaleDate('0000-00-00');
             //TODO GESTION des genre
             $item->setType($app['dao.type']->find($item->getType()));
-            $this->saveItem($item,$app);
+            $this->saveItem($item,$app, 'Le produit a bien été ajouté.');
         }
         return $this->renderView($app,'item_form.html.twig', array(
                     'title' => 'Nouveau produit',
@@ -55,7 +54,7 @@ class ItemController extends MainController{
     public function editItemAdm($id, Request $request, Application $app){
         $item = $item = $app['dao.item']->find($id);
         $item->setType($item->getType()->getId());
-        
+        $types = $app['dao.type']->findAll();
         $form = new ItemType();
         $form->setType($types);
         $itemForm = $app['form.factory']->create($form, $item);
@@ -83,10 +82,10 @@ class ItemController extends MainController{
      * 
      * * * * * * * * * * */
 
-    private function saveItem($item, Application $app) {
+    private function saveItem($item, Application $app, $msg =  'Le produit a été mis à jour.') {
         try {
             $app['dao.item']->save($item);
-            $app['session']->getFlashBag()->add('success', 'Le produit a été mis à jour.');
+            $app['session']->getFlashBag()->add('success',$msg);
         } catch (\Exception $exc) {
             $app['session']->getFlashBag()->add('error', $exc->getMessage());
         }

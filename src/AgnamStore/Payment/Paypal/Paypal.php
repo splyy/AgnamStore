@@ -19,7 +19,7 @@ class Paypal {
     public function getCode() {
         return self::CODE;
     }
-
+    
     public function setPaypalValuesKeys($paypalValues) {
         if (is_array($paypalValues)) {
             $this->paypalValuesKeys = $paypalValues;

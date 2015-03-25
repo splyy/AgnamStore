@@ -16,11 +16,11 @@ $app->get('/items/{id}', "AgnamStore\Controller\ItemController::itemById");
 /* Administration */
 
 // Edit an existing user
-$app->match('/admin/item/{id}/', "AgnamStore\Controller\ItemController::editItemAdm");
+$app->match('/admin/item/{id}', "AgnamStore\Controller\ItemController::editItemAdm");
 // Remove a user
 $app->get('/admin/item/{id}/delete', "AgnamStore\Controller\ItemController::delItemAdm");
 // Add a item
-$app->match('/admin/item/add', "AgnamStore\Controller\ItemController::addItemAdm");
+$app->match('/admin/item/add/', "AgnamStore\Controller\ItemController::addItemAdm");
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -57,9 +57,9 @@ $app->match('/user/password', "AgnamStore\Controller\UserController::password" )
 /* Administration */
 
 // Add a user
-$app->match('/admin/user/add', "AgnamStore\Controller\UserController::addUserAdm");
+$app->match('/admin/user/add/', "AgnamStore\Controller\UserController::addUserAdm");
 // Edit an existing user
-$app->match('/admin/user/{id}/', "AgnamStore\Controller\UserController::profilAdm");
+$app->match('/admin/user/{id}', "AgnamStore\Controller\UserController::profilAdm");
 $app->match('/admin/user/{id}/password', "AgnamStore\Controller\UserController::passwordAdm");
 $app->match('/admin/user/{id}/role', "AgnamStore\Controller\UserController::roleAdm");
 // Remove a users
@@ -77,9 +77,9 @@ $app->get('/cart', "AgnamStore\Controller\CartController::index");
 
 // Add item on cart
 $app->get('/cart/item/{id}', "AgnamStore\Controller\CartController::add");
-
+// edit qte on item in cart
 $app->post('/cart/item/{id}', "AgnamStore\Controller\CartController::edit");
-
+// delelte item on cart
 $app->get('/cart/item/{id}/delete', "AgnamStore\Controller\CartController::del");
 
 
