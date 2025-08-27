@@ -58,7 +58,7 @@ class Item {
     }
 
     public function getSaleDate() {
-        return $this->sale;
+        return $this->saleDate;
     }
 
     public function getYear() {
@@ -93,8 +93,8 @@ class Item {
         $this->id = $id;
     }
 
-    public function setSaleDate($sale) {
-        $this->sale = $sale;
+    public function setSaleDate($saleDate) {
+        $this->saleDate = $saleDate;
     }
 
     public function setYear($year) {

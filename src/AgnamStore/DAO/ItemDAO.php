@@ -148,7 +148,7 @@ class ItemDAO extends DAO {
     public function buildDomainObject($row) {
         $item = new Item();
         $type = $this->typeDAO->find($row['item_type_id']);
-        //$genres = $this->genreDAO->findAllGenreForItem($row['item_id']);
+        $genres = $this->genreDAO->findAllGenreForItem($row['item_id']);
         $item->setId($row['item_id']);
         $item->setSaleDate($row['sale_date']);
         $item->setYear($row['year']);
@@ -157,6 +157,7 @@ class ItemDAO extends DAO {
         $item->setPrice($row['price']);
         $item->setImage($row['image']);
         $item->setType($type);
+        $item->setGenres($genres);
         $item->setName($row['name']);
         return $item;
     }

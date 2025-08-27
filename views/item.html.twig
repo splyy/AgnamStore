@@ -12,8 +12,8 @@
                 <div class="col-sm-3">
                     <img class="img-thumbnail" src="{{ app.request.basepath }}/images/produit/{{ item.image }}" title="{{ item.name }}"/>
                 </div>
-                <div class="col-sm-9 panel-body"> 
-                    <div class="container-fluid"> 
+                <div class="col-sm-9 panel-body">
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="page-item">
@@ -21,7 +21,8 @@
                                     <ul class="list-unstyled">
                                         <li><u>Auteur</u> : {{ item.author }}</li>
                                         <li><u>Année</u> : {{ item.year }}</li>
-                                        <li><u>Genre</u> : TEXTE</li>
+                                        <li><u>Type</u> : {{ item.type.label }}</li>
+                                        <li><u>Genre</u> : {% for genre in item.genres %}{{ genre.name }}{% if not loop.last %}, {% endif %}{% endfor %}</li>
                                     </ul>
                                     <br />
                                     <h4>Description</h4>
@@ -36,9 +37,9 @@
                             <a  class="btn btn-warning"href="/cart/item/{{ item.id }}" >{{ item.price }} € <span class="glyphicon glyphicon-shopping-cart"></span></a>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
-        </div> 
+        </div>
     </div>
 
 {% endblock %}

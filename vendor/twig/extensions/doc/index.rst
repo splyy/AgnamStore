@@ -23,14 +23,14 @@ command line:
 
 .. code-block:: bash
 
-    composer require twig/extensions ~1.1.0
+    composer require twig/extensions
 
 * :doc:`Text <text>`: Provides useful filters for text manipulation;
 
 * :doc:`I18n <i18n>`: Adds internationalization support via the ``gettext``
   library;
 
-* :doc:`Intl <intl>`: Adds a filter for localization of ``DateTime`` objects;
+* :doc:`Intl <intl>`: Adds a filter for localization of ``DateTime`` objects, numbers and currency;
 
 * :doc:`Array <array>`: Provides useful filters for array manipulation;
 

@@ -32,8 +32,8 @@ class GenreDAO extends DAO {
      * @return List of \AgnamStore\Domain\Genre.
      */
     public function findAllGenreForItem($itemId) {
-        $sql = "select * from item_genre ig join possede_genre pg where item_id=? order by item_genre_label";
-        $result = $this->getDb()->$this->getDb()->fetchAll($sql, array($itemId));
+        $sql = "select ig.* from item_genre ig join possede_genre pg on ig.item_genre_id = pg.item_genre_id where pg.item_id=? order by ig.item_genre_label";
+        $result = $this->getDb()->fetchAll($sql, array($itemId));
 
         // Converts query result to an array of domain objects
         $genres = array();
@@ -71,7 +71,7 @@ class GenreDAO extends DAO {
     protected function buildDomainObject($row) {
         $genre = new Genre();
         $genre->setId($row['item_genre_id']);
-        $genre->setLabel($row['item_genre_label']);
+        $genre->setName($row['item_genre_label']);
         return $genre;
     }
 

@@ -14,14 +14,12 @@ class Twig_Extensions_Extension_Intl extends Twig_Extension
     public function __construct()
     {
         if (!class_exists('IntlDateFormatter')) {
-            throw new RuntimeException('The intl extension is needed to use intl-based filters.');
+            throw new RuntimeException('The native PHP intl extension (http://php.net/manual/en/book.intl.php) is needed to use intl-based filters.');
         }
     }
 
     /**
-     * Returns a list of filters to add to the existing list.
-     *
-     * @return array An array of filters
+     * {@inheritdoc}
      */
     public function getFilters()
     {
@@ -33,9 +31,7 @@ class Twig_Extensions_Extension_Intl extends Twig_Extension
     }
 
     /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -43,24 +39,37 @@ class Twig_Extensions_Extension_Intl extends Twig_Extension
     }
 }
 
-function twig_localized_date_filter(Twig_Environment $env, $date, $dateFormat = 'medium', $timeFormat = 'medium', $locale = null, $timezone = null, $format = null)
+function twig_localized_date_filter(Twig_Environment $env, $date, $dateFormat = 'medium', $timeFormat = 'medium', $locale = null, $timezone = null, $format = null, $calendar = 'gregorian')
 {
     $date = twig_date_converter($env, $date, $timezone);
 
     $formatValues = array(
-        'none'   => IntlDateFormatter::NONE,
-        'short'  => IntlDateFormatter::SHORT,
+        'none' => IntlDateFormatter::NONE,
+        'short' => IntlDateFormatter::SHORT,
         'medium' => IntlDateFormatter::MEDIUM,
-        'long'   => IntlDateFormatter::LONG,
-        'full'   => IntlDateFormatter::FULL,
+        'long' => IntlDateFormatter::LONG,
+        'full' => IntlDateFormatter::FULL,
     );
+
+    if (PHP_VERSION_ID < 50500 || !class_exists('IntlTimeZone')) {
+        $formatter = IntlDateFormatter::create(
+            $locale,
+            $formatValues[$dateFormat],
+            $formatValues[$timeFormat],
+            $date->getTimezone()->getName(),
+            'gregorian' === $calendar ? IntlDateFormatter::GREGORIAN : IntlDateFormatter::TRADITIONAL,
+            $format
+        );
+
+        return $formatter->format($date->getTimestamp());
+    }
 
     $formatter = IntlDateFormatter::create(
         $locale,
         $formatValues[$dateFormat],
         $formatValues[$timeFormat],
-        $date->getTimezone()->getName(),
-        IntlDateFormatter::GREGORIAN,
+        IntlTimeZone::createTimeZone($date->getTimezone()->getName()),
+        'gregorian' === $calendar ? IntlDateFormatter::GREGORIAN : IntlDateFormatter::TRADITIONAL,
         $format
     );
 
@@ -70,11 +79,11 @@ function twig_localized_date_filter(Twig_Environment $env, $date, $dateFormat = 
 function twig_localized_number_filter($number, $style = 'decimal', $type = 'default', $locale = null)
 {
     static $typeValues = array(
-        'default'   => NumberFormatter::TYPE_DEFAULT,
-        'int32'     => NumberFormatter::TYPE_INT32,
-        'int64'     => NumberFormatter::TYPE_INT64,
-        'double'    => NumberFormatter::TYPE_DOUBLE,
-        'currency'  => NumberFormatter::TYPE_CURRENCY,
+        'default' => NumberFormatter::TYPE_DEFAULT,
+        'int32' => NumberFormatter::TYPE_INT32,
+        'int64' => NumberFormatter::TYPE_INT64,
+        'double' => NumberFormatter::TYPE_DOUBLE,
+        'currency' => NumberFormatter::TYPE_CURRENCY,
     );
 
     $formatter = twig_get_number_formatter($locale, $style);
@@ -94,10 +103,10 @@ function twig_localized_currency_filter($number, $currency = null, $locale = nul
 }
 
 /**
- * Gets a number formatter instance according to given locale and formatter
+ * Gets a number formatter instance according to given locale and formatter.
  *
- * @param  string $locale Locale in which the number would be formatted
- * @param  int    $style  Style of the formatting
+ * @param string $locale Locale in which the number would be formatted
+ * @param int    $style  Style of the formatting
  *
  * @return NumberFormatter A NumberFormatter instance
  */
@@ -105,7 +114,7 @@ function twig_get_number_formatter($locale, $style)
 {
     static $formatter, $currentStyle;
 
-    $locale = $locale !== null ? $locale : Locale::getDefault();
+    $locale = null !== $locale ? $locale : Locale::getDefault();
 
     if ($formatter && $formatter->getLocale() === $locale && $currentStyle === $style) {
         // Return same instance of NumberFormatter if parameters are the same
@@ -114,13 +123,13 @@ function twig_get_number_formatter($locale, $style)
     }
 
     static $styleValues = array(
-        'decimal'       => NumberFormatter::DECIMAL,
-        'currency'      => NumberFormatter::CURRENCY,
-        'percent'       => NumberFormatter::PERCENT,
-        'scientific'    => NumberFormatter::SCIENTIFIC,
-        'spellout'      => NumberFormatter::SPELLOUT,
-        'ordinal'       => NumberFormatter::ORDINAL,
-        'duration'      => NumberFormatter::DURATION,
+        'decimal' => NumberFormatter::DECIMAL,
+        'currency' => NumberFormatter::CURRENCY,
+        'percent' => NumberFormatter::PERCENT,
+        'scientific' => NumberFormatter::SCIENTIFIC,
+        'spellout' => NumberFormatter::SPELLOUT,
+        'ordinal' => NumberFormatter::ORDINAL,
+        'duration' => NumberFormatter::DURATION,
     );
 
     if (!isset($styleValues[$style])) {
@@ -133,3 +142,5 @@ function twig_get_number_formatter($locale, $style)
 
     return $formatter;
 }
+
+class_alias('Twig_Extensions_Extension_Intl', 'Twig\Extensions\IntlExtension', false);

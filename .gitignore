@@ -1,4 +1,10 @@
+# NetBeans specific #
 /nbproject/private/
+
+# PHPStorm #
+.idea/
+
+# Project #
 /var/
 /nbproject/private
 /vendor/

@@ -1,5 +1,5 @@
-SwiftmailerServiceProvider
-==========================
+Swiftmailer
+===========
 
 The *SwiftmailerServiceProvider* provides a service for sending email through
 the `Swift Mailer <http://swiftmailer.org>`_ library.
@@ -21,8 +21,8 @@ Parameters
   * **port**: SMTP port, defaults to 25.
   * **username**: SMTP username, defaults to an empty string.
   * **password**: SMTP password, defaults to an empty string.
-  * **encryption**: SMTP encryption, defaults to null.
-  * **auth_mode**: SMTP authentication mode, defaults to null.
+  * **encryption**: SMTP encryption, defaults to null. Valid values are 'tls', 'ssl', or null (indicating no encryption).
+  * **auth_mode**: SMTP authentication mode, defaults to null. Valid values are 'plain', 'login', 'cram-md5', or null.
 
   Example usage::
 

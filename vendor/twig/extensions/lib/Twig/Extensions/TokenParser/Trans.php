@@ -8,14 +8,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 class Twig_Extensions_TokenParser_Trans extends Twig_TokenParser
 {
     /**
-     * Parses a token and returns a node.
-     *
-     * @param Twig_Token $token A Twig_Token instance
-     *
-     * @return Twig_NodeInterface A Twig_NodeInterface instance
+     * {@inheritdoc}
      */
     public function parse(Twig_Token $token)
     {
@@ -65,18 +62,14 @@ class Twig_Extensions_TokenParser_Trans extends Twig_TokenParser
     }
 
     /**
-     * Gets the tag name associated with this token parser.
-     *
-     * @param string The tag name
-     * 
-     * @return string
+     * {@inheritdoc}
      */
     public function getTag()
     {
         return 'trans';
     }
 
-    protected function checkTransString(Twig_NodeInterface $body, $lineno)
+    protected function checkTransString(Twig_Node $body, $lineno)
     {
         foreach ($body as $i => $node) {
             if (
@@ -91,3 +84,5 @@ class Twig_Extensions_TokenParser_Trans extends Twig_TokenParser
         }
     }
 }
+
+class_alias('Twig_Extensions_TokenParser_Trans', 'Twig\Extensions\TokenParser\TransTokenParser', false);
