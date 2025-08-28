@@ -47,6 +47,12 @@ $app->get('/', "AgnamStore\Controller\HomeController::index");
 // Login form
 $app->get('/login', "AgnamStore\Controller\UserController::loginAction")
 ->bind('login');  // named route so that path('login') works in Twig templates
+
+// Login check (handled by Symfony Security)
+$app->post('/login_check', function() {
+    // This route is never executed, it's handled by Symfony Security
+})->bind('login_check');
+
 // Registration
 $app->match('/registration', "AgnamStore\Controller\UserController::registration" );
 

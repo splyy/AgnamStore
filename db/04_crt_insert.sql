@@ -76,9 +76,9 @@ INSERT INTO `item` (`item_id`, `price`, `name`, `sale_date`, `year`, `author`, `
 /*==============================================================*/
 /* Insert Table : user                                          */
 /*==============================================================*/
-INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(1, 'admin@agnam.fr', 'XOI/t9fCTl1bgJrMTMCY5UCUDV+wRlWt4ceQjEUP6zjz2d7ShjeDced/eDagEqQ86y+RlrC0Aao9F7EOy9Htew==', 'e4a780e84d15be4d67ba7f9', 'ROLE_ADMIN', 'Admin', 'admin', '10 rue des Alpes', 'Genas', '69740');
-INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(2, 'user@agnam.fr', 'srV2t7sSm7UbXH5BcybLertTnFLgX+LVhJYnKnKNzVHXI4D34SI1Y0d1/MGBHqXuRTCgu+ufmji+ofdo1eQ9tg==', 'f903e8347e7cd11cbdcc8a6', 'ROLE_USER', 'John', 'Doe', '7 rue Henry Billaut', 'Trevoux', '69490');
-INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(3, 'test@agnam.fr', 'kXVOWFVCGBo+IZKIs0ll5kxceWGvrLIUP4O12vW0G618+E5OiwbL27XpCvM9Ai4cqq9NavJ8RCQZ03kDWpqdBg==', '3d4fd3337dca7e488616caf', 'ROLE_USER', 'Test', 'test', '5 boulevard des abeilles', 'Villeurbanne', '69873');
+INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(1, 'admin@admin.fr', 'kfliW7VQC582VzvVplBgiw==', '54d46e200fe7fb93d09f869', 'ROLE_ADMIN', 'Admin', 'admin', '10 rue des Alpes', 'Genas', '69740');
+INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(2, 'user@user.fr', '3gsEXt1y6z9Zsfh+FkxhXg==', '36a903f30cccb13dc9e3258', 'ROLE_USER', 'John', 'Doe', '7 rue Henry Billaut', 'Trevoux', '69490');
+INSERT INTO `user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_role`, `user_firstname`, `user_lastname`, `user_address`, `user_city`, `user_cp`) VALUES(3, 'test@test.fr', 'Y5Y4Wun7bIL1p2pkDUO9Zg==', '2a6d213f169c9014da185ca', 'ROLE_USER', 'Test', 'test', '5 boulevard des abeilles', 'Villeurbanne', '69873');
 
 /*==============================================================*/
 /* Insert Table : possede_genre                                          */
