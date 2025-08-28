@@ -7,9 +7,7 @@ AgnamStore est un projet de cours réalisé dans le cadre d'un exercice académi
 Ce projet illustre une implémentation complète d'une boutique en ligne avec :
 - Création d'un projet sous Silex
 - Gestion des utilisateurs et authentification
-- Catalogue de produits (mangas, animés, figurines, livres)
-- Panier d'achat et processus de commande
-- Intégration PayPal pour les paiements
+- Catalogue de produits (mangas, animés, films, light novels)
 - Interface d'administration
 
 ## Installation et lancement
